@@ -1,0 +1,36 @@
+{
+  "name": "EEE Journal — EmotionEvent Entanglement",
+  "short_name": "EEE Journal",
+  "description": "Track your emotional arc on the 22-point scale. Log the experiences that follow. Watch the entanglement emerge.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#070710",
+  "theme_color": "#070710",
+  "lang": "en",
+  "categories": ["health", "lifestyle", "productivity"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Log Emotion",
+      "short_name": "Emotion",
+      "description": "Open EEE Journal to log your current emotional state",
+      "url": "/?view=today",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
