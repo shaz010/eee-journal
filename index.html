@@ -19,7 +19,7 @@
   onerror="window.CHARTJS_FAILED=true;"></script>
 <style>
 /* ═══════════════════════════════════════════════════════════
-   b55 — EMOTIONAL FIELD ANALYZER Mk.III
+   b72 — _dbg removed; clean deploy build
    Palette: deep black / violet-indigo / phosphor-green
 ═══════════════════════════════════════════════════════════ */
 :root {
@@ -461,6 +461,8 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
 /* ── MOBILE LOG FORMS ── */
 .mobile-log { display: block; }
 .emo-list { overflow-y: auto; border-radius: var(--rs); }
+.emo-item { touch-action: manipulation; }
+.qual-chip-m { touch-action: manipulation; }
 .emo-item {
   display: flex; align-items: center; gap: 8px;
   padding: 6px 8px; cursor: pointer; border-radius: var(--rs);
@@ -699,8 +701,8 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
       <div class="ru">AGO</div>
     </div>
   </div>
-  <button class="sb-toggle" id="sbToggle" type="button">◀</button>
-  <div class="hdr-build">b55</div>
+  <button class="sb-toggle" id="sbToggle" type="button" onclick="toggleSidebar()">◀</button>
+  <div class="hdr-build">b72</div>
   <div class="inst-status">
     <div class="inst-led on"></div>
     <div class="sl on">TRACKING</div>
@@ -1934,33 +1936,31 @@ window.addEventListener('orientationchange', function(){
   }, 200);
 });
 
-// Button wiring: touchstart (iPad/iPhone, fires immediately) + onclick (Mac mouse fallback)
-// Timestamp debounce prevents ghost click double-fire on iOS
+// sbToggle: touch handled inline in HTML (ontouchend); click only wired for non-touch (Mac)
+// arcFocusBtn: touchstart + onclick debounce
 (function(){
+  // arcFocusBtn
   var _ts = {};
-  function wire(id, fn){
-    var el = document.getElementById(id);
-    if(!el) return;
+  var el = document.getElementById('arcFocusBtn');
+  if(el){
     el.addEventListener('touchstart', function(e){
       e.preventDefault();
-      _ts[id] = Date.now();
-      fn();
+      _ts['arc'] = Date.now();
+      toggleArcFocus();
     }, {passive: false});
     el.onclick = function(){
-      if(_ts[id] && (Date.now() - _ts[id]) < 1200){ _ts[id] = 0; return; }
-      fn();
+      if(_ts['arc'] && (Date.now() - _ts['arc']) < 1200){ _ts['arc'] = 0; return; }
+      toggleArcFocus();
     };
   }
-  wire('sbToggle',    toggleSidebar);
-  wire('arcFocusBtn', toggleArcFocus);
 })();
+
 
 function toggleSidebar(){
   const btn=document.getElementById('sbToggle');
   const isDesktop=window.innerWidth>=1024;
 
   if(isDesktop){
-    // Desktop / iPad — collapse the left sidebar panel
     const sb=document.querySelector('.sidebar');
     if(!sb) return;
     const collapsed=sb.classList.toggle('collapsed');
@@ -1969,17 +1969,12 @@ function toggleSidebar(){
       setTimeout(()=>{patZoom=null;renderPatterns();},240);
     }
   } else {
-    // iPhone — toggle the mobile emotion/experience log cards
-    // so only the chart (Today view) fills the screen
     const mlog=document.querySelector('.mobile-log');
-    const bnav=document.querySelector('.bnav');
-    if(!mlog) return;
+    if(!mlog){btn.textContent='ERR';return;}
     const hidden=document.body.classList.toggle('mobile-panel-hidden');
     btn.textContent=hidden?'▶':'◀';
-    if(hidden){
-      // ensure we're on Today view to see the chart
-      showView('today');
-    }
+    const ct=document.querySelector('.content');
+    if(ct) ct.scrollTop=hidden?0:(mlog.offsetTop||999);
   }
 }
 
@@ -2053,7 +2048,7 @@ setTimeout(function(){
   var d=document.getElementById('emoListD');
   var m=document.getElementById('emoListM');
   if((d&&d.children.length===0)||(m&&m.children.length===0)){
-    console.warn('[EEE b55] picker retry');buildPickers();
+    console.warn('[EEE b72] picker retry');buildPickers();
   }
 },1500);
 
