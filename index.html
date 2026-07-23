@@ -19,7 +19,7 @@
   onerror="window.CHARTJS_FAILED=true;"></script>
 <style>
 /* ═══════════════════════════════════════════════════════════
-   b46 — EMOTIONAL FIELD ANALYZER Mk.III
+   b55 — EMOTIONAL FIELD ANALYZER Mk.III
    Palette: deep black / violet-indigo / phosphor-green
 ═══════════════════════════════════════════════════════════ */
 :root {
@@ -72,7 +72,7 @@ body {
   border-bottom: 1px solid #2e2e50;
   display: flex; align-items: stretch;
   padding: 0 14px; gap: 0;
-  z-index: 30;
+  position: relative; z-index: 30;
 }
 .inst-logo {
   display: flex; align-items: center; gap: 8px;
@@ -700,7 +700,7 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
     </div>
   </div>
   <button class="sb-toggle" id="sbToggle" type="button">◀</button>
-  <div class="hdr-build">b46</div>
+  <div class="hdr-build">b55</div>
   <div class="inst-status">
     <div class="inst-led on"></div>
     <div class="sl on">TRACKING</div>
@@ -2053,7 +2053,7 @@ setTimeout(function(){
   var d=document.getElementById('emoListD');
   var m=document.getElementById('emoListM');
   if((d&&d.children.length===0)||(m&&m.children.length===0)){
-    console.warn('[EEE b46] picker retry');buildPickers();
+    console.warn('[EEE b55] picker retry');buildPickers();
   }
 },1500);
 
