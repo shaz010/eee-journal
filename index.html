@@ -19,7 +19,7 @@
   onerror="window.CHARTJS_FAILED=true;"></script>
 <style>
 /* ═══════════════════════════════════════════════════════════
-   b75 — sidebar split scroll/footer so Clear Data is always reachable on iPad
+   b76 — timeline default zoom 68% on mobile; tap +/- zoom buttons added
    Palette: deep black / violet-indigo / phosphor-green
 ═══════════════════════════════════════════════════════════ */
 :root {
@@ -529,6 +529,15 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
 }
 .tl-zoom-level { color: #4858a0; font-weight: 700; flex-shrink: 0; }
 .tl-zoom-hint  { margin-left: auto; color: #8090c8; flex-shrink: 0; }
+.tl-zoom-btn {
+  flex-shrink: 0; width: 28px; height: 28px; border-radius: 6px;
+  background: rgba(72,88,200,.18); border: 1px solid rgba(72,88,200,.4);
+  color: #a0b0ff; font-size: 18px; line-height: 1; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-family: inherit; touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.tl-zoom-btn:active { background: rgba(72,88,200,.4); color: #fff; }
 
 /* Day blocks */
 .tl-day { margin-bottom: 1px; }
@@ -720,7 +729,7 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
     <div class="brand">EEE</div>
     <div style="display:flex;flex-direction:column;gap:2px;">
       <div class="model">EMOTIONAL FIELD ANALYZER Mk.III</div>
-      <div class="hdr-build" style="margin:0;align-self:flex-start;">b75</div>
+      <div class="hdr-build" style="margin:0;align-self:flex-start;">b76</div>
     </div>
   </div>
   <div class="inst-readouts">
@@ -926,7 +935,8 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
       <span class="tl-zoom-lbl">ZOOM</span>
       <div class="tl-zoom-track"><div class="tl-zoom-fill" id="tlZoomFill"></div></div>
       <span class="tl-zoom-level" id="tlZoomDisplay">COMPACT</span>
-      <span class="tl-zoom-hint">⌘↑↓ · pinch</span>
+      <button class="tl-zoom-btn" ontouchstart="" onclick="tlZoomBy(-14)">−</button>
+      <button class="tl-zoom-btn" ontouchstart="" onclick="tlZoomBy(14)">+</button>
     </div>
     <div id="tlBody" style="padding:0;"></div>
   </div>
@@ -1128,7 +1138,7 @@ let selRankD=null, selRankM=null;
 let selQualD=null, selQualM=null;
 let chartToday=null;
 let fPickHour=null;
-let tlZoom=40;   // 1-100; controls timeline entry height
+let tlZoom=window.innerWidth<1024?68:40;   // 1-100; controls timeline entry height
 let patZoom=null;
 let patSkin='emotional';
 
