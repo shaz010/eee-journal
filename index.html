@@ -734,7 +734,7 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
     <div class="brand">EEE</div>
     <div style="display:flex;flex-direction:column;gap:2px;">
       <div class="model">EMOTIONAL FIELD ANALYZER Mk.III</div>
-      <div class="hdr-build" style="margin:0;align-self:flex-start;">b80</div>
+      <div class="hdr-build" style="margin:0;align-self:flex-start;">b81</div>
     </div>
   </div>
   <div class="inst-readouts">
@@ -1143,7 +1143,7 @@ let selRankD=null, selRankM=null;
 let selQualD=null, selQualM=null;
 let chartToday=null;
 let fPickHour=null;
-let tlZoom=window.innerWidth<1024?68:40;   // 1-100; controls timeline entry height
+let tlZoom=window.innerWidth<=1024?68:40;   // 1-100; controls timeline entry height
 let patZoom=null;
 let patSkin='emotional';
 
