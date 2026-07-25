@@ -19,7 +19,7 @@
   onerror="window.CHARTJS_FAILED=true;"></script>
 <style>
 /* ═══════════════════════════════════════════════════════════
-   b78 — sidebar footer absolute-positioned; always visible on iPad
+   b79 — undo for clear data; inline confirm instead of browser dialog
    Palette: deep black / violet-indigo / phosphor-green
 ═══════════════════════════════════════════════════════════ */
 :root {
@@ -733,7 +733,7 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
     <div class="brand">EEE</div>
     <div style="display:flex;flex-direction:column;gap:2px;">
       <div class="model">EMOTIONAL FIELD ANALYZER Mk.III</div>
-      <div class="hdr-build" style="margin:0;align-self:flex-start;">b78</div>
+      <div class="hdr-build" style="margin:0;align-self:flex-start;">b79</div>
     </div>
   </div>
   <div class="inst-readouts">
@@ -851,7 +851,7 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
 
 </div><!-- /sidebar-scroll -->
 <div class="sidebar-footer">
-  <button class="sb-danger" onclick="clearAllData()">✕ CLEAR ALL DATA</button>
+  <div class="clear-zone"><button class="sb-danger" onclick="clearAllData()">✕ CLEAR ALL DATA</button></div>
 </div>
 </aside>
 
@@ -927,7 +927,7 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
         <div id="undoZoneEvtM" style="min-height:0;margin-top:4px;"></div>
       </div>
       <div class="card" style="padding:10px 14px;">
-        <button onclick="clearAllData()" style="width:100%;padding:9px;border:1px solid rgba(239,68,68,.4);border-radius:var(--rs);background:transparent;color:rgba(239,68,68,.7);font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.08em;">✕ CLEAR ALL DATA</button>
+        <div class="clear-zone"><button onclick="clearAllData()" style="width:100%;padding:9px;border:1px solid rgba(239,68,68,.4);border-radius:var(--rs);background:transparent;color:rgba(239,68,68,.7);font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.08em;">✕ CLEAR ALL DATA</button></div>
       </div>
     </div>
   </div>
@@ -2042,9 +2042,56 @@ function toggleSidebar(){
 // ══════════════════════════════════════════════════════
 // CLEAR + UNDO
 // ══════════════════════════════════════════════════════
+let _clearBackup=null,_clearUndoTimer=null;
+
+function _clearZones(html){
+  document.querySelectorAll('.clear-zone').forEach(z=>z.innerHTML=html);
+}
+function _resetClearZones(){
+  _clearZones(
+    '<button class="sb-danger" onclick="clearAllData()">✕ CLEAR ALL DATA</button>'
+  );
+  // restore mobile button style too (it lives inside .clear-zone so gets replaced above)
+}
+
 function clearAllData(){
-  if(!confirm('DELETE ALL emotions and experiences?\n\nThis cannot be undone.')) return;
+  clearTimeout(_clearUndoTimer);
+  _clearZones(
+    '<div style="background:#1a0808;border:1px solid rgba(239,68,68,.4);border-radius:6px;padding:8px 10px;">' +
+    '<div style="font-size:10px;color:#f08080;letter-spacing:.07em;margin-bottom:7px;font-weight:700;">DELETE ALL DATA?</div>' +
+    '<div style="display:flex;gap:6px;">' +
+    '<button ontouchstart="" onclick="confirmClearData()" style="flex:1;background:#7f1d1d;color:#fff;border:1px solid rgba(239,68,68,.6);border-radius:5px;padding:7px 6px;font-size:11px;font-weight:800;cursor:pointer;font-family:inherit;touch-action:manipulation;letter-spacing:.04em;">YES, DELETE</button>' +
+    '<button ontouchstart="" onclick="_resetClearZones()" style="flex:1;background:#0e0e1a;color:#a0b0d8;border:1px solid rgba(80,80,160,.4);border-radius:5px;padding:7px 6px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;touch-action:manipulation;letter-spacing:.04em;">CANCEL</button>' +
+    '</div></div>'
+  );
+}
+
+function confirmClearData(){
+  _clearBackup={e:localStorage.getItem('eee_e'),v:localStorage.getItem('eee_v')};
   localStorage.removeItem('eee_e');localStorage.removeItem('eee_v');
+  renderToday();tickLastLog();updateInstBar();
+  if(document.querySelector('#view-patterns.active')) renderPatterns();
+  if(document.querySelector('#view-timeline.active')) renderTimeline();
+  if(document.querySelector('#view-history.active')) renderHistory();
+  _clearZones(
+    '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;' +
+    'background:#0e1428;border:1px solid rgba(88,104,240,.5);border-radius:6px;padding:8px 10px;">' +
+    '<span style="font-size:11px;color:#a0b0d8;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">✓ All data cleared</span>' +
+    '<button ontouchstart="" onclick="undoClearData()" style="flex-shrink:0;background:#5868f0;color:#fff;border:none;' +
+    'border-radius:5px;padding:6px 16px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;' +
+    'letter-spacing:.1em;touch-action:manipulation;">UNDO</button></div>'
+  );
+  _clearUndoTimer=setTimeout(()=>{_clearBackup=null;_resetClearZones();},9000);
+}
+
+function undoClearData(){
+  clearTimeout(_clearUndoTimer);
+  if(_clearBackup){
+    if(_clearBackup.e) localStorage.setItem('eee_e',_clearBackup.e);
+    if(_clearBackup.v) localStorage.setItem('eee_v',_clearBackup.v);
+    _clearBackup=null;
+  }
+  _resetClearZones();
   renderToday();tickLastLog();updateInstBar();
   if(document.querySelector('#view-patterns.active')) renderPatterns();
   if(document.querySelector('#view-timeline.active')) renderTimeline();
