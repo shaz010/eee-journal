@@ -19,7 +19,8 @@
   onerror="window.CHARTJS_FAILED=true;"></script>
 <style>
 /* ═══════════════════════════════════════════════════════════
-   b81 — Three themes: Dark / Light / Holographic Noir; ☀ button cycles in header
+   b82 — Fix Holographic Noir visibility: boosted --tl-date-c, --tl-cnt-c,
+          --rdout-lbl, --note-c, --muted for contrast on near-black bg
    Palette: deep black / violet-indigo / phosphor-green
 ═══════════════════════════════════════════════════════════ */
 :root {
@@ -871,7 +872,7 @@ html[data-theme="holo"] {
   --rdout-bdr:  #120a28;
   --footer-bdr: #120a28;
   --brand-c:    #00e5ff;
-  --rdout-lbl:  #7070a8;
+  --rdout-lbl:  #9090c8;
   --model-bg:   #030306;
   --model-bdr:  #1a0f40;
   --chart-bg:   #020208;
@@ -882,11 +883,11 @@ html[data-theme="holo"] {
   --tl-bdr:     #0a0818;
   --zoom-bg:    #020208;
   --zoom-fill:  #00e5ff;
-  --note-c:     #505090;
+  --note-c:     #7070aa;
   --emo-lbl-c:  #f0eeff;
-  --qual-lbl-c: #9090cc;
-  --tl-date-c:  #3838a0;
-  --tl-cnt-c:   #3838a0;
+  --qual-lbl-c: #a0a0d0;
+  --tl-date-c:  #6868c0;
+  --tl-cnt-c:   #5858b0;
 }
 /* Holo: inline-style overrides */
 html[data-theme="holo"] .emo-row  { border-bottom-color: var(--chip-bdr) !important; }
@@ -968,7 +969,7 @@ html[data-theme="holo"] #calPanel          { background: #07060f; border-color: 
     <div class="brand">EEE</div>
     <div style="display:flex;flex-direction:column;gap:2px;">
       <div class="model">EMOTIONAL FIELD ANALYZER Mk.III</div>
-      <div class="hdr-build" style="margin:0;align-self:flex-start;">b81</div>
+      <div class="hdr-build" style="margin:0;align-self:flex-start;">b82</div>
     </div>
   </div>
   <div class="inst-readouts">
