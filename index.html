@@ -19,7 +19,7 @@
   onerror="window.CHARTJS_FAILED=true;"></script>
 <style>
 /* ═══════════════════════════════════════════════════════════
-   b74 — enhanced selection highlight; arc card sticky in portrait; bnav IDs fixed
+   b75 — sidebar split scroll/footer so Clear Data is always reachable on iPad
    Palette: deep black / violet-indigo / phosphor-green
 ═══════════════════════════════════════════════════════════ */
 :root {
@@ -138,9 +138,19 @@ body {
   display: none; flex-direction: column;
   width: var(--side); flex-shrink: 0;
   background: #08081a; border-right: 1px solid #14142a;
+  overflow: hidden;
+  transition: width .2s ease;
+}
+.sidebar-scroll {
+  flex: 1; min-height: 0;
   overflow-y: auto; overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  transition: width .2s ease;
+}
+.sidebar-footer {
+  flex-shrink: 0;
+  padding: 4px 10px 14px;
+  border-top: 1px solid #12122a;
+  background: #08081a;
 }
 .sidebar.collapsed { width: 0; border-right-color: transparent; overflow: hidden; pointer-events: none; }
 /* Mobile sidebar collapse — hide log panel, show chart only */
@@ -643,7 +653,7 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
   }
   .date-input { font-size: 16px; padding: 5px 8px; height: 34px; }
   /* iOS Safari sidebar fix */
-  .sidebar { overflow-y: auto !important; -webkit-overflow-scrolling: touch; }
+  .sidebar-scroll { overflow-y: auto !important; -webkit-overflow-scrolling: touch; }
   .emo-scale { overflow: visible !important; }
   .qual-row  { overflow: visible !important; }
 
@@ -710,7 +720,7 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
     <div class="brand">EEE</div>
     <div style="display:flex;flex-direction:column;gap:2px;">
       <div class="model">EMOTIONAL FIELD ANALYZER Mk.III</div>
-      <div class="hdr-build" style="margin:0;align-self:flex-start;">b74</div>
+      <div class="hdr-build" style="margin:0;align-self:flex-start;">b75</div>
     </div>
   </div>
   <div class="inst-readouts">
@@ -747,6 +757,7 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
 
 <!-- ═══ SIDEBAR ═══ -->
 <aside class="sidebar">
+<div class="sidebar-scroll">
 
   <!-- LOG EMOTION -->
   <div class="sb-section-hdr"><span class="phi">CH1</span>&nbsp;EMOTION · 22-PT SCALE</div>
@@ -824,9 +835,11 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
   </div>
 
   <div class="sb-divider"></div>
-  <div style="position:sticky;bottom:0;background:#08081a;padding:4px 10px 14px;border-top:1px solid #12122a;">
-    <button class="sb-danger" onclick="clearAllData()">✕ CLEAR ALL DATA</button>
-  </div>
+
+</div><!-- /sidebar-scroll -->
+<div class="sidebar-footer">
+  <button class="sb-danger" onclick="clearAllData()">✕ CLEAR ALL DATA</button>
+</div>
 </aside>
 
 <!-- ═══ CONTENT AREA ═══ -->
