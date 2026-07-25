@@ -19,7 +19,7 @@
   onerror="window.CHARTJS_FAILED=true;"></script>
 <style>
 /* ═══════════════════════════════════════════════════════════
-   b72 — _dbg removed; clean deploy build
+   b73 — iPad sticky Clear Data; iPhone chart resize on orientation; bnav paired IDs fixed
    Palette: deep black / violet-indigo / phosphor-green
 ═══════════════════════════════════════════════════════════ */
 :root {
@@ -680,7 +680,7 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
     <div class="brand">EEE</div>
     <div style="display:flex;flex-direction:column;gap:2px;">
       <div class="model">EMOTIONAL FIELD ANALYZER Mk.III</div>
-      <div class="hdr-build" style="margin:0;align-self:flex-start;">b72</div>
+      <div class="hdr-build" style="margin:0;align-self:flex-start;">b73</div>
     </div>
   </div>
   <div class="inst-readouts">
@@ -794,7 +794,7 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
   </div>
 
   <div class="sb-divider"></div>
-  <div style="padding:4px 10px 14px;">
+  <div style="position:sticky;bottom:0;background:#08081a;padding:4px 10px 14px;border-top:1px solid #12122a;">
     <button class="sb-danger" onclick="clearAllData()">✕ CLEAR ALL DATA</button>
   </div>
 </aside>
@@ -914,8 +914,8 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
 <nav class="bnav">
   <button class="bnav-btn active" id="nb-today"    onclick="switchView('today',   this,'sb-today'   )"><span class="ni">◈</span>TODAY</button>
   <button class="bnav-btn"        id="nb-timeline"  onclick="switchView('timeline', this,'sb-timeline')"><span class="ni">◧</span>TIMELINE</button>
-  <button class="bnav-btn"        id="nb-history"   onclick="switchView('history',  this,'nb-history' )"><span class="ni">▦</span>HISTORY</button>
-  <button class="bnav-btn"        id="nb-patterns"  onclick="switchView('patterns', this,'nb-patterns')"><span class="ni">〜</span>PATTERNS</button>
+  <button class="bnav-btn"        id="nb-history"   onclick="switchView('history',  this,'sb-history' )"><span class="ni">▦</span>HISTORY</button>
+  <button class="bnav-btn"        id="nb-patterns"  onclick="switchView('patterns', this,'sb-patterns')"><span class="ni">〜</span>PATTERNS</button>
 </nav>
 
 <script>
@@ -1929,14 +1929,15 @@ function toggleArcFocus(){
     setTimeout(()=>{ if(window.todayChart){ window.todayChart.resize(); } }, 280);
   }
 }
-// Auto-exit arc focus when rotating back to portrait
+// Auto-exit arc focus when rotating back to portrait; resize chart on any orientation change
 window.addEventListener('orientationchange', function(){
   setTimeout(function(){
     const isPortrait = window.innerHeight > window.innerWidth;
     if(isPortrait && document.body.classList.contains('arc-focus')){
       document.body.classList.remove('arc-focus');
     }
-  }, 200);
+    if(window.todayChart){ window.todayChart.resize(); }
+  }, 300);
 });
 
 // sbToggle: touch handled inline in HTML (ontouchend); click only wired for non-touch (Mac)
