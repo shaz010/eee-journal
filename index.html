@@ -19,8 +19,8 @@
   onerror="window.CHARTJS_FAILED=true;"></script>
 <style>
 /* ═══════════════════════════════════════════════════════════
-   b83 — Fix TDZ crash: applyTheme() now uses window.chartToday instead of
-          typeof chartToday (let vars are in TDZ at parse-time call site)
+   b84 — Fix chart in all themes: rebuild on switch, theme-aware grid/tick/line
+          colors, safe localStorage (Safari private mode), guard renderToday call
    Palette: deep black / violet-indigo / phosphor-green
 ═══════════════════════════════════════════════════════════ */
 :root {
@@ -969,7 +969,7 @@ html[data-theme="holo"] #calPanel          { background: #07060f; border-color: 
     <div class="brand">EEE</div>
     <div style="display:flex;flex-direction:column;gap:2px;">
       <div class="model">EMOTIONAL FIELD ANALYZER Mk.III</div>
-      <div class="hdr-build" style="margin:0;align-self:flex-start;">b83</div>
+      <div class="hdr-build" style="margin:0;align-self:flex-start;">b84</div>
     </div>
   </div>
   <div class="inst-readouts">
@@ -1236,15 +1236,19 @@ function applyTheme(t,save){
   document.documentElement.setAttribute('data-theme',t==='dark'?'':t);
   const btn=document.getElementById('themeBtn');
   if(btn) btn.textContent=_THEME_ICONS[t];
-  if(save) localStorage.setItem('eee_theme',t);
-  if(window.chartToday) window.chartToday.update('none');
+  try{ if(save) localStorage.setItem('eee_theme',t); }catch(e){}
+  // Rebuild chart with correct theme colors once DOM is live
+  if(document.readyState!=='loading'){
+    if(window.chartToday){ window.chartToday.destroy(); window.chartToday=null; }
+    if(typeof renderToday==='function') renderToday();
+  }
 }
 function cycleTheme(){
   const idx=_THEMES.indexOf(_curTheme);
   applyTheme(_THEMES[(idx+1)%_THEMES.length],true);
 }
-// Init immediately (before render) to avoid flash
-applyTheme(localStorage.getItem('eee_theme')||'dark',false);
+// Init immediately (before render) to avoid flash; guard localStorage for Safari private mode
+try{ applyTheme(localStorage.getItem('eee_theme')||'dark',false); }catch(e){ applyTheme('dark',false); }
 
 // Ensures a hex color has enough luminance to be readable on the chart background
 function brightTickColor(hex) {
@@ -1581,17 +1585,21 @@ function renderToday(){
   const sorted=[...emos].sort((a,b)=>new Date(a.ts)-new Date(b.ts));
   const canvas=document.getElementById('chartToday');
   const ctx2d=canvas.getContext('2d');
+  const _cMute=_curTheme==='light'?'#4a5490':_curTheme==='holo'?'#8080c0':'#3a3a6a';
+  const _cGrid=_curTheme==='light'?'#d8dcf0':_curTheme==='holo'?'#0a0818':'#181838';
+  const _cTick=_curTheme==='light'?'#4a5490':_curTheme==='holo'?'#7070a8':'#4a5898';
+  const _cLine=_curTheme==='light'?'rgba(56,72,204,.88)':_curTheme==='holo'?'rgba(0,229,255,.88)':'rgba(88,104,240,.88)';
   if(!sorted.length){
     if(chartToday){chartToday.destroy();chartToday=null;}
     ctx2d.clearRect(0,0,canvas.width,canvas.height);
-    ctx2d.fillStyle='#3a3a6a';ctx2d.font='12px monospace';ctx2d.textAlign='center';
+    ctx2d.fillStyle=_cMute;ctx2d.font='12px monospace';ctx2d.textAlign='center';
     const msg=isToday?'LOG YOUR FIRST EMOTION TODAY':`NO ENTRIES FOR ${selDate.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}).toUpperCase()}`;
     ctx2d.fillText(msg,canvas.offsetWidth/2||200,(canvas.offsetHeight||200)/2);
     buildFSection(null,evts);buildTodayLog(selDate,emos,evts);return;
   }
   const pts=sorted.map(e=>{const d=new Date(e.ts);return{x:d.getHours()+d.getMinutes()/60,y:e.rank};});
   if(typeof Chart==='undefined'){
-    ctx2d.fillStyle='#3a3a6a';ctx2d.font='12px monospace';ctx2d.textAlign='center';
+    ctx2d.fillStyle=_cMute;ctx2d.font='12px monospace';ctx2d.textAlign='center';
     ctx2d.fillText('CHART LOADING…',canvas.offsetWidth/2||200,(canvas.offsetHeight||200)/2);
     buildFSection(null,evts);buildTodayLog(selDate,emos,evts);return;
   }
@@ -1610,7 +1618,7 @@ function renderToday(){
     type:'scatter',
     data:{datasets:[{
       data:pts,
-      borderColor:'rgba(140,168,255,.88)',
+      borderColor:_cLine,
       backgroundColor:'transparent',
       pointBackgroundColor:pts.map(p=>brightTickColor(emoColor(p.y))),
       pointBorderColor:pts.map(p=>brightTickColor(emoColor(p.y))),
@@ -1630,16 +1638,16 @@ function renderToday(){
       },
       scales:{
         x:{type:'linear',min:0,max:24,
-          ticks:{stepSize:2,color:'#4a5898',maxRotation:0,font:{size:9,family:'Courier New'},
+          ticks:{stepSize:2,color:_cTick,maxRotation:0,font:{size:9,family:'Courier New'},
             callback:val=>(Number.isInteger(val)&&val%2===0)?`${val}:00`:null},
-          grid:{color:'#181838'}
+          grid:{color:_cGrid}
         },
         y:{reverse:true,min:1,max:22,
           ticks:{stepSize:1,autoSkip:false,font:{size:10,family:'Courier New',weight:'700'},
-            color:tc=>{const v=tc.tick?.value;if(v===undefined||!Number.isInteger(v))return'#4050a0';return brightTickColor((EMAP[v]||EMOTIONS[10]).col);},
+            color:tc=>{const v=tc.tick?.value;if(v===undefined||!Number.isInteger(v))return _cTick;return brightTickColor((EMAP[v]||EMOTIONS[10]).col);},
             callback:val=>{if(!Number.isInteger(val))return null;return`${val}`;}
           },
-          grid:{color:'#181838'}
+          grid:{color:_cGrid}
         }
       },
       onClick:(evt,_els,chart)=>{
