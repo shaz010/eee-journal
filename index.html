@@ -19,7 +19,7 @@
   onerror="window.CHARTJS_FAILED=true;"></script>
 <style>
 /* ═══════════════════════════════════════════════════════════
-   b76 — timeline default zoom 68% on mobile; tap +/- zoom buttons added
+   b77 — SW registration scoped to production host only; relative sw.js path
    Palette: deep black / violet-indigo / phosphor-green
 ═══════════════════════════════════════════════════════════ */
 :root {
@@ -729,7 +729,7 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
     <div class="brand">EEE</div>
     <div style="display:flex;flex-direction:column;gap:2px;">
       <div class="model">EMOTIONAL FIELD ANALYZER Mk.III</div>
-      <div class="hdr-build" style="margin:0;align-self:flex-start;">b76</div>
+      <div class="hdr-build" style="margin:0;align-self:flex-start;">b77</div>
     </div>
   </div>
   <div class="inst-readouts">
@@ -2269,10 +2269,10 @@ function _calPick(dateStr){
 </div>
 
 <script>
-// ── PWA SERVICE WORKER REGISTRATION ──
-if ('serviceWorker' in navigator) {
+// ── PWA SERVICE WORKER REGISTRATION (production only) ──
+if ('serviceWorker' in navigator && location.hostname === 'shaz010.github.io') {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
+    navigator.serviceWorker.register('./sw.js')
       .then(r => console.log('[EEE] SW registered', r.scope))
       .catch(e => console.warn('[EEE] SW failed', e));
   });
