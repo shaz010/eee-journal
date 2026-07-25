@@ -19,8 +19,8 @@
   onerror="window.CHARTJS_FAILED=true;"></script>
 <style>
 /* ═══════════════════════════════════════════════════════════
-   b84 — Fix chart in all themes: rebuild on switch, theme-aware grid/tick/line
-          colors, safe localStorage (Safari private mode), guard renderToday call
+   b85 — Fix chart rebuild: window.chartToday !== chartToday (let ≠ var/window),
+          now uses chartToday directly inside readyState guard (past TDZ)
    Palette: deep black / violet-indigo / phosphor-green
 ═══════════════════════════════════════════════════════════ */
 :root {
@@ -969,7 +969,7 @@ html[data-theme="holo"] #calPanel          { background: #07060f; border-color: 
     <div class="brand">EEE</div>
     <div style="display:flex;flex-direction:column;gap:2px;">
       <div class="model">EMOTIONAL FIELD ANALYZER Mk.III</div>
-      <div class="hdr-build" style="margin:0;align-self:flex-start;">b84</div>
+      <div class="hdr-build" style="margin:0;align-self:flex-start;">b85</div>
     </div>
   </div>
   <div class="inst-readouts">
@@ -1237,9 +1237,11 @@ function applyTheme(t,save){
   const btn=document.getElementById('themeBtn');
   if(btn) btn.textContent=_THEME_ICONS[t];
   try{ if(save) localStorage.setItem('eee_theme',t); }catch(e){}
-  // Rebuild chart with correct theme colors once DOM is live
+  // Rebuild chart with correct theme colors once DOM is live.
+  // document.readyState!=='loading' guarantees chartToday is past its TDZ,
+  // so we can reference it directly (window.chartToday !== chartToday for let vars).
   if(document.readyState!=='loading'){
-    if(window.chartToday){ window.chartToday.destroy(); window.chartToday=null; }
+    try{ if(chartToday){ chartToday.destroy(); chartToday=null; } }catch(e){}
     if(typeof renderToday==='function') renderToday();
   }
 }
