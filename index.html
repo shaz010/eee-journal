@@ -19,7 +19,7 @@
   onerror="window.CHARTJS_FAILED=true;"></script>
 <style>
 /* ═══════════════════════════════════════════════════════════
-   b88 — Three themes: Dark / Light / Holographic Noir
+   b80 — "Not Bad" label; disable LED + chart animation on mobile to fix heat
    Palette: deep black / violet-indigo / phosphor-green
 ═══════════════════════════════════════════════════════════ */
 :root {
@@ -41,97 +41,7 @@
   /* Timeline zoom — updated by JS */
   --tl-entry-h: 36px;
   --tl-note-opacity: 0;
-  /* Extended — theme-overridable */
-  --hdr-bg:     #181830;
-  --hdr-bdr:    #2e2e50;
-  --side-bg:    #08081a;
-  --side-bdr:   #14142a;
-  --rdout-bdr:  #10102a;
-  --rdout-lbl:  #a0b0e0;
-  --brand-c:    #9aabff;
-  --model-bg:   #0a0a18;
-  --model-bdr:  #16162e;
-  --chip-bg:    #07070f;
-  --chip-bdr:   #0e0e22;
-  --footer-bdr: #12122a;
-  --emo-lbl-c:  #f0f0ff;
-  --qual-lbl-c: #c8c8f4;
-  --tl-date-c:  #6878d0;
-  --tl-cnt-c:   #8090c8;
-  --note-c:     #9090c8;
 }
-/* ══ LIGHT THEME ══ */
-html[data-theme="light"] {
-  --bg: #eef0fb; --surf: #ffffff; --surf2: #e4e8f8; --border: #bcc4e8;
-  --text: #0a0a1e; --muted: #4a5490; --v1: #3848cc; --v2: #006e36;
-  --amber: #9a5c00; --red: #cc2222; --grid: #d8dcf0;
-  --hdr-bg: #dde2f8; --hdr-bdr: #b8c0e0;
-  --side-bg: #f2f4fd; --side-bdr: #d0d4ee;
-  --rdout-bdr: #d0d4ee; --rdout-lbl: #4a5490;
-  --brand-c: #3848cc; --model-bg: #ffffff; --model-bdr: #c8d0ec;
-  --chip-bg: #f2f4fd; --chip-bdr: #d0d4ee;
-  --footer-bdr: #d0d4ee;
-  --emo-lbl-c: #0a0a1e; --qual-lbl-c: #4a5490;
-  --tl-date-c: #4858a8; --tl-cnt-c: #7080b8; --note-c: #6878c0;
-}
-html[data-theme="light"] .inst-led.on { background: #006e36; color: #006e36; box-shadow: 0 0 5px #006e36; }
-html[data-theme="light"] .inst-status .sl.on { color: #006e36; }
-html[data-theme="light"] .sb-toggle { background: rgba(56,72,204,.10); border-color: rgba(56,72,204,.35); color: var(--v1); }
-html[data-theme="light"] .sb-toggle:hover { background: rgba(56,72,204,.20); color: var(--v1); }
-html[data-theme="light"] .theme-btn { background: rgba(56,72,204,.10); border-color: rgba(56,72,204,.35); color: var(--v1); }
-html[data-theme="light"] .theme-btn:hover { background: rgba(56,72,204,.20); }
-html[data-theme="light"] .hdr-build { color: var(--v1); background: rgba(56,72,204,.08); border-color: rgba(56,72,204,.25); }
-html[data-theme="light"] .emo-row { border-bottom-color: var(--chip-bdr) !important; }
-html[data-theme="light"] .emo-lbl { color: var(--text) !important; }
-html[data-theme="light"] .qual-chip { background: var(--chip-bg) !important; border-color: var(--chip-bdr) !important; }
-html[data-theme="light"] .qual-lbl { color: var(--muted) !important; }
-html[data-theme="light"] .sel.on { color: var(--v2) !important; }
-html[data-theme="light"] .ctx-menu { background: var(--surf); border-color: var(--border); }
-html[data-theme="light"] .ctx-item:hover { background: var(--surf2); }
-html[data-theme="light"] .ctx-sep { border-top-color: var(--border); }
-html[data-theme="light"] .bnav { background: var(--hdr-bg); border-top-color: var(--hdr-bdr); }
-html[data-theme="light"] .bnav-btn { color: var(--muted); }
-html[data-theme="light"] .bnav-btn.active { color: var(--v1); }
-html[data-theme="light"] .tl-zoom-bar { background: var(--side-bg); border-top-color: var(--side-bdr); }
-html[data-theme="light"] .log-btn { background: rgba(56,72,204,.9); }
-html[data-theme="light"] .chart-wrap::before { background: radial-gradient(ellipse 80% 60% at 50% 110%, rgba(56,72,204,.08) 0%, transparent 100%); }
-/* ══ HOLOGRAPHIC NOIR ══ */
-html[data-theme="holo"] {
-  --bg: #030306; --surf: #07060f; --surf2: #0c0a16; --border: #1e1040;
-  --text: #f0eeff; --muted: #9090cc; --v1: #00e5ff; --v2: #ff2aaa;
-  --amber: #ffd700; --red: #ff4488; --grid: #0a0818;
-  --hdr-bg: #05040c; --hdr-bdr: #180f38;
-  --side-bg: #020208; --side-bdr: #120a28;
-  --rdout-bdr: #120a28; --rdout-lbl: #9090c8;
-  --brand-c: #00e5ff; --model-bg: #030306; --model-bdr: #1a0f40;
-  --chip-bg: #05040c; --chip-bdr: #120a28;
-  --footer-bdr: #120a28;
-  --emo-lbl-c: #f0eeff; --qual-lbl-c: #a0a0d0;
-  --tl-date-c: #6868c0; --tl-cnt-c: #5858b0; --note-c: #7070aa;
-}
-html[data-theme="holo"] .inst-bar::after {
-  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(0,229,255,.5) 20%, rgba(255,42,170,.5) 55%, rgba(255,215,0,.4) 85%, transparent 100%);
-  pointer-events: none;
-}
-html[data-theme="holo"] .inst-logo .brand {
-  background: linear-gradient(90deg, #00e5ff, #cc88ff, #ff2aaa);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-html[data-theme="holo"] .inst-led.on { background: #00e5ff; color: #00e5ff; box-shadow: 0 0 8px #00e5ff, 0 0 18px rgba(0,229,255,.35); }
-html[data-theme="holo"] .inst-status .sl.on { color: #00e5ff; }
-html[data-theme="holo"] .hdr-build { color: #00e5ff; background: rgba(0,229,255,.07); border-color: rgba(0,229,255,.28); box-shadow: 0 0 8px rgba(0,229,255,.18); }
-html[data-theme="holo"] .sb-toggle { background: rgba(0,229,255,.07); border-color: rgba(0,229,255,.28); color: #00e5ff; }
-html[data-theme="holo"] .sb-toggle:hover { background: rgba(0,229,255,.14); }
-html[data-theme="holo"] .theme-btn { background: rgba(0,229,255,.07); border-color: rgba(0,229,255,.28); color: #00e5ff; }
-html[data-theme="holo"] .theme-btn:hover { background: rgba(0,229,255,.14); }
-html[data-theme="holo"] .emo-row { border-bottom-color: var(--chip-bdr) !important; }
-html[data-theme="holo"] .emo-lbl { color: var(--text) !important; }
-html[data-theme="holo"] .qual-chip { background: var(--chip-bg) !important; border-color: var(--chip-bdr) !important; }
-html[data-theme="holo"] .qual-lbl { color: var(--muted) !important; }
-html[data-theme="holo"] .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(0,229,255,.3), rgba(255,42,170,.3), transparent); pointer-events: none; }
-html[data-theme="holo"] .card { position: relative; overflow: hidden; }
-html[data-theme="holo"] .sb-divider { background: linear-gradient(90deg, rgba(0,229,255,.2), rgba(255,42,170,.2)); }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 html, body { height: 100%; }
 body {
@@ -158,36 +68,36 @@ body {
 .inst-bar {
   height: var(--hdr);
   flex-shrink: 0;
-  background: var(--hdr-bg);
-  border-bottom: 1px solid var(--hdr-bdr);
+  background: #181830;
+  border-bottom: 1px solid #2e2e50;
   display: flex; align-items: stretch;
   padding: 0 14px; gap: 0;
   position: relative; z-index: 30;
 }
 .inst-logo {
   display: flex; align-items: center; gap: 8px;
-  border-right: 1px solid var(--rdout-bdr);
+  border-right: 1px solid #12122a;
   padding-right: 14px; margin-right: 0; flex-shrink: 0;
   align-items: center;
 }
-.inst-logo .brand { font-size: 12px; letter-spacing: .22em; color: var(--brand-c); font-weight: 700; }
-.inst-logo .model { font-size: 7px; color: var(--rdout-lbl); letter-spacing: .12em;
-  background: var(--model-bg); border: 1px solid var(--model-bdr); border-radius: 2px; padding: 2px 5px; }
+.inst-logo .brand { font-size: 12px; letter-spacing: .22em; color: #9aabff; font-weight: 700; }
+.inst-logo .model { font-size: 7px; color: #a0b0e0; letter-spacing: .12em;
+  background: #0a0a18; border: 1px solid #16162e; border-radius: 2px; padding: 2px 5px; }
 .inst-readouts { display: flex; align-items: stretch; flex: 1; }
 .inst-readout {
   display: flex; flex-direction: column; justify-content: center;
-  padding: 0 12px; border-right: 1px solid var(--rdout-bdr); min-width: 72px;
+  padding: 0 12px; border-right: 1px solid #10102a; min-width: 72px;
 }
-.inst-readout .rl { font-size: 6.5px; color: var(--rdout-lbl); letter-spacing: .14em; margin-bottom: 2px; }
+.inst-readout .rl { font-size: 6.5px; color: #a0b0e0; letter-spacing: .14em; margin-bottom: 2px; }
 .inst-readout .rv {
   font-size: 16px; font-weight: 700; letter-spacing: .02em;
   font-variant-numeric: tabular-nums; line-height: 1;
   text-shadow: 0 0 8px currentColor;
 }
-.inst-readout .ru { font-size: 6px; color: var(--rdout-lbl); margin-top: 2px; letter-spacing: .08em; }
+.inst-readout .ru { font-size: 6px; color: #a0b0e0; margin-top: 2px; letter-spacing: .08em; }
 .inst-status {
   display: flex; align-items: center; gap: 6px; padding: 0 14px;
-  border-left: 1px solid var(--rdout-bdr); margin-left: auto; flex-shrink: 0;
+  border-left: 1px solid #10102a; margin-left: auto; flex-shrink: 0;
 }
 .inst-led {
   width: 6px; height: 6px; border-radius: 50%;
@@ -195,13 +105,13 @@ body {
 }
 .inst-led.on  { background: #00d058; color: #00d058; animation: led-pulse 2.2s ease-in-out infinite; }
 @media (max-width: 1023px) { .inst-led.on { animation: none; } }
-.inst-led.off { background: var(--chip-bg); color: transparent; box-shadow: none; }
+.inst-led.off { background: #1a1a2a; color: transparent; box-shadow: none; }
 @keyframes led-pulse { 0%,100%{opacity:1} 50%{opacity:.45} }
-.inst-status .sl { font-size: 7px; color: var(--rdout-lbl); letter-spacing: .12em; }
+.inst-status .sl { font-size: 7px; color: #a0b0e0; letter-spacing: .12em; }
 .inst-status .sl.on { color: #70ee70; }
 .hdr-build {
   display: flex; align-items: center;
-  font-size: 10px; font-weight: 800; color: var(--brand-c);
+  font-size: 10px; font-weight: 800; color: #aabbff;
   background: rgba(72,88,216,.12); border: 1px solid rgba(72,88,216,.3);
   border-radius: 4px; padding: 2px 6px; letter-spacing: .06em;
   margin: auto 0 auto 10px; flex-shrink: 0;
@@ -220,18 +130,6 @@ body {
 }
 .sb-toggle:hover  { background: rgba(88,104,240,.32); color: #fff; }
 .sb-toggle:active { background: rgba(88,104,240,.5);  color: #fff; }
-.theme-btn {
-  display: flex; align-items: center; justify-content: center;
-  width: 32px; height: 32px; border-radius: 6px;
-  background: rgba(88,104,240,.14); border: 1px solid rgba(88,104,240,.4);
-  color: var(--brand-c); font-size: 14px; cursor: pointer;
-  flex-shrink: 0; align-self: center; margin-left: 8px;
-  transition: background .15s, color .15s;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-}
-.theme-btn:hover  { background: rgba(88,104,240,.28); }
-.theme-btn:active { background: rgba(88,104,240,.42); }
 
 /* ── MAIN LAYOUT ── */
 .layout { flex: 1; display: flex; overflow: hidden; }
@@ -240,7 +138,7 @@ body {
 .sidebar {
   display: none; flex-direction: column;
   width: var(--side); flex-shrink: 0;
-  background: var(--side-bg); border-right: 1px solid var(--side-bdr);
+  background: #08081a; border-right: 1px solid #14142a;
   overflow: hidden;
   position: relative;
   transition: width .2s ease;
@@ -255,8 +153,8 @@ body {
   position: absolute;
   bottom: 0; left: 0; right: 0;
   padding: 4px 10px 14px;
-  border-top: 1px solid var(--footer-bdr);
-  background: var(--side-bg);
+  border-top: 1px solid #12122a;
+  background: #08081a;
   z-index: 2;
 }
 .sidebar.collapsed { width: 0; border-right-color: transparent; overflow: hidden; pointer-events: none; }
@@ -409,7 +307,7 @@ body.mobile-panel-hidden #view-today > .card:first-child .chart-wrap {
 .qual-chip {
   display: flex; flex-direction: column; align-items: center; gap: 1px;
   padding: 4px 5px; min-width: 40px;
-  background: var(--chip-bg); border: 1px solid var(--chip-bdr); border-radius: 3px;
+  background: #07070f; border: 1px solid #0e0e22; border-radius: 3px;
   cursor: pointer; transition: border-color .12s; position: relative;
 }
 .qual-chip:hover { border-color: #2838a0; }
@@ -527,7 +425,7 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
 
 /* ── BOTTOM NAV (mobile) ── */
 .bnav {
-  display: flex; background: var(--hdr-bg); border-top: 1px solid var(--hdr-bdr); flex-shrink: 0;
+  display: flex; background: #181830; border-top: 1px solid #2e2e50; flex-shrink: 0;
 }
 .bnav-btn {
   flex: 1; padding: 7px 4px 10px; background: none; border: none;
@@ -655,10 +553,10 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
   position: sticky; top: 0; z-index: 5;
 }
 .tl-day-stripe { width: 3px; align-self: stretch; border-radius: 1px; flex-shrink: 0; }
-.tl-day-date { font-size: 9px; color: var(--tl-date-c); letter-spacing: .1em; flex: 1; }
+.tl-day-date { font-size: 9px; color: #5060a8; letter-spacing: .1em; flex: 1; }
 .tl-day-meta { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
 .tl-day-avg  { font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
-.tl-day-cnt  { font-size: 7px; color: var(--tl-cnt-c); letter-spacing: .08em; }
+.tl-day-cnt  { font-size: 7px; color: #8090c8; letter-spacing: .08em; }
 .tl-day-qdot { width: 7px; height: 7px; border-radius: 50%; }
 
 /* Entry rows — height driven by CSS variable */
@@ -674,7 +572,7 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
 .tl-entry-time { font-size: 7px; color: var(--muted); margin-bottom: 1px; letter-spacing: .06em; }
 .tl-entry-main { font-size: 10.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .tl-note {
-  font-size: 9px; color: var(--note-c); font-style: italic; margin-top: 2px;
+  font-size: 9px; color: #9090c8; font-style: italic; margin-top: 2px;
   opacity: var(--tl-note-opacity);
   transition: opacity .2s ease;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
@@ -836,7 +734,7 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
     <div class="brand">EEE</div>
     <div style="display:flex;flex-direction:column;gap:2px;">
       <div class="model">EMOTIONAL FIELD ANALYZER Mk.III</div>
-      <div class="hdr-build" style="margin:0;align-self:flex-start;">b88</div>
+      <div class="hdr-build" style="margin:0;align-self:flex-start;">b80</div>
     </div>
   </div>
   <div class="inst-readouts">
@@ -861,7 +759,6 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
       <div class="ru">AGO</div>
     </div>
   </div>
-  <button class="theme-btn" id="themeBtn" type="button" onclick="cycleTheme()" title="Switch theme">☀</button>
   <button class="sb-toggle" id="sbToggle" type="button" onclick="toggleSidebar()">◀</button>
   <div class="inst-status">
     <div class="inst-led on"></div>
@@ -1097,7 +994,6 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
 // Ensures a hex color has enough luminance to be readable as text/dot on dark bg
 function brightTickColor(hex) {
   if (!hex || hex[0] !== '#' || hex.length < 7) return hex;
-  if(_curTheme==='light') return hex;
   const rr=parseInt(hex.slice(1,3),16)/255, gg=parseInt(hex.slice(3,5),16)/255, bb=parseInt(hex.slice(5,7),16)/255;
   const mx=Math.max(rr,gg,bb), mn=Math.min(rr,gg,bb), d=mx-mn;
   let hh=0, ss=0, ll=(mx+mn)/2;
@@ -1115,7 +1011,7 @@ function brightTickColor(hex) {
 }
 // Maps experience quality 1-11 to the emotion color scale (q=11→rank1 joy, q=1→rank22 fear)
 function qualToEmoColor(q) {
-  if (!q) return _curTheme==='light'?'#d0d4ec':_curTheme==='holo'?'#0a0818':'#2a2a5a';
+  if (!q) return '#2a2a5a';
   const rank = Math.max(1, Math.min(22, Math.round(22 - (q - 1) * 21 / 10)));
   return emoColor(rank);
 }
@@ -1245,27 +1141,6 @@ const DB = {
 // ══════════════════════════════════════════════════════
 let selRankD=null, selRankM=null;
 let selQualD=null, selQualM=null;
-// ══ THEME ══
-const _THEMES=['dark','light','holo'];
-const _THEME_ICONS={dark:'☀',light:'◈',holo:'🌙'};
-let _curTheme='dark';
-function applyTheme(t,save){
-  _curTheme=t;
-  document.documentElement.setAttribute('data-theme',t==='dark'?'':t);
-  const btn=document.getElementById('themeBtn');
-  if(btn) btn.textContent=_THEME_ICONS[t];
-  try{ if(save) localStorage.setItem('eee_theme',t); }catch(e){}
-  // document.readyState!=='loading' → past parse time → chartToday is initialized (past TDZ)
-  if(document.readyState!=='loading'){
-    try{ if(chartToday){ chartToday.destroy(); chartToday=null; } }catch(e){}
-    if(typeof renderToday==='function') renderToday();
-  }
-}
-function cycleTheme(){
-  const idx=_THEMES.indexOf(_curTheme);
-  applyTheme(_THEMES[(idx+1)%_THEMES.length],true);
-}
-try{ applyTheme(localStorage.getItem('eee_theme')||'dark',false); }catch(e){ applyTheme('dark',false); }
 let chartToday=null;
 let fPickHour=null;
 let tlZoom=window.innerWidth<1024?68:40;   // 1-100; controls timeline entry height
@@ -1449,21 +1324,17 @@ function renderToday(){
   const sorted=[...emos].sort((a,b)=>new Date(a.ts)-new Date(b.ts));
   const canvas=document.getElementById('chartToday');
   const ctx2d=canvas.getContext('2d');
-  const _cGrid=_curTheme==='light'?'#d8dcf0':_curTheme==='holo'?'#0a0818':'#181838';
-  const _cTick=_curTheme==='light'?'#4a5490':_curTheme==='holo'?'#7070a8':'#4a5898';
-  const _cLine=_curTheme==='light'?'rgba(56,72,204,.88)':_curTheme==='holo'?'rgba(0,229,255,.88)':'rgba(88,104,240,.88)';
-  const _cMute=_curTheme==='light'?'#4a5490':_curTheme==='holo'?'#8080c0':'#3a3a6a';
   if(!sorted.length){
     if(chartToday){chartToday.destroy();chartToday=null;}
     ctx2d.clearRect(0,0,canvas.width,canvas.height);
-    ctx2d.fillStyle=_cMute;ctx2d.font='12px monospace';ctx2d.textAlign='center';
+    ctx2d.fillStyle='#3a3a6a';ctx2d.font='12px monospace';ctx2d.textAlign='center';
     const msg=isToday?'LOG YOUR FIRST EMOTION TODAY':`NO ENTRIES FOR ${selDate.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}).toUpperCase()}`;
     ctx2d.fillText(msg,canvas.offsetWidth/2||200,(canvas.offsetHeight||200)/2);
     buildFSection(null,evts);buildTodayLog(selDate,emos,evts);return;
   }
   const pts=sorted.map(e=>{const d=new Date(e.ts);return{x:d.getHours()+d.getMinutes()/60,y:e.rank};});
   if(typeof Chart==='undefined'){
-    ctx2d.fillStyle=_cMute;ctx2d.font='12px monospace';ctx2d.textAlign='center';
+    ctx2d.fillStyle='#3a3a6a';ctx2d.font='12px monospace';ctx2d.textAlign='center';
     ctx2d.fillText('CHART LOADING…',canvas.offsetWidth/2||200,(canvas.offsetHeight||200)/2);
     buildFSection(null,evts);buildTodayLog(selDate,emos,evts);return;
   }
@@ -1482,7 +1353,7 @@ function renderToday(){
     type:'scatter',
     data:{datasets:[{
       data:pts,
-      borderColor:_cLine,
+      borderColor:'rgba(140,168,255,.88)',
       backgroundColor:'transparent',
       pointBackgroundColor:pts.map(p=>brightTickColor(emoColor(p.y))),
       pointBorderColor:pts.map(p=>brightTickColor(emoColor(p.y))),
@@ -1502,16 +1373,16 @@ function renderToday(){
       },
       scales:{
         x:{type:'linear',min:0,max:24,
-          ticks:{stepSize:2,color:_cTick,maxRotation:0,font:{size:9,family:'Courier New'},
+          ticks:{stepSize:2,color:'#4a5898',maxRotation:0,font:{size:9,family:'Courier New'},
             callback:val=>(Number.isInteger(val)&&val%2===0)?`${val}:00`:null},
-          grid:{color:_cGrid}
+          grid:{color:'#181838'}
         },
         y:{reverse:true,min:1,max:22,
           ticks:{stepSize:1,autoSkip:false,font:{size:10,family:'Courier New',weight:'700'},
-            color:tc=>{const v=tc.tick?.value;if(v===undefined||!Number.isInteger(v))return _cTick;return brightTickColor((EMAP[v]||EMOTIONS[10]).col);},
+            color:tc=>{const v=tc.tick?.value;if(v===undefined||!Number.isInteger(v))return'#4050a0';return brightTickColor((EMAP[v]||EMOTIONS[10]).col);},
             callback:val=>{if(!Number.isInteger(val))return null;return`${val}`;}
           },
-          grid:{color:_cGrid}
+          grid:{color:'#181838'}
         }
       },
       onClick:(evt,_els,chart)=>{
@@ -1583,29 +1454,24 @@ function buildFSection(chart,todayEvts){
   const plotW=Math.round(ca.right-ca.left);
   const lPad=Math.round(ca.left);
   const rPad=Math.round(canvas.offsetWidth-ca.right);
-  const _fEmpty=_curTheme==='light'?'#dde2f4':_curTheme==='holo'?'#05040c':'#0e0e1e';
-  const _fBdr=_curTheme==='light'?'#c0cae8':_curTheme==='holo'?'#180f38':'#12122a';
-  const _fLbl=_curTheme==='light'?'#8090b8':_curTheme==='holo'?'#2a2060':'#1e1e3a';
-  const _fF=_curTheme==='light'?'#3848cc':_curTheme==='holo'?'#00e5ff':'#4858d0';
-  const _fOut=_curTheme==='light'?'rgba(56,72,204,.20)':_curTheme==='holo'?'rgba(0,229,255,.18)':'rgba(72,88,208,.25)';
   const slotMap={};
   todayEvts.forEach(ev=>{const h=new Date(ev.ts).getHours();const s=Math.floor(h/F_SLOT_HRS)*F_SLOT_HRS;slotMap[s]=ev.quality;});
   let slots='';
   for(let s=0;s<F_SLOTS;s++){
     const hS=s*F_SLOT_HRS,hE=hS+F_SLOT_HRS;const q=slotMap[hS];
-    const col=q?brightTickColor(qualToEmoColor(q)):_fEmpty;
-    const border=q?`border:1px solid ${brightTickColor(qualToEmoColor(q))}66`:`border:1px solid ${_fBdr}`;
+    const col=q?brightTickColor(qualToEmoColor(q)):'#0e0e1e';
+    const border=q?`border:1px solid ${brightTickColor(qualToEmoColor(q))}66`:'border:1px solid #12122a';
     const inner=q?`<div style="font-size:8px;font-weight:700;color:rgba(255,255,255,.9)">${q}</div>`
-                 :`<div style="font-size:7px;color:${_fLbl}">${hS}</div>`;
+                 :`<div style="font-size:7px;color:#1e1e3a">${hS}</div>`;
     slots+=`<div onclick="fPickQuality(${hS})" title="${hS}:00–${hE}:00${q?' · '+(QMAP[q]?.label||''):' — tap to log'}"
       style="flex:1;height:${F_H}px;background:${col};${border};cursor:pointer;
              border-radius:2px;margin:0 1px;display:flex;align-items:center;justify-content:center;">${inner}</div>`;
   }
   fDiv.innerHTML=`<div style="display:flex;align-items:center;">
     <div style="width:${lPad}px;flex-shrink:0;display:flex;align-items:center;justify-content:flex-end;padding-right:5px;">
-      <span style="font-size:9px;font-weight:700;color:${_fF};letter-spacing:.08em;">F</span>
+      <span style="font-size:9px;font-weight:700;color:#4858d0;letter-spacing:.08em;">F</span>
     </div>
-    <div style="display:flex;flex:1;height:${F_H}px;border-radius:3px;overflow:hidden;outline:1px solid ${_fOut};outline-offset:2px;">${slots}</div>
+    <div style="display:flex;flex:1;height:${F_H}px;border-radius:3px;overflow:hidden;outline:1px solid rgba(72,88,208,.25);outline-offset:2px;">${slots}</div>
     <div style="width:${rPad}px;flex-shrink:0;"></div>
   </div>`;
 }
@@ -1619,11 +1485,11 @@ function fPickQuality(hStart){
     EXPERIENCE QUALITY &nbsp;<strong style="color:var(--text)">${hStart}:00–${hEnd}:00</strong></div>
     ${QUALITIES.map(q=>`<div onclick="fSetQuality(${q.q})"
       style="display:flex;align-items:center;gap:9px;padding:7px 8px;cursor:pointer;border-radius:var(--rs);
-             ${existing===q.q?`background:var(--surf2);outline:1px solid ${_curTheme==='light'?'#3848cc':_curTheme==='holo'?'#00e5ff':'#4858c0'}`:''};transition:background .12s;"
+             ${existing===q.q?'background:var(--surf2);outline:1px solid #4858c0':''};transition:background .12s;"
       onmouseover="this.style.background='var(--surf2)'" onmouseout="this.style.background='${existing===q.q?'var(--surf2)':'transparent'}'">
-      <div style="width:24px;height:24px;border-radius:50%;background:${q.col};display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:rgba(255,255,255,.9);flex-shrink:0">${q.q}</div>
+      <div style="width:24px;height:24px;border-radius:50%;background:${q.col};display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#000;flex-shrink:0">${q.q}</div>
       <div style="font-size:12px;color:${q.col}">${q.label}</div>
-      ${existing===q.q?`<span style="margin-left:auto;font-size:8px;color:${_curTheme==='light'?'#3848cc':_curTheme==='holo'?'#00e5ff':'#4858c0'}">✓</span>`:''}
+      ${existing===q.q?'<span style="margin-left:auto;font-size:8px;color:#4858c0">✓</span>':''}
     </div>`).join('')}
     <button onclick="fClosePopup()" style="width:100%;margin-top:8px;padding:8px;background:transparent;
       border:1px solid var(--border);border-radius:var(--rs);color:var(--muted);cursor:pointer;font-size:11px;font-family:inherit;">CANCEL</button>`;
@@ -1666,7 +1532,7 @@ function renderTimeline(){
     const dayEvts=byDay[key].filter(e=>e.type==='evt');
     const avgEmo=dayEmos.length?dayEmos.reduce((s,e)=>s+e.rank,0)/dayEmos.length:null;
     const avgQ=dayEvts.length?dayEvts.reduce((s,e)=>s+(e.quality||6),0)/dayEvts.length:null;
-    const stripeCol=avgEmo?emoColor(Math.round(avgEmo)):(_curTheme==='light'?'#b0b8d8':_curTheme==='holo'?'#2a1060':'#2a2a5a');
+    const stripeCol=avgEmo?emoColor(Math.round(avgEmo)):'#2a2a5a';
     const qDotCol=avgEmo?emoColor(Math.round(avgEmo)):'transparent';
 
     // Day label
@@ -1712,7 +1578,7 @@ function renderTimeline(){
           const lh=Math.floor(ms/3600000),lm=Math.floor((ms%3600000)/60000);
           lagStr=lh>0?`${lh}h${lm>0?lm+'m':''}`:`${lm}m`;
         }
-        const dotTxt=entry.quality<=4?'#ffaaaa':'rgba(255,255,255,.9)';
+        const dotTxt=entry.quality<=4?'#ffaaaa':'#000';
         const eCol=emoColor(prevEmo?.rank)||q.col;
         html+=`<div class="tl-entry-row">
           <div class="tl-entry-stripe" style="background:${eCol}"></div>
@@ -1821,11 +1687,7 @@ function renderHistory(){
   for(let i=0;i<firstDow;i++) html+=`<div class="cal-cell empty"></div>`;
   days.forEach(d=>{
     const {emos,evts}=DB.forDay(d);
-    if(!emos.length){
-      const _eBg=_curTheme==='light'?'#e8ecf8':_curTheme==='holo'?'#05040c':'#0e0e1e';
-      const _eTx=_curTheme==='light'?'#9098c8':_curTheme==='holo'?'#2a1f60':'#2a2a5a';
-      html+=`<div class="cal-cell" style="background:${_eBg};color:${_eTx}">${d.getDate()}</div>`;return;
-    }
+    if(!emos.length){html+=`<div class="cal-cell" style="background:#0e0e1e;color:#2a2a5a">${d.getDate()}</div>`;return;}
     const avg=emos.reduce((s,e)=>s+e.rank,0)/emos.length;
     const col=emoColor(Math.round(avg));
     const avgQ=evts.length?evts.reduce((s,e)=>s+(e.quality||6),0)/evts.length:null;
@@ -1834,7 +1696,7 @@ function renderHistory(){
       onclick="showCalDetail(${d.getTime()})" title="${d.toDateString()} · avg ${avg.toFixed(1)}">
       ${d.getDate()}
       ${avgQ?`<span style="position:absolute;bottom:2px;right:2px;width:5px;height:5px;border-radius:50%;background:${qualColor(Math.round(avgQ))};display:block"></span>`:''}
-      ${isToday?`<span style="position:absolute;top:1px;left:2px;width:4px;height:4px;border-radius:50%;background:${_curTheme==='light'?'#3848cc':_curTheme==='holo'?'#00e5ff':'#5868f0'};display:block"></span>`:''}
+      ${isToday?`<span style="position:absolute;top:1px;left:2px;width:4px;height:4px;border-radius:50%;background:#5868f0;display:block"></span>`:''}
     </div>`;
   });
   grid.innerHTML=html;
@@ -1866,7 +1728,7 @@ function showCalDetail(ts){
     ${emos.length?`<div style="font-size:7px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;">Emotions</div>
     ${emos.map(e=>{const em2=EMAP[e.rank]||EMOTIONS[10];const t=new Date(e.ts).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});return`
       <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-top:1px solid var(--border)">
-        <div style="width:24px;height:24px;border-radius:50%;background:${em2.col};display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:rgba(255,255,255,.9);flex-shrink:0">${e.rank}</div>
+        <div style="width:24px;height:24px;border-radius:50%;background:${em2.col};display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#000;flex-shrink:0">${e.rank}</div>
         <div style="flex:1;min-width:0"><div style="font-size:11px;color:${em2.col}">${em2.short}</div>
           ${e.note?`<div style="font-size:9px;color:var(--muted)">${e.note}</div>`:''}
           <div style="font-size:8px;color:var(--muted)">${t}</div></div>
@@ -1875,7 +1737,7 @@ function showCalDetail(ts){
     ${evts.length?`<div style="font-size:7px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:8px;margin-bottom:4px;">Experiences</div>
     ${evts.map(ev=>{const q=QMAP[ev.quality]||QUALITIES[5];const t2=new Date(ev.ts).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});return`
       <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-top:1px solid var(--border)">
-        <div style="width:24px;height:24px;border-radius:50%;background:${q.col};display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:${ev.quality<=4?'#ffaaaa':'rgba(255,255,255,.9)'};flex-shrink:0">${ev.quality}</div>
+        <div style="width:24px;height:24px;border-radius:50%;background:${q.col};display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:${ev.quality<=4?'#ffaaaa':'#000'};flex-shrink:0">${ev.quality}</div>
         <div style="flex:1;min-width:0"><div style="font-size:11px">${ev.description}</div>
           <div style="font-size:9px;color:${q.col}">${q.label}</div>
           <div style="font-size:8px;color:var(--muted)">${t2}</div></div>
@@ -1931,16 +1793,10 @@ function pat_segData(seg){
 }
 function buildPatYAxisSVG(chartH){
   const _ch=chartH||PAT_CH;
-  const _pyHbg=_curTheme==='light'?'rgba(56,72,204,0.08)':_curTheme==='holo'?'rgba(0,229,255,0.06)':'rgba(72,88,216,0.12)';
-  const _pyHbd=_curTheme==='light'?'rgba(56,72,204,0.15)':_curTheme==='holo'?'rgba(0,229,255,0.12)':'rgba(72,88,216,0.2)';
-  const _pyEmo=_curTheme==='light'?'rgba(56,72,204,0.5)':_curTheme==='holo'?'rgba(0,229,255,0.5)':'rgba(88,104,240,0.6)';
-  const _pyCbg=_curTheme==='light'?'rgba(56,72,204,0.04)':_curTheme==='holo'?'rgba(0,229,255,0.03)':'rgba(60,70,200,.06)';
-  const _pyCbd=_curTheme==='light'?'rgba(56,72,204,0.10)':_curTheme==='holo'?'rgba(0,229,255,0.08)':'rgba(60,70,200,.14)';
-  const _pyCal=_curTheme==='light'?'rgba(56,72,204,0.35)':_curTheme==='holo'?'rgba(0,229,255,0.3)':'rgba(80,90,200,.4)';
-  let s=`<div style="height:${PAT_HH}px;background:${_pyHbg};display:flex;align-items:center;justify-content:flex-end;padding-right:5px;border-bottom:1px solid ${_pyHbd};">
-    <span style="font-size:7px;color:${_pyEmo};font-family:'Courier New',monospace;font-weight:600;">emo</span></div>`;
-  s+=`<div style="height:${PAT_HH2}px;background:${_pyCbg};border-bottom:1px solid ${_pyCbd};display:flex;align-items:center;justify-content:flex-end;padding-right:5px;">
-    <span style="font-size:7px;color:${_pyCal};font-family:'Courier New',monospace;">cal</span></div>`;
+  let s=`<div style="height:${PAT_HH}px;background:rgba(72,88,216,0.12);display:flex;align-items:center;justify-content:flex-end;padding-right:5px;border-bottom:1px solid rgba(72,88,216,0.2);">
+    <span style="font-size:7px;color:rgba(88,104,240,0.6);font-family:'Courier New',monospace;font-weight:600;">emo</span></div>`;
+  s+=`<div style="height:${PAT_HH2}px;background:rgba(60,70,200,.06);border-bottom:1px solid rgba(60,70,200,.14);display:flex;align-items:center;justify-content:flex-end;padding-right:5px;">
+    <span style="font-size:7px;color:rgba(80,90,200,.4);font-family:'Courier New',monospace;">cal</span></div>`;
   s+=`<svg width="${PAT_YW}" height="${_ch}" style="display:block;background:var(--surf);">`;
   for(let e=1;e<=22;e++){
     const y=pat_ey(e,_ch);const col=emoColor(e);
@@ -1951,11 +1807,6 @@ function buildPatYAxisSVG(chartH){
 }
 function buildPatHeaders(daySegs,totalW){
   const pz=patZoom||2;
-  const _phMbdr=_curTheme==='light'?'rgba(56,72,204,0.18)':_curTheme==='holo'?'rgba(0,229,255,0.12)':'rgba(72,88,216,0.25)';
-  const _phMtxt=_curTheme==='light'?'rgba(30,50,180,0.75)':_curTheme==='holo'?'rgba(0,229,255,0.65)':'rgba(200,210,255,0.8)';
-  const _phWbdr=_curTheme==='light'?'rgba(56,72,204,0.12)':_curTheme==='holo'?'rgba(0,229,255,0.10)':'rgba(55,65,180,.16)';
-  const _phWtxt=_curTheme==='light'?'rgba(40,60,180,0.45)':_curTheme==='holo'?'rgba(0,229,255,0.4)':'rgba(150,160,220,0.45)';
-  const _phDbdr=_curTheme==='light'?'rgba(56,72,204,0.08)':_curTheme==='holo'?'rgba(0,229,255,0.06)':'rgba(65,70,130,.10)';
   const months=[];
   daySegs.forEach(seg=>{
     const last=months[months.length-1];
@@ -1965,11 +1816,10 @@ function buildPatHeaders(daySegs,totalW){
   let r1=`<div style="display:flex;width:${totalW}px;height:${PAT_HH}px;flex-shrink:0;">`;
   months.forEach((mo,mi)=>{
     const lbl=mo.w>=30?mo.label:'';
-    const _bg=_curTheme==='light'?`rgba(56,72,204,${mi%2===0?'0.10':'0.06'})`:_curTheme==='holo'?`rgba(0,229,255,${mi%2===0?'0.08':'0.04'})`:(`rgba(72,88,216,${mi%2===0?'0.16':'0.10'})`);
     r1+=`<div style="width:${mo.w}px;min-width:${mo.w}px;height:${PAT_HH}px;flex-shrink:0;
-      background:${_bg};border-right:1px solid ${_phMbdr};
+      background:rgba(72,88,216,${mi%2===0?'0.16':'0.10'});border-right:1px solid rgba(72,88,216,0.25);
       display:flex;align-items:center;justify-content:center;box-sizing:border-box;
-      font-size:9px;font-weight:600;color:${_phMtxt};font-family:'Courier New',monospace;
+      font-size:9px;font-weight:600;color:rgba(200,210,255,0.8);font-family:'Courier New',monospace;
       overflow:hidden;white-space:nowrap;">${lbl}</div>`;
   });
   r1+=`</div>`;
@@ -1986,23 +1836,20 @@ function buildPatHeaders(daySegs,totalW){
     });
     weeks.forEach((wk,wi)=>{
       const lbl=wk.w>=14?'W':'';
-      const _wbg=_curTheme==='light'?`rgba(56,72,204,${wi%2===0?'0.08':'0.04'})`:_curTheme==='holo'?`rgba(0,229,255,${wi%2===0?'0.07':'0.03'})`:(`rgba(55,65,180,${wi%2===0?'0.10':'0.06'})`);
       r2+=`<div style="width:${wk.w}px;min-width:${wk.w}px;height:${PAT_HH2}px;flex-shrink:0;
-        background:${_wbg};border-right:1px solid ${_phWbdr};
+        background:rgba(55,65,180,${wi%2===0?'0.10':'0.06'});border-right:1px solid rgba(55,65,180,.16);
         display:flex;align-items:center;justify-content:center;box-sizing:border-box;
-        font-size:7px;color:${_phWtxt};font-family:'Courier New',monospace;
+        font-size:7px;color:rgba(150,160,220,0.45);font-family:'Courier New',monospace;
         overflow:hidden;white-space:nowrap;">${lbl}</div>`;
     });
   } else {
     daySegs.forEach((seg,si)=>{
       const dd=seg.dateStart.getDate();const isWE=seg.dateStart.getDay()===0||seg.dateStart.getDay()===6;
       const lbl=seg.width>=10?String(dd):'';
-      const _dbg=_curTheme==='light'?(isWE?`rgba(56,72,204,${si%2===0?'0.12':'0.06'})`:(`rgba(56,72,204,${si%2===0?'0.06':'0.03'})`)):_curTheme==='holo'?(isWE?`rgba(0,229,255,${si%2===0?'0.10':'0.05'})`:(`rgba(0,229,255,${si%2===0?'0.05':'0.02'})`)):(`rgba(${isWE?'90,60,160':'45,55,140'},${si%2===0?'0.11':'0.07'})`);
-      const _dtxt=_curTheme==='light'?(isWE?'rgba(56,72,204,0.6)':'rgba(56,72,204,0.35)'):_curTheme==='holo'?(isWE?'rgba(0,229,255,0.55)':'rgba(0,229,255,0.3)'):(`rgba(${isWE?'180,140,240':'140,150,210'},0.5)`);
       r2+=`<div style="width:${seg.width}px;min-width:${seg.width}px;height:${PAT_HH2}px;flex-shrink:0;
-        background:${_dbg};border-right:1px solid ${_phDbdr};
+        background:rgba(${isWE?'90,60,160':'45,55,140'},${si%2===0?'0.11':'0.07'});border-right:1px solid rgba(65,70,130,.10);
         display:flex;align-items:center;justify-content:center;box-sizing:border-box;
-        font-size:7px;color:${_dtxt};font-family:'Courier New',monospace;
+        font-size:7px;color:rgba(${isWE?'180,140,240':'140,150,210'},0.5);font-family:'Courier New',monospace;
         overflow:hidden;white-space:nowrap;">${lbl}</div>`;
     });
   }
@@ -2031,10 +1878,6 @@ function renderPatterns(){
   const data=segs.map(s=>pat_segData(s));
   const allDots=[];
   segs.forEach((seg,si)=>{data[si].dots.forEach(d=>{allDots.push({svgX:segX[si]+d.xf*seg.width,svgY:pat_ey(d.emo,chartH),emo:d.emo});});});
-  const _pNoData=_curTheme==='light'?'rgba(56,72,204,0.06)':_curTheme==='holo'?'rgba(0,229,255,0.04)':'rgba(10,10,30,0.4)';
-  const _pHasData=_curTheme==='light'?'rgba(56,72,204,0.02)':_curTheme==='holo'?'rgba(0,229,255,0.015)':'rgba(72,88,216,0.03)';
-  const _pSep=_curTheme==='light'?'rgba(56,72,204,0.10)':_curTheme==='holo'?'rgba(0,229,255,0.08)':'rgba(60,70,180,0.18)';
-  const _pPoly=_curTheme==='light'?'rgba(56,72,204,0.5)':_curTheme==='holo'?'rgba(0,229,255,0.5)':'rgba(88,104,240,0.5)';
   let svg=`<svg width="${totalW}" height="${chartH}" style="display:block;">`;
   for(let e=1;e<=22;e++){
     const y=pat_ey(e,chartH).toFixed(1);
@@ -2042,12 +1885,12 @@ function renderPatterns(){
   }
   segs.forEach((seg,si)=>{
     const x=segX[si];const d=data[si];
-    svg+=`<rect x="${x}" y="0" width="${seg.width}" height="${chartH}" fill="${d.hasData?_pHasData:_pNoData}"/>`;
+    svg+=`<rect x="${x}" y="0" width="${seg.width}" height="${chartH}" fill="${d.hasData?'rgba(72,88,216,0.03)':'rgba(10,10,30,0.4)'}"/>`;
     if(d.avgQ) svg+=`<rect x="${x+1}" y="1" width="${seg.width-2}" height="4" fill="${qualColor(Math.round(d.avgQ))}" opacity="0.4" rx="1.5"/>`;
-    svg+=`<line x1="${x}" y1="0" x2="${x}" y2="${chartH}" stroke="${_pSep}" stroke-width="1"/>`;
+    svg+=`<line x1="${x}" y1="0" x2="${x}" y2="${chartH}" stroke="rgba(60,70,180,0.18)" stroke-width="1"/>`;
   });
   if(allDots.length>1){
-    svg+=`<polyline points="${allDots.map(d=>`${d.svgX.toFixed(1)},${d.svgY.toFixed(1)}`).join(' ')}" fill="none" stroke="${_pPoly}" stroke-width="1.5" stroke-linejoin="round"/>`;
+    svg+=`<polyline points="${allDots.map(d=>`${d.svgX.toFixed(1)},${d.svgY.toFixed(1)}`).join(' ')}" fill="none" stroke="rgba(88,104,240,0.5)" stroke-width="1.5" stroke-linejoin="round"/>`;
   }
   allDots.forEach(d=>{svg+=`<circle cx="${d.svgX.toFixed(1)}" cy="${d.svgY.toFixed(1)}" r="${patZoom>20?4:3}" fill="${emoColor(Math.round(d.emo))}" opacity="0.9"/>`;});
   svg+=`</svg>`;
@@ -2231,7 +2074,7 @@ function clearAllData(){
     '<div style="font-size:10px;color:#f08080;letter-spacing:.07em;margin-bottom:7px;font-weight:700;">DELETE ALL DATA?</div>' +
     '<div style="display:flex;gap:6px;">' +
     '<button ontouchstart="" onclick="confirmClearData()" style="flex:1;background:#7f1d1d;color:#fff;border:1px solid rgba(239,68,68,.6);border-radius:5px;padding:7px 6px;font-size:11px;font-weight:800;cursor:pointer;font-family:inherit;touch-action:manipulation;letter-spacing:.04em;">YES, DELETE</button>' +
-    '<button ontouchstart="" onclick="_resetClearZones()" style="flex:1;background:'+(_curTheme==='light'?'#e8ecf8':'#0e0e1a')+';color:'+(_curTheme==='light'?'#3848cc':'#a0b0d8')+';border:1px solid rgba(80,80,160,.4);border-radius:5px;padding:7px 6px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;touch-action:manipulation;letter-spacing:.04em;">CANCEL</button>' +
+    '<button ontouchstart="" onclick="_resetClearZones()" style="flex:1;background:#0e0e1a;color:#a0b0d8;border:1px solid rgba(80,80,160,.4);border-radius:5px;padding:7px 6px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;touch-action:manipulation;letter-spacing:.04em;">CANCEL</button>' +
     '</div></div>'
   );
 }
@@ -2245,9 +2088,9 @@ function confirmClearData(){
   if(document.querySelector('#view-history.active')) renderHistory();
   _clearZones(
     '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;' +
-    'background:'+(_curTheme==='light'?'#eef0fc':'#0e1428')+';border:1px solid rgba(88,104,240,.5);border-radius:6px;padding:8px 10px;">' +
-    '<span style="font-size:11px;color:'+(_curTheme==='light'?'#4a5490':'#a0b0d8')+';letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">✓ All data cleared</span>' +
-    '<button ontouchstart="" onclick="undoClearData()" style="flex-shrink:0;background:'+(_curTheme==='light'?'#3848cc':'#5868f0')+';color:#fff;border:none;' +
+    'background:#0e1428;border:1px solid rgba(88,104,240,.5);border-radius:6px;padding:8px 10px;">' +
+    '<span style="font-size:11px;color:#a0b0d8;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">✓ All data cleared</span>' +
+    '<button ontouchstart="" onclick="undoClearData()" style="flex-shrink:0;background:#5868f0;color:#fff;border:none;' +
     'border-radius:5px;padding:6px 16px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;' +
     'letter-spacing:.1em;touch-action:manipulation;">UNDO</button></div>'
   );
@@ -2270,14 +2113,11 @@ function undoClearData(){
 
 let _lastLog=null,_undoTimer=null,_undoZoneId=null;
 function _undoBannerHTML(label){
-  const _uBg=_curTheme==='light'?'#eef0fc':'#0e1428';
-  const _uTx=_curTheme==='light'?'#4a5490':'#a0b0d8';
-  const _uBtn=_curTheme==='light'?'#3848cc':'#5868f0';
   return '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;'+
-    'background:'+_uBg+';border:1px solid rgba(88,104,240,.5);border-radius:6px;'+
+    'background:#0e1428;border:1px solid rgba(88,104,240,.5);border-radius:6px;'+
     'padding:8px 10px;margin-top:2px;">'+
-    '<span style="font-size:11px;color:'+_uTx+';letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">✓ '+label+'</span>'+
-    '<button ontouchstart="" onclick="undoLastLog()" style="flex-shrink:0;background:'+_uBtn+';color:#fff;border:none;'+
+    '<span style="font-size:11px;color:#a0b0d8;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">✓ '+label+'</span>'+
+    '<button ontouchstart="" onclick="undoLastLog()" style="flex-shrink:0;background:#5868f0;color:#fff;border:none;'+
     'border-radius:5px;padding:6px 16px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;'+
     'letter-spacing:.1em;touch-action:manipulation;">UNDO</button></div>';
 }
