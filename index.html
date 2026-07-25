@@ -19,8 +19,8 @@
   onerror="window.CHARTJS_FAILED=true;"></script>
 <style>
 /* ═══════════════════════════════════════════════════════════
-   b85 — Fix chart rebuild: window.chartToday !== chartToday (let ≠ var/window),
-          now uses chartToday directly inside readyState guard (past TDZ)
+   b87 — Comprehensive theme audit: all hardcoded dark colors in JS-rendered HTML
+          now _curTheme-aware (timeline, history cal, patterns, dialogs, popups)
    Palette: deep black / violet-indigo / phosphor-green
 ═══════════════════════════════════════════════════════════ */
 :root {
@@ -969,7 +969,7 @@ html[data-theme="holo"] #calPanel          { background: #07060f; border-color: 
     <div class="brand">EEE</div>
     <div style="display:flex;flex-direction:column;gap:2px;">
       <div class="model">EMOTIONAL FIELD ANALYZER Mk.III</div>
-      <div class="hdr-build" style="margin:0;align-self:flex-start;">b85</div>
+      <div class="hdr-build" style="margin:0;align-self:flex-start;">b87</div>
     </div>
   </div>
   <div class="inst-readouts">
@@ -1721,24 +1721,30 @@ function buildFSection(chart,todayEvts){
   const plotW=Math.round(ca.right-ca.left);
   const lPad=Math.round(ca.left);
   const rPad=Math.round(canvas.offsetWidth-ca.right);
+  // Theme-aware colors for empty F-slots
+  const _fEmpty  =_curTheme==='light'?'#dde2f4':_curTheme==='holo'?'#05040c':'#0e0e1e';
+  const _fBdr    =_curTheme==='light'?'#c0cae8':_curTheme==='holo'?'#180f38':'#12122a';
+  const _fLbl    =_curTheme==='light'?'#8090b8':_curTheme==='holo'?'#2a2060':'#1e1e3a';
+  const _fF      =_curTheme==='light'?'#3848cc':_curTheme==='holo'?'#00e5ff':'#4858d0';
+  const _fOutline=_curTheme==='light'?'rgba(56,72,204,.20)':_curTheme==='holo'?'rgba(0,229,255,.18)':'rgba(72,88,208,.25)';
   const slotMap={};
   todayEvts.forEach(ev=>{const h=new Date(ev.ts).getHours();const s=Math.floor(h/F_SLOT_HRS)*F_SLOT_HRS;slotMap[s]=ev.quality;});
   let slots='';
   for(let s=0;s<F_SLOTS;s++){
     const hS=s*F_SLOT_HRS,hE=hS+F_SLOT_HRS;const q=slotMap[hS];
-    const col=q?brightTickColor(qualToEmoColor(q)):'#0e0e1e';
-    const border=q?`border:1px solid ${brightTickColor(qualToEmoColor(q))}66`:'border:1px solid #12122a';
+    const col=q?brightTickColor(qualToEmoColor(q)):_fEmpty;
+    const border=q?`border:1px solid ${brightTickColor(qualToEmoColor(q))}66`:`border:1px solid ${_fBdr}`;
     const inner=q?`<div style="font-size:8px;font-weight:700;color:rgba(255,255,255,.9)">${q}</div>`
-                 :`<div style="font-size:7px;color:#1e1e3a">${hS}</div>`;
+                 :`<div style="font-size:7px;color:${_fLbl}">${hS}</div>`;
     slots+=`<div onclick="fPickQuality(${hS})" title="${hS}:00–${hE}:00${q?' · '+(QMAP[q]?.label||''):' — tap to log'}"
       style="flex:1;height:${F_H}px;background:${col};${border};cursor:pointer;
              border-radius:2px;margin:0 1px;display:flex;align-items:center;justify-content:center;">${inner}</div>`;
   }
   fDiv.innerHTML=`<div style="display:flex;align-items:center;">
     <div style="width:${lPad}px;flex-shrink:0;display:flex;align-items:center;justify-content:flex-end;padding-right:5px;">
-      <span style="font-size:9px;font-weight:700;color:#4858d0;letter-spacing:.08em;">F</span>
+      <span style="font-size:9px;font-weight:700;color:${_fF};letter-spacing:.08em;">F</span>
     </div>
-    <div style="display:flex;flex:1;height:${F_H}px;border-radius:3px;overflow:hidden;outline:1px solid rgba(72,88,208,.25);outline-offset:2px;">${slots}</div>
+    <div style="display:flex;flex:1;height:${F_H}px;border-radius:3px;overflow:hidden;outline:1px solid ${_fOutline};outline-offset:2px;">${slots}</div>
     <div style="width:${rPad}px;flex-shrink:0;"></div>
   </div>`;
 }
@@ -1752,11 +1758,11 @@ function fPickQuality(hStart){
     EXPERIENCE QUALITY &nbsp;<strong style="color:var(--text)">${hStart}:00–${hEnd}:00</strong></div>
     ${QUALITIES.map(q=>`<div onclick="fSetQuality(${q.q})"
       style="display:flex;align-items:center;gap:9px;padding:7px 8px;cursor:pointer;border-radius:var(--rs);
-             ${existing===q.q?'background:var(--surf2);outline:1px solid #4858c0':''};transition:background .12s;"
+             ${existing===q.q?`background:var(--surf2);outline:1px solid ${_curTheme==='light'?'#3848cc':_curTheme==='holo'?'#00e5ff':'#4858c0'}`:''};transition:background .12s;"
       onmouseover="this.style.background='var(--surf2)'" onmouseout="this.style.background='${existing===q.q?'var(--surf2)':'transparent'}'">
-      <div style="width:24px;height:24px;border-radius:50%;background:${q.col};display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#000;flex-shrink:0">${q.q}</div>
+      <div style="width:24px;height:24px;border-radius:50%;background:${q.col};display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:rgba(255,255,255,.9);flex-shrink:0">${q.q}</div>
       <div style="font-size:12px;color:${q.col}">${q.label}</div>
-      ${existing===q.q?'<span style="margin-left:auto;font-size:8px;color:#4858c0">✓</span>':''}
+      ${existing===q.q?`<span style="margin-left:auto;font-size:8px;color:${_curTheme==='light'?'#3848cc':_curTheme==='holo'?'#00e5ff':'#4858c0'}">✓</span>`:''}
     </div>`).join('')}
     <button onclick="fClosePopup()" style="width:100%;margin-top:8px;padding:8px;background:transparent;
       border:1px solid var(--border);border-radius:var(--rs);color:var(--muted);cursor:pointer;font-size:11px;font-family:inherit;">CANCEL</button>`;
@@ -1799,7 +1805,7 @@ function renderTimeline(){
     const dayEvts=byDay[key].filter(e=>e.type==='evt');
     const avgEmo=dayEmos.length?dayEmos.reduce((s,e)=>s+e.rank,0)/dayEmos.length:null;
     const avgQ=dayEvts.length?dayEvts.reduce((s,e)=>s+(e.quality||6),0)/dayEvts.length:null;
-    const stripeCol=avgEmo?emoColor(Math.round(avgEmo)):'#2a2a5a';
+    const stripeCol=avgEmo?emoColor(Math.round(avgEmo)):(_curTheme==='light'?'#b0b8d8':_curTheme==='holo'?'#2a1060':'#2a2a5a');
     const qDotCol=avgEmo?emoColor(Math.round(avgEmo)):'transparent';
 
     // Day label
@@ -1845,7 +1851,7 @@ function renderTimeline(){
           const lh=Math.floor(ms/3600000),lm=Math.floor((ms%3600000)/60000);
           lagStr=lh>0?`${lh}h${lm>0?lm+'m':''}`:`${lm}m`;
         }
-        const dotTxt=entry.quality<=4?'#ffaaaa':'#000';
+        const dotTxt=entry.quality<=4?'#ffaaaa':'rgba(255,255,255,.9)';
         const eCol=emoColor(prevEmo?.rank)||q.col;
         html+=`<div class="tl-entry-row">
           <div class="tl-entry-stripe" style="background:${eCol}"></div>
@@ -1954,7 +1960,11 @@ function renderHistory(){
   for(let i=0;i<firstDow;i++) html+=`<div class="cal-cell empty"></div>`;
   days.forEach(d=>{
     const {emos,evts}=DB.forDay(d);
-    if(!emos.length){html+=`<div class="cal-cell" style="background:#0e0e1e;color:#2a2a5a">${d.getDate()}</div>`;return;}
+    if(!emos.length){
+      const _eBg=_curTheme==='light'?'#e8ecf8':_curTheme==='holo'?'#05040c':'#0e0e1e';
+      const _eTx=_curTheme==='light'?'#9098c8':_curTheme==='holo'?'#2a1f60':'#2a2a5a';
+      html+=`<div class="cal-cell" style="background:${_eBg};color:${_eTx}">${d.getDate()}</div>`;return;
+    }
     const avg=emos.reduce((s,e)=>s+e.rank,0)/emos.length;
     const col=emoColor(Math.round(avg));
     const avgQ=evts.length?evts.reduce((s,e)=>s+(e.quality||6),0)/evts.length:null;
@@ -1963,7 +1973,7 @@ function renderHistory(){
       onclick="showCalDetail(${d.getTime()})" title="${d.toDateString()} · avg ${avg.toFixed(1)}">
       ${d.getDate()}
       ${avgQ?`<span style="position:absolute;bottom:2px;right:2px;width:5px;height:5px;border-radius:50%;background:${qualColor(Math.round(avgQ))};display:block"></span>`:''}
-      ${isToday?`<span style="position:absolute;top:1px;left:2px;width:4px;height:4px;border-radius:50%;background:#5868f0;display:block"></span>`:''}
+      ${isToday?`<span style="position:absolute;top:1px;left:2px;width:4px;height:4px;border-radius:50%;background:${_curTheme==='light'?'#3848cc':_curTheme==='holo'?'#00e5ff':'#5868f0'};display:block"></span>`:''}
     </div>`;
   });
   grid.innerHTML=html;
@@ -1995,7 +2005,7 @@ function showCalDetail(ts){
     ${emos.length?`<div style="font-size:7px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;">Emotions</div>
     ${emos.map(e=>{const em2=EMAP[e.rank]||EMOTIONS[10];const t=new Date(e.ts).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});return`
       <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-top:1px solid var(--border)">
-        <div style="width:24px;height:24px;border-radius:50%;background:${em2.col};display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#000;flex-shrink:0">${e.rank}</div>
+        <div style="width:24px;height:24px;border-radius:50%;background:${em2.col};display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:rgba(255,255,255,.9);flex-shrink:0">${e.rank}</div>
         <div style="flex:1;min-width:0"><div style="font-size:11px;color:${em2.col}">${em2.short}</div>
           ${e.note?`<div style="font-size:9px;color:var(--muted)">${e.note}</div>`:''}
           <div style="font-size:8px;color:var(--muted)">${t}</div></div>
@@ -2004,7 +2014,7 @@ function showCalDetail(ts){
     ${evts.length?`<div style="font-size:7px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:8px;margin-bottom:4px;">Experiences</div>
     ${evts.map(ev=>{const q=QMAP[ev.quality]||QUALITIES[5];const t2=new Date(ev.ts).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});return`
       <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-top:1px solid var(--border)">
-        <div style="width:24px;height:24px;border-radius:50%;background:${q.col};display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:${ev.quality<=4?'#ffaaaa':'#000'};flex-shrink:0">${ev.quality}</div>
+        <div style="width:24px;height:24px;border-radius:50%;background:${q.col};display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:${ev.quality<=4?'#ffaaaa':'rgba(255,255,255,.9)'};flex-shrink:0">${ev.quality}</div>
         <div style="flex:1;min-width:0"><div style="font-size:11px">${ev.description}</div>
           <div style="font-size:9px;color:${q.col}">${q.label}</div>
           <div style="font-size:8px;color:var(--muted)">${t2}</div></div>
@@ -2060,10 +2070,16 @@ function pat_segData(seg){
 }
 function buildPatYAxisSVG(chartH){
   const _ch=chartH||PAT_CH;
-  let s=`<div style="height:${PAT_HH}px;background:rgba(72,88,216,0.12);display:flex;align-items:center;justify-content:flex-end;padding-right:5px;border-bottom:1px solid rgba(72,88,216,0.2);">
-    <span style="font-size:7px;color:rgba(88,104,240,0.6);font-family:'Courier New',monospace;font-weight:600;">emo</span></div>`;
-  s+=`<div style="height:${PAT_HH2}px;background:rgba(60,70,200,.06);border-bottom:1px solid rgba(60,70,200,.14);display:flex;align-items:center;justify-content:flex-end;padding-right:5px;">
-    <span style="font-size:7px;color:rgba(80,90,200,.4);font-family:'Courier New',monospace;">cal</span></div>`;
+  const _pyHbg=_curTheme==='light'?'rgba(56,72,204,0.08)':_curTheme==='holo'?'rgba(0,229,255,0.06)':'rgba(72,88,216,0.12)';
+  const _pyHbd=_curTheme==='light'?'rgba(56,72,204,0.15)':_curTheme==='holo'?'rgba(0,229,255,0.12)':'rgba(72,88,216,0.2)';
+  const _pyEmo=_curTheme==='light'?'rgba(56,72,204,0.5)':_curTheme==='holo'?'rgba(0,229,255,0.5)':'rgba(88,104,240,0.6)';
+  const _pyCbg=_curTheme==='light'?'rgba(56,72,204,0.04)':_curTheme==='holo'?'rgba(0,229,255,0.03)':'rgba(60,70,200,.06)';
+  const _pyCbd=_curTheme==='light'?'rgba(56,72,204,0.10)':_curTheme==='holo'?'rgba(0,229,255,0.08)':'rgba(60,70,200,.14)';
+  const _pyCal=_curTheme==='light'?'rgba(56,72,204,0.35)':_curTheme==='holo'?'rgba(0,229,255,0.3)':'rgba(80,90,200,.4)';
+  let s=`<div style="height:${PAT_HH}px;background:${_pyHbg};display:flex;align-items:center;justify-content:flex-end;padding-right:5px;border-bottom:1px solid ${_pyHbd};">
+    <span style="font-size:7px;color:${_pyEmo};font-family:'Courier New',monospace;font-weight:600;">emo</span></div>`;
+  s+=`<div style="height:${PAT_HH2}px;background:${_pyCbg};border-bottom:1px solid ${_pyCbd};display:flex;align-items:center;justify-content:flex-end;padding-right:5px;">
+    <span style="font-size:7px;color:${_pyCal};font-family:'Courier New',monospace;">cal</span></div>`;
   s+=`<svg width="${PAT_YW}" height="${_ch}" style="display:block;background:var(--surf);">`;
   for(let e=1;e<=22;e++){
     const y=pat_ey(e,_ch);const col=emoColor(e);
@@ -2074,6 +2090,12 @@ function buildPatYAxisSVG(chartH){
 }
 function buildPatHeaders(daySegs,totalW){
   const pz=patZoom||2;
+  // Theme-aware header palette
+  const _phMbdr=_curTheme==='light'?'rgba(56,72,204,0.18)':_curTheme==='holo'?'rgba(0,229,255,0.12)':'rgba(72,88,216,0.25)';
+  const _phMtxt=_curTheme==='light'?'rgba(30,50,180,0.75)':_curTheme==='holo'?'rgba(0,229,255,0.65)':'rgba(200,210,255,0.8)';
+  const _phWbdr=_curTheme==='light'?'rgba(56,72,204,0.12)':_curTheme==='holo'?'rgba(0,229,255,0.10)':'rgba(55,65,180,.16)';
+  const _phWtxt=_curTheme==='light'?'rgba(40,60,180,0.45)':_curTheme==='holo'?'rgba(0,229,255,0.4)':'rgba(150,160,220,0.45)';
+  const _phDbdr=_curTheme==='light'?'rgba(56,72,204,0.08)':_curTheme==='holo'?'rgba(0,229,255,0.06)':'rgba(65,70,130,.10)';
   const months=[];
   daySegs.forEach(seg=>{
     const last=months[months.length-1];
@@ -2083,10 +2105,11 @@ function buildPatHeaders(daySegs,totalW){
   let r1=`<div style="display:flex;width:${totalW}px;height:${PAT_HH}px;flex-shrink:0;">`;
   months.forEach((mo,mi)=>{
     const lbl=mo.w>=30?mo.label:'';
+    const _bg=_curTheme==='light'?`rgba(56,72,204,${mi%2===0?'0.08':'0.05'})`:_curTheme==='holo'?`rgba(0,229,255,${mi%2===0?'0.06':'0.04'})`:(`rgba(72,88,216,${mi%2===0?'0.16':'0.10'})`);
     r1+=`<div style="width:${mo.w}px;min-width:${mo.w}px;height:${PAT_HH}px;flex-shrink:0;
-      background:rgba(72,88,216,${mi%2===0?'0.16':'0.10'});border-right:1px solid rgba(72,88,216,0.25);
+      background:${_bg};border-right:1px solid ${_phMbdr};
       display:flex;align-items:center;justify-content:center;box-sizing:border-box;
-      font-size:9px;font-weight:600;color:rgba(200,210,255,0.8);font-family:'Courier New',monospace;
+      font-size:9px;font-weight:600;color:${_phMtxt};font-family:'Courier New',monospace;
       overflow:hidden;white-space:nowrap;">${lbl}</div>`;
   });
   r1+=`</div>`;
@@ -2103,20 +2126,31 @@ function buildPatHeaders(daySegs,totalW){
     });
     weeks.forEach((wk,wi)=>{
       const lbl=wk.w>=14?'W':'';
+      const _wbg=_curTheme==='light'?`rgba(56,72,204,${wi%2===0?'0.06':'0.04'})`:_curTheme==='holo'?`rgba(0,229,255,${wi%2===0?'0.05':'0.03'})`:(`rgba(55,65,180,${wi%2===0?'0.10':'0.06'})`);
       r2+=`<div style="width:${wk.w}px;min-width:${wk.w}px;height:${PAT_HH2}px;flex-shrink:0;
-        background:rgba(55,65,180,${wi%2===0?'0.10':'0.06'});border-right:1px solid rgba(55,65,180,.16);
+        background:${_wbg};border-right:1px solid ${_phWbdr};
         display:flex;align-items:center;justify-content:center;box-sizing:border-box;
-        font-size:7px;color:rgba(150,160,220,0.45);font-family:'Courier New',monospace;
+        font-size:7px;color:${_phWtxt};font-family:'Courier New',monospace;
         overflow:hidden;white-space:nowrap;">${lbl}</div>`;
     });
   } else {
     daySegs.forEach((seg,si)=>{
       const dd=seg.dateStart.getDate();const isWE=seg.dateStart.getDay()===0||seg.dateStart.getDay()===6;
       const lbl=seg.width>=10?String(dd):'';
+      const _dbg=_curTheme==='light'
+        ?`rgba(${isWE?'56,72,204':'40,56,180'},${si%2===0?'0.08':'0.05'})`
+        :_curTheme==='holo'
+        ?`rgba(${isWE?'0,229,255':'0,200,220'},${si%2===0?'0.06':'0.04'})`
+        :`rgba(${isWE?'90,60,160':'45,55,140'},${si%2===0?'0.11':'0.07'})`;
+      const _dtxt=_curTheme==='light'
+        ?`rgba(${isWE?'30,50,200':'50,70,180'},0.5)`
+        :_curTheme==='holo'
+        ?`rgba(${isWE?'0,229,255':'0,200,220'},0.45)`
+        :`rgba(${isWE?'180,140,240':'140,150,210'},0.5)`;
       r2+=`<div style="width:${seg.width}px;min-width:${seg.width}px;height:${PAT_HH2}px;flex-shrink:0;
-        background:rgba(${isWE?'90,60,160':'45,55,140'},${si%2===0?'0.11':'0.07'});border-right:1px solid rgba(65,70,130,.10);
+        background:${_dbg};border-right:1px solid ${_phDbdr};
         display:flex;align-items:center;justify-content:center;box-sizing:border-box;
-        font-size:7px;color:rgba(${isWE?'180,140,240':'140,150,210'},0.5);font-family:'Courier New',monospace;
+        font-size:7px;color:${_dtxt};font-family:'Courier New',monospace;
         overflow:hidden;white-space:nowrap;">${lbl}</div>`;
     });
   }
@@ -2152,12 +2186,16 @@ function renderPatterns(){
   }
   segs.forEach((seg,si)=>{
     const x=segX[si];const d=data[si];
-    svg+=`<rect x="${x}" y="0" width="${seg.width}" height="${chartH}" fill="${d.hasData?'rgba(72,88,216,0.03)':'rgba(10,10,30,0.4)'}"/>`;
+    const _pNoData=_curTheme==='light'?'rgba(56,72,204,0.06)':_curTheme==='holo'?'rgba(0,229,255,0.04)':'rgba(10,10,30,0.4)';
+    const _pHasData=_curTheme==='light'?'rgba(56,72,204,0.02)':_curTheme==='holo'?'rgba(0,229,255,0.015)':'rgba(72,88,216,0.03)';
+    const _pSep=_curTheme==='light'?'rgba(56,72,204,0.10)':_curTheme==='holo'?'rgba(0,229,255,0.08)':'rgba(60,70,180,0.18)';
+    svg+=`<rect x="${x}" y="0" width="${seg.width}" height="${chartH}" fill="${d.hasData?_pHasData:_pNoData}"/>`;
     if(d.avgQ) svg+=`<rect x="${x+1}" y="1" width="${seg.width-2}" height="4" fill="${qualColor(Math.round(d.avgQ))}" opacity="0.4" rx="1.5"/>`;
-    svg+=`<line x1="${x}" y1="0" x2="${x}" y2="${chartH}" stroke="rgba(60,70,180,0.18)" stroke-width="1"/>`;
+    svg+=`<line x1="${x}" y1="0" x2="${x}" y2="${chartH}" stroke="${_pSep}" stroke-width="1"/>`;
   });
   if(allDots.length>1){
-    svg+=`<polyline points="${allDots.map(d=>`${d.svgX.toFixed(1)},${d.svgY.toFixed(1)}`).join(' ')}" fill="none" stroke="rgba(88,104,240,0.5)" stroke-width="1.5" stroke-linejoin="round"/>`;
+    const _pPoly=_curTheme==='light'?'rgba(56,72,204,0.5)':_curTheme==='holo'?'rgba(0,229,255,0.5)':'rgba(88,104,240,0.5)';
+    svg+=`<polyline points="${allDots.map(d=>`${d.svgX.toFixed(1)},${d.svgY.toFixed(1)}`).join(' ')}" fill="none" stroke="${_pPoly}" stroke-width="1.5" stroke-linejoin="round"/>`;
   }
   allDots.forEach(d=>{svg+=`<circle cx="${d.svgX.toFixed(1)}" cy="${d.svgY.toFixed(1)}" r="${patZoom>20?4:3}" fill="${emoColor(Math.round(d.emo))}" opacity="0.9"/>`;});
   svg+=`</svg>`;
@@ -2341,7 +2379,7 @@ function clearAllData(){
     '<div style="font-size:10px;color:#f08080;letter-spacing:.07em;margin-bottom:7px;font-weight:700;">DELETE ALL DATA?</div>' +
     '<div style="display:flex;gap:6px;">' +
     '<button ontouchstart="" onclick="confirmClearData()" style="flex:1;background:#7f1d1d;color:#fff;border:1px solid rgba(239,68,68,.6);border-radius:5px;padding:7px 6px;font-size:11px;font-weight:800;cursor:pointer;font-family:inherit;touch-action:manipulation;letter-spacing:.04em;">YES, DELETE</button>' +
-    '<button ontouchstart="" onclick="_resetClearZones()" style="flex:1;background:#0e0e1a;color:#a0b0d8;border:1px solid rgba(80,80,160,.4);border-radius:5px;padding:7px 6px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;touch-action:manipulation;letter-spacing:.04em;">CANCEL</button>' +
+    `<button ontouchstart="" onclick="_resetClearZones()" style="flex:1;background:${_curTheme==='light'?'#e8ecf8':'#0e0e1a'};color:${_curTheme==='light'?'#3848cc':'#a0b0d8'};border:1px solid rgba(80,80,160,.4);border-radius:5px;padding:7px 6px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;touch-action:manipulation;letter-spacing:.04em;">CANCEL</button>` +
     '</div></div>'
   );
 }
@@ -2354,12 +2392,12 @@ function confirmClearData(){
   if(document.querySelector('#view-timeline.active')) renderTimeline();
   if(document.querySelector('#view-history.active')) renderHistory();
   _clearZones(
-    '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;' +
-    'background:#0e1428;border:1px solid rgba(88,104,240,.5);border-radius:6px;padding:8px 10px;">' +
-    '<span style="font-size:11px;color:#a0b0d8;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">✓ All data cleared</span>' +
-    '<button ontouchstart="" onclick="undoClearData()" style="flex-shrink:0;background:#5868f0;color:#fff;border:none;' +
+    `<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;` +
+    `background:${_curTheme==='light'?'#eef0fc':'#0e1428'};border:1px solid rgba(88,104,240,.5);border-radius:6px;padding:8px 10px;">` +
+    `<span style="font-size:11px;color:${_curTheme==='light'?'#4a5490':'#a0b0d8'};letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">✓ All data cleared</span>` +
+    `<button ontouchstart="" onclick="undoClearData()" style="flex-shrink:0;background:${_curTheme==='light'?'#3848cc':'#5868f0'};color:#fff;border:none;` +
     'border-radius:5px;padding:6px 16px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;' +
-    'letter-spacing:.1em;touch-action:manipulation;">UNDO</button></div>'
+    'letter-spacing:.1em;touch-action:manipulation;">UNDO</button></div>`
   );
   _clearUndoTimer=setTimeout(()=>{_clearBackup=null;_resetClearZones();},9000);
 }
@@ -2380,13 +2418,16 @@ function undoClearData(){
 
 let _lastLog=null,_undoTimer=null,_undoZoneId=null;
 function _undoBannerHTML(label){
-  return '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;'+
-    'background:#0e1428;border:1px solid rgba(88,104,240,.5);border-radius:6px;'+
-    'padding:8px 10px;margin-top:2px;">'+
-    '<span style="font-size:11px;color:#a0b0d8;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">✓ '+label+'</span>'+
-    '<button ontouchstart="" onclick="undoLastLog()" style="flex-shrink:0;background:#5868f0;color:#fff;border:none;'+
-    'border-radius:5px;padding:6px 16px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;'+
-    'letter-spacing:.1em;touch-action:manipulation;">UNDO</button></div>';
+  const _uBg=_curTheme==='light'?'#eef0fc':'#0e1428';
+  const _uTx=_curTheme==='light'?'#4a5490':'#a0b0d8';
+  const _uBtn=_curTheme==='light'?'#3848cc':'#5868f0';
+  return `<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;`+
+    `background:${_uBg};border:1px solid rgba(88,104,240,.5);border-radius:6px;`+
+    `padding:8px 10px;margin-top:2px;">`+
+    `<span style="font-size:11px;color:${_uTx};letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">✓ `+label+`</span>`+
+    `<button ontouchstart="" onclick="undoLastLog()" style="flex-shrink:0;background:${_uBtn};color:#fff;border:none;`+
+    `border-radius:5px;padding:6px 16px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;`+
+    `letter-spacing:.1em;touch-action:manipulation;">UNDO</button></div>`;
 }
 function showUndo(type,id,label,zoneId){
   _lastLog={type,id};_undoZoneId=zoneId;clearTimeout(_undoTimer);
