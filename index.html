@@ -19,7 +19,7 @@
   onerror="window.CHARTJS_FAILED=true;"></script>
 <style>
 /* ═══════════════════════════════════════════════════════════
-   b77 — SW registration scoped to production host only; relative sw.js path
+   b78 — sidebar footer absolute-positioned; always visible on iPad
    Palette: deep black / violet-indigo / phosphor-green
 ═══════════════════════════════════════════════════════════ */
 :root {
@@ -139,18 +139,22 @@ body {
   width: var(--side); flex-shrink: 0;
   background: #08081a; border-right: 1px solid #14142a;
   overflow: hidden;
+  position: relative;
   transition: width .2s ease;
 }
 .sidebar-scroll {
   flex: 1; min-height: 0;
   overflow-y: auto; overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  padding-bottom: 54px; /* space for absolute footer */
 }
 .sidebar-footer {
-  flex-shrink: 0;
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
   padding: 4px 10px 14px;
   border-top: 1px solid #12122a;
   background: #08081a;
+  z-index: 2;
 }
 .sidebar.collapsed { width: 0; border-right-color: transparent; overflow: hidden; pointer-events: none; }
 /* Mobile sidebar collapse — hide log panel, show chart only */
@@ -729,7 +733,7 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
     <div class="brand">EEE</div>
     <div style="display:flex;flex-direction:column;gap:2px;">
       <div class="model">EMOTIONAL FIELD ANALYZER Mk.III</div>
-      <div class="hdr-build" style="margin:0;align-self:flex-start;">b77</div>
+      <div class="hdr-build" style="margin:0;align-self:flex-start;">b78</div>
     </div>
   </div>
   <div class="inst-readouts">
