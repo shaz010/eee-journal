@@ -19,7 +19,7 @@
   onerror="window.CHARTJS_FAILED=true;"></script>
 <style>
 /* ═══════════════════════════════════════════════════════════
-   b79 — undo for clear data; inline confirm instead of browser dialog
+   b80 — "Not Bad" label; disable LED + chart animation on mobile to fix heat
    Palette: deep black / violet-indigo / phosphor-green
 ═══════════════════════════════════════════════════════════ */
 :root {
@@ -104,6 +104,7 @@ body {
   box-shadow: 0 0 5px currentColor;
 }
 .inst-led.on  { background: #00d058; color: #00d058; animation: led-pulse 2.2s ease-in-out infinite; }
+@media (max-width: 1023px) { .inst-led.on { animation: none; } }
 .inst-led.off { background: #1a1a2a; color: transparent; box-shadow: none; }
 @keyframes led-pulse { 0%,100%{opacity:1} 50%{opacity:.45} }
 .inst-status .sl { font-size: 7px; color: #a0b0e0; letter-spacing: .12em; }
@@ -733,7 +734,7 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
     <div class="brand">EEE</div>
     <div style="display:flex;flex-direction:column;gap:2px;">
       <div class="model">EMOTIONAL FIELD ANALYZER Mk.III</div>
-      <div class="hdr-build" style="margin:0;align-self:flex-start;">b79</div>
+      <div class="hdr-build" style="margin:0;align-self:flex-start;">b80</div>
     </div>
   </div>
   <div class="inst-readouts">
@@ -820,7 +821,7 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
 <div class="qual-chip" id="qiD_3"  onclick="selQual('D',3)"  style="display:-webkit-flex;display:flex;flex-direction:column;align-items:center;gap:1px;padding:4px 5px;min-width:40px;background:#07070f;border:1px solid #0e0e22;border-radius:3px;cursor:pointer;"><div class="qn" style="color:#B02020">3</div><div class="ql">Horrible</div></div>
 <div class="qual-chip" id="qiD_4"  onclick="selQual('D',4)"  style="display:-webkit-flex;display:flex;flex-direction:column;align-items:center;gap:1px;padding:4px 5px;min-width:40px;background:#07070f;border:1px solid #0e0e22;border-radius:3px;cursor:pointer;"><div class="qn" style="color:#A01E1E">4</div><div class="ql">Terrible</div></div>
 <div class="qual-chip" id="qiD_5"  onclick="selQual('D',5)"  style="display:-webkit-flex;display:flex;flex-direction:column;align-items:center;gap:1px;padding:4px 5px;min-width:40px;background:#07070f;border:1px solid #0e0e22;border-radius:3px;cursor:pointer;"><div class="qn" style="color:#BC3030">5</div><div class="ql">Bad</div></div>
-<div class="qual-chip" id="qiD_6"  onclick="selQual('D',6)"  style="display:-webkit-flex;display:flex;flex-direction:column;align-items:center;gap:1px;padding:4px 5px;min-width:40px;background:#07070f;border:1px solid #0e0e22;border-radius:3px;cursor:pointer;"><div class="qn" style="color:#8888A8">6</div><div class="ql">Not Good</div></div>
+<div class="qual-chip" id="qiD_6"  onclick="selQual('D',6)"  style="display:-webkit-flex;display:flex;flex-direction:column;align-items:center;gap:1px;padding:4px 5px;min-width:40px;background:#07070f;border:1px solid #0e0e22;border-radius:3px;cursor:pointer;"><div class="qn" style="color:#8888A8">6</div><div class="ql">Not Bad</div></div>
 <div class="qual-chip" id="qiD_7"  onclick="selQual('D',7)"  style="display:-webkit-flex;display:flex;flex-direction:column;align-items:center;gap:1px;padding:4px 5px;min-width:40px;background:#07070f;border:1px solid #0e0e22;border-radius:3px;cursor:pointer;"><div class="qn" style="color:#5A8F5A">7</div><div class="ql">Good</div></div>
 <div class="qual-chip" id="qiD_8"  onclick="selQual('D',8)"  style="display:-webkit-flex;display:flex;flex-direction:column;align-items:center;gap:1px;padding:4px 5px;min-width:40px;background:#07070f;border:1px solid #0e0e22;border-radius:3px;cursor:pointer;"><div class="qn" style="color:#44AA66">8</div><div class="ql">Nice</div></div>
 <div class="qual-chip" id="qiD_9"  onclick="selQual('D',9)"  style="display:-webkit-flex;display:flex;flex-direction:column;align-items:center;gap:1px;padding:4px 5px;min-width:40px;background:#07070f;border:1px solid #0e0e22;border-radius:3px;cursor:pointer;"><div class="qn" style="color:#22CC55">9</div><div class="ql">Beautiful</div></div>
@@ -912,7 +913,7 @@ body.arc-focus .arc-focus-btn .afb-arrow::before { content: '▶'; }
 <div class="qual-chip-m" id="qiM_3"  onclick="selQual('M',3)"  style="flex-shrink:0;display:-webkit-flex;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 7px;border-radius:6px;cursor:pointer;border:2px solid transparent;min-width:50px;"><div class="qual-num" style="font-size:15px;font-weight:700;color:#B02020;">3</div><div class="qual-lbl" style="font-size:9px;color:#c8c8f4;text-align:center;line-height:1.2;">Horrible</div></div>
 <div class="qual-chip-m" id="qiM_4"  onclick="selQual('M',4)"  style="flex-shrink:0;display:-webkit-flex;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 7px;border-radius:6px;cursor:pointer;border:2px solid transparent;min-width:50px;"><div class="qual-num" style="font-size:15px;font-weight:700;color:#A01E1E;">4</div><div class="qual-lbl" style="font-size:9px;color:#c8c8f4;text-align:center;line-height:1.2;">Terrible</div></div>
 <div class="qual-chip-m" id="qiM_5"  onclick="selQual('M',5)"  style="flex-shrink:0;display:-webkit-flex;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 7px;border-radius:6px;cursor:pointer;border:2px solid transparent;min-width:50px;"><div class="qual-num" style="font-size:15px;font-weight:700;color:#BC3030;">5</div><div class="qual-lbl" style="font-size:9px;color:#c8c8f4;text-align:center;line-height:1.2;">Bad</div></div>
-<div class="qual-chip-m" id="qiM_6"  onclick="selQual('M',6)"  style="flex-shrink:0;display:-webkit-flex;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 7px;border-radius:6px;cursor:pointer;border:2px solid transparent;min-width:50px;"><div class="qual-num" style="font-size:15px;font-weight:700;color:#8888A8;">6</div><div class="qual-lbl" style="font-size:9px;color:#c8c8f4;text-align:center;line-height:1.2;">Not Good</div></div>
+<div class="qual-chip-m" id="qiM_6"  onclick="selQual('M',6)"  style="flex-shrink:0;display:-webkit-flex;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 7px;border-radius:6px;cursor:pointer;border:2px solid transparent;min-width:50px;"><div class="qual-num" style="font-size:15px;font-weight:700;color:#8888A8;">6</div><div class="qual-lbl" style="font-size:9px;color:#c8c8f4;text-align:center;line-height:1.2;">Not Bad</div></div>
 <div class="qual-chip-m" id="qiM_7"  onclick="selQual('M',7)"  style="flex-shrink:0;display:-webkit-flex;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 7px;border-radius:6px;cursor:pointer;border:2px solid transparent;min-width:50px;"><div class="qual-num" style="font-size:15px;font-weight:700;color:#88cc88;">7</div><div class="qual-lbl" style="font-size:9px;color:#c8c8f4;text-align:center;line-height:1.2;">Good</div></div>
 <div class="qual-chip-m" id="qiM_8"  onclick="selQual('M',8)"  style="flex-shrink:0;display:-webkit-flex;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 7px;border-radius:6px;cursor:pointer;border:2px solid transparent;min-width:50px;"><div class="qual-num" style="font-size:15px;font-weight:700;color:#44ee88;">8</div><div class="qual-lbl" style="font-size:9px;color:#c8c8f4;text-align:center;line-height:1.2;">Nice</div></div>
 <div class="qual-chip-m" id="qiM_9"  onclick="selQual('M',9)"  style="flex-shrink:0;display:-webkit-flex;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 7px;border-radius:6px;cursor:pointer;border:2px solid transparent;min-width:50px;"><div class="qual-num" style="font-size:15px;font-weight:700;color:#22dd66;">9</div><div class="qual-lbl" style="font-size:9px;color:#c8c8f4;text-align:center;line-height:1.2;">Beautiful</div></div>
@@ -1066,7 +1067,7 @@ const QUALITIES = [
   { q:3,  label:'Horrible',          col:'#B02020' },
   { q:4,  label:'Terrible',          col:'#A01E1E' },
   { q:5,  label:'Bad',               col:'#BC3030' },
-  { q:6,  label:'Not Good',          col:'#8888A8' },
+  { q:6,  label:'Not Bad',           col:'#8888A8' },
   { q:7,  label:'Good',              col:'#5A8F5A' },
   { q:8,  label:'Nice',              col:'#44AA66' },
   { q:9,  label:'Beautiful',         col:'#22CC55' },
@@ -1323,8 +1324,8 @@ function renderToday(){
   const sorted=[...emos].sort((a,b)=>new Date(a.ts)-new Date(b.ts));
   const canvas=document.getElementById('chartToday');
   const ctx2d=canvas.getContext('2d');
-  if(chartToday){chartToday.destroy();chartToday=null;}
   if(!sorted.length){
+    if(chartToday){chartToday.destroy();chartToday=null;}
     ctx2d.clearRect(0,0,canvas.width,canvas.height);
     ctx2d.fillStyle='#3a3a6a';ctx2d.font='12px monospace';ctx2d.textAlign='center';
     const msg=isToday?'LOG YOUR FIRST EMOTION TODAY':`NO ENTRIES FOR ${selDate.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}).toUpperCase()}`;
@@ -1336,6 +1337,17 @@ function renderToday(){
     ctx2d.fillStyle='#3a3a6a';ctx2d.font='12px monospace';ctx2d.textAlign='center';
     ctx2d.fillText('CHART LOADING…',canvas.offsetWidth/2||200,(canvas.offsetHeight||200)/2);
     buildFSection(null,evts);buildTodayLog(selDate,emos,evts);return;
+  }
+  // Update in place if chart already exists — avoids costly destroy+recreate on every tap
+  if(chartToday){
+    const ds=chartToday.data.datasets[0];
+    ds.data=pts;
+    ds.pointBackgroundColor=pts.map(p=>brightTickColor(emoColor(p.y)));
+    ds.pointBorderColor=pts.map(p=>brightTickColor(emoColor(p.y)));
+    chartToday.update('none');
+    requestAnimationFrame(()=>buildFSection(chartToday,evts));
+    buildTodayLog(selDate,emos,evts);
+    return;
   }
   chartToday=new Chart(canvas,{
     type:'scatter',
@@ -1350,6 +1362,7 @@ function renderToday(){
       showLine:true, tension:0.3, fill:false,
     }]},
     options:{
+      animation:false,
       responsive:true, maintainAspectRatio:false, parsing:false,
       plugins:{
         legend:{display:false},
