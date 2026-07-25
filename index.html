@@ -19,8 +19,8 @@
   onerror="window.CHARTJS_FAILED=true;"></script>
 <style>
 /* ═══════════════════════════════════════════════════════════
-   b82 — Fix Holographic Noir visibility: boosted --tl-date-c, --tl-cnt-c,
-          --rdout-lbl, --note-c, --muted for contrast on near-black bg
+   b83 — Fix TDZ crash: applyTheme() now uses window.chartToday instead of
+          typeof chartToday (let vars are in TDZ at parse-time call site)
    Palette: deep black / violet-indigo / phosphor-green
 ═══════════════════════════════════════════════════════════ */
 :root {
@@ -969,7 +969,7 @@ html[data-theme="holo"] #calPanel          { background: #07060f; border-color: 
     <div class="brand">EEE</div>
     <div style="display:flex;flex-direction:column;gap:2px;">
       <div class="model">EMOTIONAL FIELD ANALYZER Mk.III</div>
-      <div class="hdr-build" style="margin:0;align-self:flex-start;">b82</div>
+      <div class="hdr-build" style="margin:0;align-self:flex-start;">b83</div>
     </div>
   </div>
   <div class="inst-readouts">
@@ -1237,7 +1237,7 @@ function applyTheme(t,save){
   const btn=document.getElementById('themeBtn');
   if(btn) btn.textContent=_THEME_ICONS[t];
   if(save) localStorage.setItem('eee_theme',t);
-  if(typeof chartToday!=='undefined'&&chartToday) chartToday.update('none');
+  if(window.chartToday) window.chartToday.update('none');
 }
 function cycleTheme(){
   const idx=_THEMES.indexOf(_curTheme);
