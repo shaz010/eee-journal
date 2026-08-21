@@ -1,5 +1,5 @@
 # TAGJ Book Handoff — فکر کن و شادی بیافرین / Think and Grow Joy
-**Last updated:** 2026-08-20  
+**Last updated:** 2026-08-21  
 **Maintained by:** Claude (Cowork) for Shaz Mirshahi
 
 ---
@@ -99,8 +99,92 @@ This book uses **classical literary Persian**. The reader is addressed as شما
 
 ## 🎧 Audiobook — Status & Plan
 
-### Voice Testing (2026-08-20)
-Tested using `fal-ai/minimax/speech-02-hd` TTS model. Results:
+### Naming Convention
+All AI-generated versions are prefixed `pre_WR_` = **pre-Whole Recording** — placeholders until Shaz records his own voice.
+
+---
+
+### ✅ pre_WR_EN — English Audiobook (COMPLETE)
+**Voice:** fal-ai/minimax/speech-02-hd, `male-qn-daxuesheng`, speed 0.78 ("Gem")  
+**Files:** 14 MP3s in `~/Music/TAGJ_audiobook/`  
+**Playlist launcher:** `~/Music/TAGJ_audiobook/Play_TAGJ_EN.command` (double-click in Finder)  
+**iCloud:** `~/Library/Mobile Documents/com~apple~CloudDocs/TAGJ_audiobook/`
+
+| File | Chapter |
+|------|---------|
+| 00_prologue.mp3 | Prologue |
+| 01_chapter_one.mp3 | Chapter 1 |
+| 02_chapter_two.mp3 | Chapter 2 |
+| 03_chapter_three_p1.mp3 | Chapter 3 Part 1 |
+| 03_chapter_three_p2.mp3 | Chapter 3 Part 2 |
+| 04_chapter_four.mp3 | Chapter 4 |
+| 05_chapter_five_p1.mp3 | Chapter 5 Part 1 |
+| 05_chapter_five_p2.mp3 | Chapter 5 Part 2 |
+| 05_chapter_five_p3.mp3 | Chapter 5 Part 3 |
+| 06_chapter_six.mp3 | Chapter 6 |
+| 07_chapter_seven.mp3 | Chapter 7 |
+| 08_chapter_eight.mp3 | Chapter 8 |
+| 09_chapter_nine.mp3 | Chapter 9 |
+| 10_closing.mp3 | Closing |
+
+**Note:** Ch3 and Ch5 split into parts due to fal-ai 4500-char limit.
+
+---
+
+### ✅ pre_WR_FA — Persian Audiobook (COMPLETE)
+**Voice:** edge-tts `fa-IR-FaridNeural`, rate="-15%" — best available Tehran accent  
+**Files:** 11 MP3s in `~/Music/TAGJ_FA_audioboo/` (folder name truncated — leave as-is)  
+**Playlist launcher:** `~/Music/TAGJ_FA_audioboo/Play_TAGJ_FA.command` (double-click in Finder)  
+**iCloud:** `~/Library/Mobile Documents/com~apple~CloudDocs/TAGJ_FA_audiobook/`  
+**Sister's zip:** `~/Desktop/TAGJ_FA_audiobook.zip` (19.9MB) — send via Telegram  
+**Sister's instructions:** sent in Persian (Telegram-ready text in session chat)
+
+| File | Chapter |
+|------|---------|
+| 00_prologue.mp3 | مقدمه |
+| 01_chapter_one.mp3 | فصل اول |
+| 02_chapter_two.mp3 | فصل دوم |
+| 03_chapter_three.mp3 | فصل سوم |
+| 04_chapter_four.mp3 | فصل چهارم |
+| 05_chapter_five.mp3 | فصل پنجم |
+| 06_chapter_six.mp3 | فصل ششم |
+| 07_chapter_seven.mp3 | فصل هفتم |
+| 08_chapter_eight.mp3 | فصل هشتم |
+| 09_chapter_nine.mp3 | فصل نهم |
+| 10_closing.mp3 | خداحافظی |
+
+**Generator script:** `/root/tagj_fa_audiobook.py` — run on Mac Terminal (edge-tts SSL blocked in cloud)
+
+---
+
+### ❌ Why AI Voices Aren't the Final Version
+- **Farid (Farid Neural):** Half Tehran accent — technically correct but emotionally flat. Doesn't capture the intimacy and effect the book demands.
+- **Gem (male-qn-daxuesheng):** Warm and paced well in English, but AI — the soul isn't there.
+- **Verdict:** Voice and sound in a book like TAGJ are everything. The wrong delivery kills the effect. AI voices are placeholders only.
+
+---
+
+### 🎙️ Next Step — Record in Own Voice via Logic Pro
+
+**Plan:**
+1. Set up Logic Pro on Mac with a decent mic (or even AirPods Pro in quiet room as backup)
+2. Record each chapter as a clean take — no music bed, just voice
+3. Use Logic Pro for light processing: noise reduction, EQ, light compression, normalise
+4. Export each chapter as WAV or AIFF from Logic Pro
+5. **Option A:** Use as final audiobook directly (cleanest)
+6. **Option B:** Feed 3-5 minutes of clean export to ElevenLabs professional clone → regenerate all chapters in Shaz's voice at scale
+
+**ElevenLabs requirements for voice cloning:**
+- Minimum: 3-5 minutes of clean audio (not 20-30 seconds — that produces bad results)
+- No background noise, no music
+- Speak naturally, varied pace — don't perform
+- API key: `sk_e1eb26e36302a111967fe494ec902c7efb4f4ba5476882c6`
+- Model for generation: `eleven_multilingual_v2` (handles both EN and FA)
+- Script for cloning: `/root/elevenlabs_clone_both.py`
+
+**Logic Pro session naming:** `TAGJ_EN_recording` / `TAGJ_FA_recording`
+
+**Voice testing done (2026-08-20):**
 
 | # | Voice preset | Speed | Verdict |
 |---|-------------|-------|---------|
@@ -109,27 +193,11 @@ Tested using `fal-ai/minimax/speech-02-hd` TTS model. Results:
 | 3 | male-qn-daxuesheng | 1.0 | Good warmth |
 | 4 | audiobook_female_1 | 1.0 | Nice but not quite |
 | 5 | wise_woman | 1.0 | Car salesman |
-| **6** | **male-qn-daxuesheng** | **0.78** | **⭐ THE GEM — keeper** |
+| **6** | **male-qn-daxuesheng** | **0.78** | **⭐ THE GEM — EN placeholder** |
 | 7 | deep_voice_man | 0.85 | Female again |
 | 8 | audiobook_male_1 | 0.78 | Female again |
 | 9 | male-qn-jingying | 0.78 | Female again |
 | 10 | Chatterbox model | — | Car salesman |
-
-**Winning config:**
-```
-model: fal-ai/minimax/speech-02-hd
-voice: male-qn-daxuesheng
-speed: 0.78
-```
-
-### Next Step — Voice Cloning
-Shaz to record his own voice:
-1. Open **Voice Memos** on iPhone 16 Pro Max
-2. Find a quiet room, speak naturally (not performed)
-3. Read any passage — 20-30 seconds is enough
-4. Send the audio file in the chat
-5. Claude will use `fal-ai/chatterbox/text-to-speech` with the voice clone to generate the full audiobook in Shaz's own voice
-6. Logic Pro available for cleanup if needed (likely won't be — iPhone 16 Pro Max mic is clean)
 
 ---
 
@@ -154,10 +222,11 @@ Shaz to record his own voice:
 
 ## ⏳ Pending Tasks
 
-1. **Voice cloning audiobook** — Shaz to send 20-30 second voice recording. Claude to generate full audiobook in Shaz's voice using Chatterbox model.
-2. **Upload latest EPUBs to GitHub** — Both EN and FA corrected versions need uploading after today's session.
-3. **Promotion execution** — start with WhatsApp/Telegram broadcast using the GitHub raw links.
-4. **TAGJ_BOOK_RULES.md on GitHub** — still says .docx is working master. Clarify with Shaz.
+1. **Record in own voice** — Set up Logic Pro session. Record each chapter in EN and FA. Export clean WAV/AIFF per chapter. This is the WR (Whole Recording) version that replaces all pre_WR files.
+2. **ElevenLabs voice clone (optional)** — Once 3-5 min clean Logic Pro export is ready, run `/root/elevenlabs_clone_both.py` to clone voice, then regenerate all chapters at scale. Only needed if direct recording isn't used as final.
+3. **Upload latest EPUBs to GitHub** — Both EN and FA corrected versions need uploading after 2026-08-20 session.
+4. **Promotion execution** — start with WhatsApp/Telegram broadcast using the GitHub raw links.
+5. **TAGJ_BOOK_RULES.md on GitHub** — still says .docx is working master. Clarify with Shaz.
 
 ---
 
