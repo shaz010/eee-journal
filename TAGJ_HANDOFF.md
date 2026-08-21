@@ -83,6 +83,15 @@ This book uses **classical literary Persian**. The reader is addressed as شما
 | 2026-08-20 | All chapters | All ch1–ch9, closing | ✅ Done | Global شما replacement (27 instances) via apply_shoma2.py |
 | 2026-08-20 | Prologue | `prologue.xhtml` | ✅ Done | Added condensed Farsi translation of new passage (new-v4, amber) |
 | 2026-08-20 | Ch1 closing | `ch1.xhtml` | ✅ Done | Added full Farsi translation of new passage before bridge paragraph (new-v4, amber) |
+| 2026-08-21 | Prologue p.4 | `prologue.xhtml` | ✅ Done | «این کتاب برای شماست. تمامش.» → «این کتاب سراسر برای شماست» |
+| 2026-08-21 | Ch1 p.7 | `ch1.xhtml` | ✅ Done | «قانون جذبی را به‌کار می‌اندازد» → «قانون جذب را به کار می‌اندازد» |
+| 2026-08-21 | Ch1 p.8 | `ch1.xhtml` | ✅ Done | «تا نگاه کند» → «تا جویا شود» |
+| 2026-08-21 | Ch2 p.10 | `ch2.xhtml` | ✅ Done | «ناهار بخورد و برنگشته» → «شام و بر نگشته» |
+| 2026-08-21 | Ch5 p.24 | `ch5.xhtml` | ✅ Done | «پذیرش واقعاً چه احساسی دارد» → «پذیرش و روا داری٬ واقعا چه احساسی دارد» |
+| 2026-08-21 | Ch5 p.25 | `ch5.xhtml` | ✅ Done | «تو تغییر کردی» → «شما تغییر کردید» |
+| 2026-08-21 | Ch6 p.29 | `ch6.xhtml` | ✅ Done | «سر و صدا شکست نیست — پیش از است» → «سر و صدا شکست نیست-آنچه در پیش بود است» |
+| 2026-08-21 | Ch7 p.31 | `ch7.xhtml` | ✅ Done | «فقط هر از گاهی فراموش می‌شود» → «فقط قلب گاهی فراموش می‌شود» |
+| 2026-08-21 | Closing p.40 | `closing.xhtml` | ✅ Done | «به شدن خوش آمدی» → «به بزرگ‌ترین اشپزخانه٬ و عزیمترین لابراتوار جهان٬ پردیس کره زمین خوش آمدی» |
 
 ---
 
