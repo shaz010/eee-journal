@@ -1,5 +1,5 @@
 # TAGJ Book Handoff — فکر کن و شادی بیافرین / Think and Grow Joy
-**Last updated:** 2026-08-21  
+**Last updated:** 2026-08-22  
 **Maintained by:** Claude (Cowork) for Shaz Mirshahi
 
 ---
@@ -27,9 +27,9 @@
 | GitHub | `Shaz010/eee-journal` | Public repo | ❌ Shaz uploads manually |
 
 **Session workspace paths (when re-extracted):**
-- Farsi working dir: `/root/tagj_fa_work/EPUB/`
-- English working dir: `/tmp/en_v4/EPUB/`
-- Packed output: `/root/TAGJ_v4_FA_corrected.epub` and `/root/TAGJ_v4_EN_corrected.epub`
+- Farsi working dir: `/tmp/fa_work/FA_EPUB/EPUB/`
+- English working dir: `/tmp/en_check2/EPUB/`
+- Packed output: `/tmp/TAGJ_v4_FA_corrected.epub`
 
 **Sharing links:**
 ```
@@ -38,7 +38,7 @@ English: https://github.com/Shaz010/eee-journal/raw/main/TAGJ_v4_EN_corrected.ep
 ```
 On iPhone: open link in Safari → "Open in Books". On Android: Chrome address bar (not search) → tap downloaded file → epub reader.
 
-**Version visibility:** Update `dcterms:modified` date in `content.opf` every time a new EPUB is packed. Apple Books uses this date to recognise a newer version. Current date: `2026-08-20T00:00:00Z`.
+**Version visibility:** Update `dcterms:modified` date in `content.opf` every time a new EPUB is packed. Apple Books uses this date to recognise a newer version. Current: `2026-08-22T00:00:00Z`.
 
 **English EPUB identifier:** `think-and-grow-joy-shaz-v4` (updated from v3 on 2026-08-20 — Play Books now treats it as a new book).
 
@@ -81,8 +81,8 @@ This book uses **classical literary Persian**. The reader is addressed as شما
 | 2026-08-10 | p.42 | `ch7.xhtml` | ✅ Done | می‌زایند → می‌آفریدند |
 | 2026-08-10 | p.55 | `ch9.xhtml` | ✅ Done | آهوید → آوید (son's name) |
 | 2026-08-20 | All chapters | All ch1–ch9, closing | ✅ Done | Global شما replacement (27 instances) via apply_shoma2.py |
-| 2026-08-20 | Prologue | `prologue.xhtml` | ✅ Done | Added condensed Farsi translation of new passage (new-v4, amber) |
-| 2026-08-20 | Ch1 closing | `ch1.xhtml` | ✅ Done | Added full Farsi translation of new passage before bridge paragraph (new-v4, amber) |
+| 2026-08-20 | Prologue | `prologue.xhtml` | ✅ Done | Added condensed Farsi translation of new v4 passage (new-v4, amber) |
+| 2026-08-20 | Ch1 closing | `ch1.xhtml` | ✅ Done | Added full Farsi translation of new v4 passage (new-v4, amber) |
 | 2026-08-21 | Prologue p.4 | `prologue.xhtml` | ✅ Done | «این کتاب برای شماست. تمامش.» → «این کتاب سراسر برای شماست» |
 | 2026-08-21 | Ch1 p.7 | `ch1.xhtml` | ✅ Done | «قانون جذبی را به‌کار می‌اندازد» → «قانون جذب را به کار می‌اندازد» |
 | 2026-08-21 | Ch1 p.8 | `ch1.xhtml` | ✅ Done | «تا نگاه کند» → «تا جویا شود» |
@@ -92,6 +92,9 @@ This book uses **classical literary Persian**. The reader is addressed as شما
 | 2026-08-21 | Ch6 p.29 | `ch6.xhtml` | ✅ Done | «سر و صدا شکست نیست — پیش از است» → «سر و صدا شکست نیست-آنچه در پیش بود است» |
 | 2026-08-21 | Ch7 p.31 | `ch7.xhtml` | ✅ Done | «فقط هر از گاهی فراموش می‌شود» → «فقط قلب گاهی فراموش می‌شود» |
 | 2026-08-21 | Closing p.40 | `closing.xhtml` | ✅ Done | «به شدن خوش آمدی» → «به بزرگ‌ترین اشپزخانه٬ و عزیمترین لابراتوار جهان٬ پردیس کره زمین خوش آمدی» |
+| 2026-08-22 | Ch2–Ch5, Closing | Multiple | ✅ Done | Added Farsi translations of all remaining v4 passages: ch2, ch4, ch5 (full block), closing (new-v4 amber) |
+| 2026-08-22 | Ch6 final paragraph | `ch6.xhtml` | ✅ Done | Added missing Farsi translation of consciousness/self-study paragraph (was in EN, absent from FA) |
+| 2026-08-22 | All | `content.opf` | ✅ Done | dcterms:modified updated to 2026-08-22T00:00:00Z |
 
 ---
 
@@ -109,104 +112,53 @@ This book uses **classical literary Persian**. The reader is addressed as شما
 ## 🎧 Audiobook — Status & Plan
 
 ### Naming Convention
-All AI-generated versions are prefixed `pre_WR_` = **pre-Whole Recording** — placeholders until Shaz records his own voice.
+- `pre_WR_` prefix = **pre-Whole Recording** — AI placeholder until Shaz records his own voice.
+- `WR_` prefix = **Whole Recording** — Shaz's own voice. This is the final version.
+
+**STATUS AS OF 2026-08-22: pre_WR files are being retired. New WR recordings in Shaz's own voice are the next step.**
 
 ---
 
-### ✅ pre_WR_EN — English Audiobook (COMPLETE)
+### ❌ pre_WR_EN — English Audiobook (RETIRED — to be replaced)
 **Voice:** fal-ai/minimax/speech-02-hd, `male-qn-daxuesheng`, speed 0.78 ("Gem")  
 **Files:** 14 MP3s in `~/Music/TAGJ_audiobook/`  
-**Playlist launcher:** `~/Music/TAGJ_audiobook/Play_TAGJ_EN.command` (double-click in Finder)  
-**iCloud:** `~/Library/Mobile Documents/com~apple~CloudDocs/TAGJ_audiobook/`
-
-| File | Chapter |
-|------|---------|
-| 00_prologue.mp3 | Prologue |
-| 01_chapter_one.mp3 | Chapter 1 |
-| 02_chapter_two.mp3 | Chapter 2 |
-| 03_chapter_three_p1.mp3 | Chapter 3 Part 1 |
-| 03_chapter_three_p2.mp3 | Chapter 3 Part 2 |
-| 04_chapter_four.mp3 | Chapter 4 |
-| 05_chapter_five_p1.mp3 | Chapter 5 Part 1 |
-| 05_chapter_five_p2.mp3 | Chapter 5 Part 2 |
-| 05_chapter_five_p3.mp3 | Chapter 5 Part 3 |
-| 06_chapter_six.mp3 | Chapter 6 |
-| 07_chapter_seven.mp3 | Chapter 7 |
-| 08_chapter_eight.mp3 | Chapter 8 |
-| 09_chapter_nine.mp3 | Chapter 9 |
-| 10_closing.mp3 | Closing |
-
-**Note:** Ch3 and Ch5 split into parts due to fal-ai 4500-char limit.
+**Note:** Delete and replace with WR recordings when ready.
 
 ---
 
-### ✅ pre_WR_FA — Persian Audiobook (COMPLETE)
-**Voice:** edge-tts `fa-IR-FaridNeural`, rate="-15%" — best available Tehran accent  
-**Files:** 11 MP3s in `~/Music/TAGJ_FA_audioboo/` (folder name truncated — leave as-is)  
-**Playlist launcher:** `~/Music/TAGJ_FA_audioboo/Play_TAGJ_FA.command` (double-click in Finder)  
-**iCloud:** `~/Library/Mobile Documents/com~apple~CloudDocs/TAGJ_FA_audiobook/`  
-**Sister's zip:** `~/Desktop/TAGJ_FA_audiobook.zip` (19.9MB) — send via Telegram  
-**Sister's instructions:** sent in Persian (Telegram-ready text in session chat)
-
-| File | Chapter |
-|------|---------|
-| 00_prologue.mp3 | مقدمه |
-| 01_chapter_one.mp3 | فصل اول |
-| 02_chapter_two.mp3 | فصل دوم |
-| 03_chapter_three.mp3 | فصل سوم |
-| 04_chapter_four.mp3 | فصل چهارم |
-| 05_chapter_five.mp3 | فصل پنجم |
-| 06_chapter_six.mp3 | فصل ششم |
-| 07_chapter_seven.mp3 | فصل هفتم |
-| 08_chapter_eight.mp3 | فصل هشتم |
-| 09_chapter_nine.mp3 | فصل نهم |
-| 10_closing.mp3 | خداحافظی |
-
-**Generator script:** `/root/tagj_fa_audiobook.py` — run on Mac Terminal (edge-tts SSL blocked in cloud)
+### ❌ pre_WR_FA — Persian Audiobook (RETIRED — to be replaced)
+**Voice:** edge-tts `fa-IR-FaridNeural` — emotionally flat, rejected by Shaz.  
+**Files:** 11 MP3s in `~/Music/TAGJ_FA_audioboo/`  
+**Note:** Delete and replace with WR recordings when ready.  
+**Sister's copy:** `~/Desktop/TAGJ_FA_audiobook.zip` — also to be replaced.
 
 ---
 
-### ❌ Why AI Voices Aren't the Final Version
-- **Farid (Farid Neural):** Half Tehran accent — technically correct but emotionally flat. Doesn't capture the intimacy and effect the book demands.
-- **Gem (male-qn-daxuesheng):** Warm and paced well in English, but AI — the soul isn't there.
-- **Verdict:** Voice and sound in a book like TAGJ are everything. The wrong delivery kills the effect. AI voices are placeholders only.
+### 🎙️ WR Recording Plan — Shaz's Own Voice
 
----
+**Recording scripts delivered 2026-08-22:**
+- `TAGJ_Scripts_EN_Shaz.zip` — 11 .txt files, English, Shaz's voice
+- `TAGJ_Scripts_FA_Shaz.zip` — 11 .txt files, Farsi, Shaz's voice  
+- `TAGJ_Scripts_FA_Sister.zip` — 11 .txt files, Farsi, sister's copy
 
-### 🎙️ Next Step — Record in Own Voice via Logic Pro
+Each script: clean plain text, chapter headings as `=== Title ===`, pullquotes as `[PULLQUOTE]...[/PULLQUOTE]`, scene breaks as `— — —`. Open in TextEdit/Notes and read straight into Logic Pro.
 
-**Plan:**
-1. Set up Logic Pro on Mac with a decent mic (or even AirPods Pro in quiet room as backup)
+**Logic Pro workflow:**
+1. Set up Logic Pro on Mac with mic (or AirPods Pro in quiet room as backup)
 2. Record each chapter as a clean take — no music bed, just voice
-3. Use Logic Pro for light processing: noise reduction, EQ, light compression, normalise
-4. Export each chapter as WAV or AIFF from Logic Pro
-5. **Option A:** Use as final audiobook directly (cleanest)
-6. **Option B:** Feed 3-5 minutes of clean export to ElevenLabs professional clone → regenerate all chapters in Shaz's voice at scale
+3. Light processing: noise reduction, EQ, light compression, normalise
+4. Export each chapter as WAV or AIFF
+5. **Option A:** Use directly as final audiobook
+6. **Option B:** Feed 3-5 min of clean export to ElevenLabs voice clone → regenerate all chapters at scale
 
-**ElevenLabs requirements for voice cloning:**
-- Minimum: 3-5 minutes of clean audio (not 20-30 seconds — that produces bad results)
-- No background noise, no music
-- Speak naturally, varied pace — don't perform
+**Logic Pro session naming:** `TAGJ_EN_WR` / `TAGJ_FA_WR` / `TAGJ_FA_Sister_WR`
+
+**ElevenLabs voice cloning (if needed):**
+- Minimum: 3-5 minutes of clean audio (NOT 20-30 seconds)
+- No background noise, no music, speak naturally
 - API key: `sk_e1eb26e36302a111967fe494ec902c7efb4f4ba5476882c6`
-- Model for generation: `eleven_multilingual_v2` (handles both EN and FA)
-- Script for cloning: `/root/elevenlabs_clone_both.py`
-
-**Logic Pro session naming:** `TAGJ_EN_recording` / `TAGJ_FA_recording`
-
-**Voice testing done (2026-08-20):**
-
-| # | Voice preset | Speed | Verdict |
-|---|-------------|-------|---------|
-| 1 | default | 1.0 | Too heavy |
-| 2 | female | 1.0 | Car salesman |
-| 3 | male-qn-daxuesheng | 1.0 | Good warmth |
-| 4 | audiobook_female_1 | 1.0 | Nice but not quite |
-| 5 | wise_woman | 1.0 | Car salesman |
-| **6** | **male-qn-daxuesheng** | **0.78** | **⭐ THE GEM — EN placeholder** |
-| 7 | deep_voice_man | 0.85 | Female again |
-| 8 | audiobook_male_1 | 0.78 | Female again |
-| 9 | male-qn-jingying | 0.78 | Female again |
-| 10 | Chatterbox model | — | Car salesman |
+- Model: `eleven_multilingual_v2` (handles EN and FA)
+- Script: `/root/elevenlabs_clone_both.py`
 
 ---
 
@@ -231,22 +183,22 @@ All AI-generated versions are prefixed `pre_WR_` = **pre-Whole Recording** — p
 
 ## ⏳ Pending Tasks
 
-1. **Record in own voice** — Set up Logic Pro session. Record each chapter in EN and FA. Export clean WAV/AIFF per chapter. This is the WR (Whole Recording) version that replaces all pre_WR files.
-2. **ElevenLabs voice clone (optional)** — Once 3-5 min clean Logic Pro export is ready, run `/root/elevenlabs_clone_both.py` to clone voice, then regenerate all chapters at scale. Only needed if direct recording isn't used as final.
-3. **Upload latest EPUBs to GitHub** — Both EN and FA corrected versions need uploading after 2026-08-20 session.
-4. **Promotion execution** — start with WhatsApp/Telegram broadcast using the GitHub raw links.
+1. **Upload FA EPUB to GitHub** — `TAGJ_v4_FA_corrected.epub` (2026-08-22 build). Go to github.com/Shaz010/eee-journal → click file → pencil icon → drag new file to replace → commit to main.
+2. **Delete old pre_WR audio files** — Remove `~/Music/TAGJ_audiobook/` and `~/Music/TAGJ_FA_audioboo/` and `~/Desktop/TAGJ_FA_audiobook.zip`.
+3. **Record WR audiobook** — Set up Logic Pro. Use the delivered recording scripts. Record EN chapters (Shaz), FA chapters (Shaz), FA chapters (sister). Export WAV/AIFF.
+4. **Promotion execution** — WhatsApp/Telegram broadcast using GitHub raw links.
 5. **TAGJ_BOOK_RULES.md on GitHub** — still says .docx is working master. Clarify with Shaz.
 
 ---
 
 ## 🔄 Start-of-Session Checklist
 
-1. Clone repo: `git clone https://github.com/Shaz010/eee-journal.git /root/eee-journal`
-2. Extract Farsi: `mkdir -p /root/tagj_fa_work && cd /root/tagj_fa_work && unzip -q /root/eee-journal/TAGJ_v4_FA_corrected.epub`
-3. Extract English: `mkdir -p /tmp/en_v4 && cd /tmp/en_v4 && unzip -q /root/eee-journal/TAGJ_v4_EN_corrected.epub`
+1. Stage files from device: `TAGJ_v4_FA_corrected.epub` and `TAGJ_v4_EN_corrected.epub` from `~/eee-journal/`
+2. Extract Farsi: `mkdir -p /tmp/fa_work && cd /tmp/fa_work && unzip -q TAGJ_v4_FA_corrected.epub -d FA_EPUB`
+3. Extract English: `mkdir -p /tmp/en_check2 && cd /tmp/en_check2 && unzip -q TAGJ_v4_EN_corrected.epub -d EPUB`
 4. Make all changes
 5. Update `dcterms:modified` in `content.opf` to today's date
-6. Repack: `cd /root/tagj_fa_work && zip -X /root/TAGJ_v4_FA_corrected.epub mimetype && zip -rg /root/TAGJ_v4_FA_corrected.epub EPUB META-INF`
+6. Repack: `cd /tmp/fa_work/FA_EPUB && zip -X /tmp/TAGJ_v4_FA_corrected.epub mimetype && zip -rg /tmp/TAGJ_v4_FA_corrected.epub EPUB META-INF`
 7. Deliver via SendUserFile
 8. Remind Shaz to upload to GitHub
 
@@ -260,10 +212,10 @@ All AI-generated versions are prefixed `pre_WR_` = **pre-Whole Recording** — p
 | `ch1.xhtml` | فصل اول — شما این را ساختید |
 | `ch2.xhtml` | فصل دوم — شما هرگز گم نشده بودید |
 | `ch3.xhtml` | فصل سوم — افکار سوزان |
-| `ch4.xhtml` | فصل چهارم |
+| `ch4.xhtml` | فصل چهارم — سکوت |
 | `ch5.xhtml` | فصل پنجم |
-| `ch6.xhtml` | فصل ششم |
-| `ch7.xhtml` | فصل هفتم |
+| `ch6.xhtml` | فصل ششم — بنواز، پیروی نکن |
+| `ch7.xhtml` | فصل هفتم — در حال شدن |
 | `ch8.xhtml` | فصل هشتم |
 | `ch9.xhtml` | فصل نهم |
 | `closing.xhtml` | سه قانون و خداحافظی |
