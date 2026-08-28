@@ -1,5 +1,5 @@
 # TAGJ Book Handoff — فکر کن و شادی بیافرین / Think and Grow Joy
-**Last updated:** 2026-08-28 (session 6)  
+**Last updated:** 2026-08-28 (session 6, end-of-session update)  
 **Maintained by:** Claude (Cowork) for Shaz Mirshahi
 
 ---
@@ -118,6 +118,13 @@ This book uses **classical literary Persian**. The reader is addressed as شما
 | 2026-08-27 | Farsi — فکر کن و شادی بیافرین | In review (72hr to live) | KDP Title ID: A2EJSVYPN3CCQN |
 | — | English | Live | ASIN: B0HG8MX4RS |
 
+## 🎧 Publishing — ACX (EN Audiobook)
+
+| Date | Edition | Status | Details |
+|------|---------|--------|---------|
+| 2026-08-26 | English — Think and Grow Joy | Submitted, in review | Daily watch active: trig_01QoVqKRV3o1N3eVA3tn66by |
+| ~2026-09-05 | English — Think and Grow Joy | Expected live | ~10-day ACX review from submission |
+
 ---
 
 ## 🎧 Audiobook — Status & Plan
@@ -141,7 +148,7 @@ This book uses **classical literary Persian**. The reader is addressed as شما
 **FAL temp URL:** https://v3b.fal.media/files/b/0aa81447/3jZ2rS3JzkVJDChx9_r7M_1787873990465.octet (may expire)  
 **To import on Mac:** Books app → File → Add to Library → select the M4B  
 **To get on iPhone:** ✅ DONE (2026-08-28) — Connected via cable → Finder → iPhone → Audiobooks tab → checked "Sync audiobooks onto iPhone" → Sync. Shows in Books under Library and Home.  
-**To get on iPad:** Connect via cable → Finder → iPad → Audiobooks tab → check "Sync audiobooks onto iPad" → Sync. (PENDING)  
+**To get on iPad:** ✅ DONE (2026-08-28) — Connected via cable → Finder → iPad → Audiobooks tab → checked "Sync audiobooks onto iPad" → Sync.  
 **Mac copy:** `~/Desktop/Shazzy/Think_and_Grow_Joy_Audiobook.m4b`
 
 ### ❌ pre_WR_EN — English Audiobook (RETIRED — to be replaced)
@@ -209,7 +216,7 @@ Each script: clean plain text, chapter headings as `=== Title ===`, pullquotes a
 
 1. **Upload FA EPUB to GitHub** — `TAGJ_v4_FA_corrected.epub` (2026-08-22 build). Go to github.com/Shaz010/eee-journal → click file → pencil icon → drag new file to replace → commit to main.
 2. **Add cover art to both EPUBs** — ⚠️ MISSED in session 2. Cover image at `~/Downloads/TAGJ_audiobook_cover_final.jpg` must be embedded in both EN and FA EPUBs as the OPF cover image. Drag cover image into chat to fix. Then repack and re-upload to GitHub.
-3. **M4B Audiobook — ✅ DONE + iPhone synced** — Rhea voice, 61 min, 25 chapters. File: `~/tagj-book/Think_and_Grow_Joy_Audiobook.m4b` and `~/Desktop/Shazzy/`. iPhone: ✅ synced via Finder Audiobooks tab. iPad: ⏳ PENDING — same cable method.
+3. **M4B Audiobook — ✅ DONE** — Rhea voice, 61 min, 25 chapters. File: `~/tagj-book/Think_and_Grow_Joy_Audiobook.m4b` and `~/Desktop/Shazzy/`. iPhone: ✅ synced. iPad: ✅ synced. Both via Finder Audiobooks tab.
 4. **Get EPUBs into Apple Books** — Both files are in `~/Downloads/` on your Mac. English: `~/Downloads/TAGJ_v4_EN_corrected.epub`. Farsi: `~/Downloads/TAGJ_v4_FA_corrected.epub`. Just double-click either file in Finder and Books opens it automatically.
 5. **Farsi KDP — check live** — Farsi edition submitted 2026-08-27, in review (72hr). Check KDP dashboard for ASIN once live.
 6. **Record WR audiobook** — Set up Logic Pro. Use the delivered recording scripts. Record EN chapters (Shaz), FA chapters (Shaz), FA chapters (sister). Export WAV/AIFF.
