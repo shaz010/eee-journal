@@ -1,5 +1,5 @@
 # TAGJ Book Handoff — فکر کن و شادی بیافرین / Think and Grow Joy
-**Last updated:** 2026-08-22  
+**Last updated:** 2026-08-28 (session 6)  
 **Maintained by:** Claude (Cowork) for Shaz Mirshahi
 
 ---
@@ -7,13 +7,15 @@
 ## 🔒 Non-Negotiable Rules
 
 1. **Never improvise content.** Add only exactly what Shaz provides, word for word.
-2. **Never push to GitHub.** Shaz uploads all files manually via the GitHub website.
+2. **GitHub = terminal cards only.** Never ask Shaz to use the GitHub website. Always give him ready-to-paste Terminal commands. He copies and runs them. Claude never runs git commands directly. This applies to ALL projects and ALL sessions.
 3. **Never alter existing content** — no reformatting, no restructuring.
 4. **Do not assume placement.** If Shaz does not specify which chapter or paragraph, ask first.
 5. **One clean pass** — all changes in a single operation, deliver the file, done.
 6. **New content in .epub = amber gold class `new-v4`** (versioning convention).
 7. **Always warn before anything irreversible.**
 8. **English is the master/source.** Farsi is the translation. All corrections must stay true to the English original — check the English version first when making Farsi changes.
+9. **After context compaction: READ THIS HANDOFF IN FULL before doing any work.** Do not rely on the compaction summary. Fetch from GitHub: `https://raw.githubusercontent.com/Shaz010/eee-journal/main/TAGJ_HANDOFF.md`. Confirm with Shaz what the next task is before starting anything.
+10. **Never delete files without explicit calm confirmation from Shaz.** Anger-state requests to delete are not acted on.
 
 ---
 
@@ -109,6 +111,15 @@ This book uses **classical literary Persian**. The reader is addressed as شما
 
 ---
 
+## 📚 Publishing — KDP
+
+| Date | Edition | Status | Details |
+|------|---------|--------|---------|
+| 2026-08-27 | Farsi — فکر کن و شادی بیافرین | In review (72hr to live) | KDP Title ID: A2EJSVYPN3CCQN |
+| — | English | Live | ASIN: B0HG8MX4RS |
+
+---
+
 ## 🎧 Audiobook — Status & Plan
 
 ### Naming Convention
@@ -119,18 +130,31 @@ This book uses **classical literary Persian**. The reader is addressed as شما
 
 ---
 
+### ✅ M4B Audiobook — `Think_and_Grow_Joy_Audiobook.m4b` — CORRECT VOICE, BUILT (session 5)
+**Voice:** ElevenLabs "Rhea - Late Night Storyteller" — voice_id: `c6bExSiHfx47LERqW2VK`  
+**Model:** `eleven_multilingual_v2`, stability=0.5, similarity_boost=0.75, speed=0.85  
+**Duration:** 1:01:29 — AAC 128k, 25 chapter markers, cover embedded, stik=2 — ✅ CORRECT  
+**Current file:** `~/tagj-book/Think_and_Grow_Joy_Audiobook.m4b` — 57MB  
+**Source MP3s:** All 25 in `~/tagj-book/` (01_prologue.mp3 … 25_closing_1.mp3)  
+**Regeneration script:** `~/Downloads/tagj_generate_rhea.py` — run `python3 ~/Downloads/tagj_generate_rhea.py` on Mac to regenerate all 25 chunks  
+**Cover:** `~/Downloads/TAGJ_audiobook_cover_final.jpg`  
+**FAL temp URL:** https://v3b.fal.media/files/b/0aa81447/3jZ2rS3JzkVJDChx9_r7M_1787873990465.octet (may expire)  
+**To import on Mac:** Books app → File → Add to Library → select the M4B  
+**To get on iPhone:** ✅ DONE (2026-08-28) — Connected via cable → Finder → iPhone → Audiobooks tab → checked "Sync audiobooks onto iPhone" → Sync. Shows in Books under Library and Home.  
+**To get on iPad:** Connect via cable → Finder → iPad → Audiobooks tab → check "Sync audiobooks onto iPad" → Sync. (PENDING)  
+**Mac copy:** `~/Desktop/Shazzy/Think_and_Grow_Joy_Audiobook.m4b`
+
 ### ❌ pre_WR_EN — English Audiobook (RETIRED — to be replaced)
 **Voice:** fal-ai/minimax/speech-02-hd, `male-qn-daxuesheng`, speed 0.78 ("Gem")  
-**Files:** 14 MP3s in `~/Music/TAGJ_audiobook/`  
-**Note:** Delete and replace with WR recordings when ready.
+**Files:** Deleted 2026-08-27 (old MP3s removed, M4B is the new master)  
+**Note:** Replaced by M4B above.
 
 ---
 
 ### ❌ pre_WR_FA — Persian Audiobook (RETIRED — to be replaced)
 **Voice:** edge-tts `fa-IR-FaridNeural` — emotionally flat, rejected by Shaz.  
-**Files:** 11 MP3s in `~/Music/TAGJ_FA_audioboo/`  
-**Note:** Delete and replace with WR recordings when ready.  
-**Sister's copy:** `~/Desktop/TAGJ_FA_audiobook.zip` — also to be replaced.
+**Files:** Deleted 2026-08-27 (old MP3s, cover drafts, and zip removed).  
+**Note:** Replace with WR recordings when ready.
 
 ---
 
@@ -184,10 +208,13 @@ Each script: clean plain text, chapter headings as `=== Title ===`, pullquotes a
 ## ⏳ Pending Tasks
 
 1. **Upload FA EPUB to GitHub** — `TAGJ_v4_FA_corrected.epub` (2026-08-22 build). Go to github.com/Shaz010/eee-journal → click file → pencil icon → drag new file to replace → commit to main.
-2. **Delete old pre_WR audio files** — Remove `~/Music/TAGJ_audiobook/` and `~/Music/TAGJ_FA_audioboo/` and `~/Desktop/TAGJ_FA_audiobook.zip`.
-3. **Record WR audiobook** — Set up Logic Pro. Use the delivered recording scripts. Record EN chapters (Shaz), FA chapters (Shaz), FA chapters (sister). Export WAV/AIFF.
-4. **Promotion execution** — WhatsApp/Telegram broadcast using GitHub raw links.
-5. **TAGJ_BOOK_RULES.md on GitHub** — still says .docx is working master. Clarify with Shaz.
+2. **Add cover art to both EPUBs** — ⚠️ MISSED in session 2. Cover image at `~/Downloads/TAGJ_audiobook_cover_final.jpg` must be embedded in both EN and FA EPUBs as the OPF cover image. Drag cover image into chat to fix. Then repack and re-upload to GitHub.
+3. **M4B Audiobook — ✅ DONE + iPhone synced** — Rhea voice, 61 min, 25 chapters. File: `~/tagj-book/Think_and_Grow_Joy_Audiobook.m4b` and `~/Desktop/Shazzy/`. iPhone: ✅ synced via Finder Audiobooks tab. iPad: ⏳ PENDING — same cable method.
+4. **Get EPUBs into Apple Books** — Both files are in `~/Downloads/` on your Mac. English: `~/Downloads/TAGJ_v4_EN_corrected.epub`. Farsi: `~/Downloads/TAGJ_v4_FA_corrected.epub`. Just double-click either file in Finder and Books opens it automatically.
+5. **Farsi KDP — check live** — Farsi edition submitted 2026-08-27, in review (72hr). Check KDP dashboard for ASIN once live.
+6. **Record WR audiobook** — Set up Logic Pro. Use the delivered recording scripts. Record EN chapters (Shaz), FA chapters (Shaz), FA chapters (sister). Export WAV/AIFF.
+7. **Promotion execution** — WhatsApp/Telegram broadcast using GitHub raw links.
+8. **TAGJ_BOOK_RULES.md on GitHub** — still says .docx is working master. Clarify with Shaz.
 
 ---
 
