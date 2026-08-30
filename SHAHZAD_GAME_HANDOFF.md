@@ -1,50 +1,89 @@
-# SHAHZAD GAME HANDOFF
-Last updated: 2026-08-30
+# SHAHZAD Game Project — Session Handoff
+**Last updated:** Aug 29 2026  
+**Project:** UE5.8 Mac — Pre-Islamic Persia action game  
+**GitHub:** github.com/Shaz010/eee-journal (T7B drive: /Volumes/T7B/SHAHZAD)
 
-## Project
-Unreal Engine 5.8 — Game set in dark 1980s London night.
-Level: **LvL_London** on T7B drive (`/Volumes/T7B/`)
+---
 
-## Security Rules (IMMUTABLE)
+## ✅ COMPLETED THIS SESSION (Aug 29 2026)
+
+### BP_Enemy — AI MoveTo FULLY WORKING
+- BeginPlay → Delay(10s) → AI MoveTo → Get Player Character
+- Self connected to Pawn pin ✅
+- Get Player Character Return Value → Target Actor ✅
+- Auto Possess AI = "Placed in World or Spawned" ✅
+- NavMesh Bounds Volume added to LvL_Persia ✅
+- **ALL 3 enemies walk toward player 10 seconds after level start ✅**
+
+### BP_Enemy — Error nodes deleted
+- Deleted StopJumping (K2Node_CallFunction_23) — leftover player input
+- Deleted IA_Look (K2Node_EnhancedInputAction_4) — leftover player input
+- Compiled clean — no errors ✅
+
+### LvL_London — Created
+- Empty level at /Game/LvL_London.umap ✅
+- Pushed to GitHub ✅
+
+### LvL_Memory — Voice lines + Simorgh dialogue WIRED & PLAY TESTED
+- VoiceLine3: "The past is not gone. It breathes beneath your feet."
+- VoiceLine2: "Ahura Mazda watches. Every step is judgment."
+- VoiceLine1: "You were here before. You will be here again."
+- Chain: BeginPlay → Delay(5s) → VoiceLine3 → Delay(4s) → VoiceLine2 → Delay(4s) → VoiceLine1 → Delay(2s) → WBP_SimorghDialogue (Create Widget → Add to Viewport)
+- PLAY TESTED: all voices fire, collecting 5 thoughts triggers scene change ✅
+- Audio files: VoiceLine1/2/3.wav in /Game/Audio/ — fal-ai PLACEHOLDERS only
+
+### LvL_Memory Level Blueprint
+- Compiled clean — no errors ✅
+
+### GitHub
+- Pushed and up to date ✅
+
+---
+
+## 🔴 PENDING (in priority order — never ask Shaz to choose)
+
+1. **Voice lines — replace placeholders** — iPhone recording when quiet → AirDrop to Mac → Logic Pro (reverb, delay, pitch drop) → export WAV → replace VoiceLine1/2/3.wav in UE5 Content Browser (/Game/Audio/)
+2. **Climax sound** — same: iPhone → Logic Pro → import WAV into UE5
+3. **LvL_London** — build out the London environment
+4. **WBP_SimorghDialogue** — build out the dialogue UI content (currently connected, widget exists but content TBD)
+
+---
+
+## SESSION RULES (never ask Shaz to repeat)
+
+- ❌ Never guess UE5 UI locations — max 2 attempts then send research agent
+- ❌ Never ask Shaz to choose priority order
+- ✅ Document every breakthrough in SHAHZAD_MASTER.md immediately
+- ✅ GitHub push after each meaningful fix (Shaz runs from Terminal)
+- ✅ How to open Level Blueprint: toolbar Blueprints icon (near Play) → hover tooltip = "List of world Blueprints available to the user for editing or creation"
+- ✅ Content Browser does NOT contain Level Blueprints
+- ✅ PlaySound2D fires instantly — always add Delay nodes between sounds
+- ✅ fal-ai download links expire — use `curl -L "url" -o ~/Downloads/filename.wav` immediately
+- ✅ ElevenLabs curl must run from Shaz's Mac Terminal — cloud container can't reach it
+
+## SECURITY RULE (immutable)
 - ❌ NEVER Arabic script on any weapon, armour, or surface
 - ❌ NEVER Islamic calligraphy — this is pre-Islamic Persia
-- ✅ Script on surfaces = Ancient Old Persian cuneiform (خط میخی) OR Avestan Zoroastrian script ONLY
+- ✅ Script on weapons = Ancient Old Persian cuneiform OR Avestan Zoroastrian script ONLY
 
-## Completed ✅
-- **Fog**: Dark night atmosphere, exponential height fog
-- **Rain Audio**: freesound.org WAV imported → `/Game/LvL_London/Audio/Rain_London` → looping AmbientSound actor `Rain_Ambient`, volume 3.0
-- **Rain Visual**: Niagara system `NS_Rain_London` — Fountain template, Cone Axis Z=-1, Gravity Z=-2000, Spawn Rate 5000, Sphere Radius 2000. Actor `Rain_Niagara` at Z=3000, scale 10,10,1
-- **Cuneiform Texture**: `T_Cuneiform` imported — real Old Persian Unicode (U+103A0–U+103DF), gold (255,210,60), NotoSansOldPersian font
-- **Cuneiform Material**: `M_Cuneiform` — Domain: Deferred Decal, Blend: Translucent, T_Cuneiform → RGB→Emissive, A→Opacity
-- **Cuneiform Decals**: 6 DecalActors (Cuneiform_0 to _5) placed on building walls
+---
 
-## In Progress 🔄
-- **Cuneiform visibility**: Decals placed but position may be off — `replace_decals3.py` ready on T7B, uses bounding boxes for precise wall placement
-  - Run: `py /Volumes/T7B/replace_decals3.py`
+## FILE LOCATIONS
+- T7B Mac: /Volumes/T7B/
+- Git repo: /Volumes/T7B/SHAHZAD/.git
+- Master notes: /Volumes/T7B/SHAHZAD_MASTER.md
+- BP_Enemy: /Game/BP_Enemy (Content Browser)
+- Audio placeholders: /Game/Audio/VoiceLine1.wav, VoiceLine2.wav, VoiceLine3.wav
+- LvL_Memory: active level with voice chain + Simorgh dialogue
+- LvL_Persia: 3 enemies walking ✅
+- LvL_London: empty level, ready to build
 
-## Pending ⏳
-- Confirm cuneiform visible on walls after replace_decals3.py
-- Remove amber marker lights (MARKER_ actors) once confirmed
-- Voice line replacement: iPhone → Logic Pro (reverb, delay, pitch) → WAV → import UE5
-- Climax sound: same iPhone → Logic Pro path
-- WBP_SimorghDialogue — dialogue UI content
-
-## Key Scripts on T7B
-| Script | Purpose |
-|--------|---------|
-| `replace_decals3.py` | Reposition decals using building bounding boxes |
-| `fix_cuneiform.py` | Original decal placement |
-| `mark_cuneiform.py` | Amber marker lights (debug only) |
-| `place_rain2.py` | Place Niagara rain actor |
-| `london_rain.py` | Import rain WAV + AmbientSound |
-
-## UE5 Python Rules
-- Run scripts via Output Log Cmd: `py /Volumes/T7B/scriptname.py`
-- UE5 caches scripts — use new filename if changes don't apply
-- device_bash CANNOT write to /Volumes/T7B — use Write→SendUserFile→drag to T7B
-
-## Asset Paths
-- Rain audio: `/Game/LvL_London/Audio/Rain_London`
-- Cuneiform texture: `/Game/LvL_London/Materials/T_Cuneiform`
-- Cuneiform material: `/Game/LvL_London/Materials/M_Cuneiform`
-- Niagara rain: `/Game/LvL_London/NS_Rain_London`
+## GITHUB PUSH (run in Terminal)
+```
+cd /Volumes/T7B/SHAHZAD
+rm /Volumes/T7B/SHAHZAD/.git/index.lock   # if lock exists
+git add -A
+git commit -m "your message"
+git push
+```
+Note: "Everything up-to-date" after lock errors = push succeeded fine.
