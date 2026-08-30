@@ -197,3 +197,15 @@
 - fal-ai voices: placeholder quality only
 - ElevenLabs Harry, Daniel, Brian, Liam: all rejected ("heard all over YouTube")
 - PLAN: iPhone recording → AirDrop → Logic Pro (reverb, delay, pitch drop) → unique cinematic Simorgh voice
+
+---
+
+## FILE BACKUP RULES — CONFIRMED WORKING METHOD
+
+- ❌ device_bash CANNOT write to Mac Desktop (`~/Desktop`) — permission denied
+- ✅ device_bash CAN write to `~/Downloads/eee-journal/` directly
+- Backup command that works:
+```
+cp /sessions/rcw-01n1dnttazzwetxkdds6pbrn/mnt/T7B/SHAHZAD_MASTER.md /sessions/rcw-01n1dnttazzwetxkdds6pbrn/mnt/Downloads/eee-journal/
+```
+- Then Shaz runs in Terminal: `cd ~/Downloads/eee-journal && git add -A && git commit -m "message" && git push`
