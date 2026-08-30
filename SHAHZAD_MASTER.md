@@ -209,3 +209,13 @@
 cp /sessions/rcw-01n1dnttazzwetxkdds6pbrn/mnt/T7B/SHAHZAD_MASTER.md /sessions/rcw-01n1dnttazzwetxkdds6pbrn/mnt/Downloads/eee-journal/
 ```
 - Then Shaz runs in Terminal: `cd ~/Downloads/eee-journal && git add -A && git commit -m "message" && git push`
+
+---
+
+## CLIMAX LINE — LOCKED ✅
+
+**Speaker:** The Simorgh  
+**Moment:** Before final confrontation with the dark sorcerer  
+**Line:** "Ahura Mazda did not choose you because you are ready. He chose you because it is time."
+
+- iPhone → AirDrop → Logic Pro (reverb, delay, pitch drop) → WAV → import UE5
