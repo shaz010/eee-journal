@@ -44,6 +44,7 @@ Level: **LvL_London** on T7B drive (`/Volumes/T7B/`)
 1. Feature #1: Portal opening sequence (hardest)
 2. Feature #2: Ahura Mazda's voice
 3. Feature #3: Villain appears in LvL_London
+- **Feature #5 — Tabla heartbeat pulse** — BP_TablaHeartthreat: BeginPlay→heartbeat loop, Play Sound 2D (empty slot — add tabla WAV when adapter arrives), delay driven by Map Range Clamped on player distance ✅
 4. Feature #4: Spatial/quadraphonic audio
 5. Feature #5: Heartbeat tabla pulse
 6. Feature #6: Weather reacts to danger
