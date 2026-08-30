@@ -37,6 +37,7 @@ Level: **LvL_London** on T7B drive (`/Volumes/T7B/`)
 - Cuneiform material — `M_Cuneiform`, Deferred Decal, T_Cuneiform→Emissive+Opacity
 - Cuneiform on walls — 16 DecalActors (Cuneiform_0 to _15) on all 8 buildings, CONFIRMED VISIBLE ✅
 - **Feature #8 — Cuneiform proximity glow** — 16 CuneiformLight PointLights, gold, tight radius ✅
+- **Feature #7 — Slow motion kill + feather** — NS_FeatherDrop Niagara (gold, burst, gravity -50) + BP_SlowMoKill Blueprint (time dilation 0.2 → delay 1.5s → reset 1.0 → spawn feather) ✅
 
 ## Pending ⏳ (hardest → easiest)
 1. Feature #1: Portal opening sequence (hardest)
