@@ -219,3 +219,20 @@ cp /sessions/rcw-01n1dnttazzwetxkdds6pbrn/mnt/T7B/SHAHZAD_MASTER.md /sessions/rc
 **Line:** "Ahura Mazda did not choose you because you are ready. He chose you because it is time."
 
 - iPhone → AirDrop → Logic Pro (reverb, delay, pitch drop) → WAV → import UE5
+
+---
+
+## NEXT FEATURES — BUILD ORDER (hardest → easiest)
+
+| # | Feature | Complexity |
+|---|---------|------------|
+| 1 | Portal opening sequence — screen shake, audio swell, Simorgh cry, geometric gold tear | ████████░░ Hardest |
+| 2 | Ahura Mazda's voice — one divine line, climax only | ███████░░░ |
+| 3 | Villain appears in LvL_London — distant, watching, vanishes on look | ██████░░░░ |
+| 4 | Spatial/quadraphonic audio — Simorgh circles you, villain heard before seen | █████░░░░░ |
+| 5 | Heartbeat tabla pulse — speeds up near enemies | █████░░░░░ |
+| 6 | Weather reacts to danger — rain/fog intensifies near enemies | ████░░░░░░ |
+| 7 | Slow motion kill — last enemy dies, feather falls | ███░░░░░░░ |
+| 8 | Cuneiform glows brighter as you approach | ██░░░░░░░░ Easiest |
+
+Start at #1, work down in order. Never skip ahead.
