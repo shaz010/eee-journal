@@ -1,82 +1,74 @@
 # SHAHZAD GAME HANDOFF
-Last updated: 2026-08-30
+Last updated: 2026-08-31
 
-## Project
-Unreal Engine 5.8 — Game set in dark 1980s London night.
-Level: **LvL_London** on T7B drive (`/Volumes/T7B/`)
+## Project: LvL_London — UE5.8
 
 ## Security Rules (IMMUTABLE)
 - ❌ NEVER Arabic script on any weapon, armour, or surface
-- ❌ NEVER Islamic calligraphy — this is pre-Islamic Persia
-- ✅ Script on surfaces = Ancient Old Persian cuneiform (خط میخی) OR Avestan Zoroastrian script ONLY
+- ❌ NEVER Islamic calligraphy — pre-Islamic Persia
+- ✅ Script = Ancient Old Persian cuneiform OR Avestan Zoroastrian ONLY
 
-## Claude Behaviour Rules (IMMUTABLE)
-- **Every 10 minutes**: deliver updated handoff MD automatically — no waiting for session end
-- **When Shaz compliments something**: immediately note WHAT worked and HOW, add to handoff
-- **All commands**: always in a copyable code block — never inline text
-- **Terminal commands go in Terminal. UE5 commands go in UE5 Output Log Cmd field.** Never mix them.
-- **Never ask Shaz to repeat context** — read the handoff first every session
-- **After compaction**: fetch this handoff from GitHub BEFORE doing any work
-- **Files to T7B**: device_bash can write directly to T7B via $HOME/mnt/T7B/
-- **GitHub**: give Terminal commands only — Shaz runs them, Claude never pushes
-- **Short replies** — eye strain. One action at a time.
+## Claude Rules (IMMUTABLE)
+- Every 10 min: deliver updated handoff MD automatically
+- All commands: copyable code block — never inline
+- Terminal commands → Terminal. UE5 commands → UE5 Output Log Cmd. Never mix.
+- Never ask Shaz to repeat context
+- After compaction: fetch handoff from GitHub BEFORE any work
+- Files to T7B: device_bash via $HOME/mnt/T7B/
+- GitHub: Terminal commands only — Shaz runs them
 
-## What Worked (copy these approaches)
-- **Bounding box decal placement** (`replace_decals3.py`): use `get_actor_bounds()` to find wall surface, place decal at `origin.x ± (extent.x - 5)` embedded in wall — this worked ✅
-- **Cuneiform texture**: PIL + NotoSansOldPersian font, gold (255,210,60), 2px glow, transparent background ✅
-- **Rain audio**: freesound.org WAV, import task, looping AmbientSound, volume_multiplier 3.0 ✅
-- **Niagara rain**: Fountain template, Cone Z=-1, Gravity -2000, Spawn 5000, Radius 2000 ✅
-- **Proximity glow** (`cuneiform_glow.py`): PointLight per decal, gold (255,210,60), intensity 4000, attenuation_radius 250 — invisible far, glows up close ✅
-- **device_bash → T7B**: write scripts directly via `$HOME/mnt/T7B/` — no need for SendUserFile drag ✅
+## Features Status
+- ✅ #8 Cuneiform proximity glow — 16 CuneiformLight PointLights (gold, 4000 intensity, r=250)
+- ✅ #7 Slow-mo kill + feather — NS_FeatherDrop + BP_SlowMoKill
+- ✅ #6 Weather reacts to danger — DangerZone_Trigger + BP_WeatherDanger
+- ✅ #5 Heartbeat tabla pulse — BP_TablaHeartthreat (distance-driven loop)
+- ✅ #4 Spatial/quadraphonic audio — SA_London_Spatial + Rain_NE/NW/SE/SW actors
+- 🔄 #3 Villain appears in LvL_London — IN PROGRESS (see below)
+- ⏳ #2 Ahura Mazda's voice
+- ⏳ #1 Portal opening sequence (hardest)
 
-## Completed ✅
-- Fog — dark night atmosphere, exponential height fog
-- Rain audio — `Rain_Ambient` actor, volume 3.0
-- Rain visual — `Rain_Niagara` actor, NS_Rain_London system
-- Cuneiform texture — `T_Cuneiform` imported
-- Cuneiform material — `M_Cuneiform`, Deferred Decal, T_Cuneiform→Emissive+Opacity
-- Cuneiform on walls — 16 DecalActors (Cuneiform_0 to _15) on all 8 buildings, CONFIRMED VISIBLE ✅
-- **Feature #8 — Cuneiform proximity glow** — 16 CuneiformLight PointLights, gold, tight radius ✅
-- **Feature #6 — Weather reacts to danger** — BP_WeatherDanger: OnActorBeginOverlap → SetGlobalTimeDilation(0.7) + SetFogDensity(0.08), DangerZone_Trigger TriggerBox in level ✅
-- **Feature #7 — Slow motion kill + feather** — NS_FeatherDrop Niagara (gold, burst, gravity -50) + BP_SlowMoKill Blueprint (time dilation 0.2 → delay 1.5s → reset 1.0 → spawn feather) ✅
+## Feature #3 — Current State (INTERRUPTED)
+- BP_VillainGhost created at /Game/LvL_London/Characters/BP_VillainGhost
+- M_Villain_Shadow created at /Game/LvL_London/Characters/M_Villain_Shadow
+- 3x Villain_Ghost actors in LvL_London (NEED TO DELETE 2 DUPLICATES — keep only 1)
+  - 1x BP_VillainGhost type (from villain_setup.py)
+  - 2x SkeletalMeshActor type (from villain_place.py + villain_place2.py)
+  - KEEP: the SkeletalMeshActor at Location (3000, 0, 0) with SKM_Manny_Simple mesh
+  - DELETE: the other 2
+- Actor Hidden In Game = TRUE on villain ✅ (correct — hidden at game start)
+- Level Blueprint: BeginPlay → Delay(10s) → Set Actor Hidden In Game (Hidden=FALSE) wired ✅
+- MISSING: Target connection on Set Actor Hidden In Game — needs direct reference to Villain_Ghost
+- TO DO NEXT SESSION:
+  1. Run villain_cleanup.py to delete duplicate Villain_Ghost actors
+  2. In viewport, click Villain_Ghost in Outliner (keep selected)
+  3. Toolbar → Blueprints → Open Level Blueprint
+  4. Right-click in graph → "Create a Reference to Villain_Ghost" 
+  5. Connect blue dot from reference → Target on Set Actor Hidden In Game
+  6. Compile → Done for "appear" logic
 
-## Pending ⏳ (hardest → easiest)
-1. Feature #1: Portal opening sequence (hardest)
-2. Feature #2: Ahura Mazda's voice
-3. Feature #3: Villain appears in LvL_London
-- **Feature #5 — Tabla heartbeat pulse** — BP_TablaHeartthreat: BeginPlay→heartbeat loop, Play Sound 2D (empty slot — add tabla WAV when adapter arrives), delay driven by Map Range Clamped on player distance ✅
-4. Feature #4: Spatial/quadraphonic audio
-5. Feature #5: Heartbeat tabla pulse
-6. Feature #6: Weather reacts to danger
-7. Feature #7: Slow motion kill + feather
-- Voice line recording: iPhone → Logic Pro (reverb, delay, pitch) → WAV → replace VoiceLine1/2/3 (BLOCKED until 12V/2A adapter arrives)
-- Climax sound recording: same process (BLOCKED until adapter)
+## Scripts on T7B
+- `/Volumes/T7B/villain_setup.py` — created BP_VillainGhost + M_Villain_Shadow
+- `/Volumes/T7B/villain_place.py` — first attempt (failed: wrong property name)
+- `/Volumes/T7B/villain_place2.py` — placed SkeletalMeshActor with SKM_Manny_Simple ✅
+- `/Volumes/T7B/villain_cleanup.py` — NEEDS TO BE WRITTEN (delete duplicate Villain_Ghost actors)
+
+## Pending / Blocked
+- Add real tabla WAV to BP_TablaHeartthreat → BLOCKED until 12V/2A adapter arrives
+- Voice line recording (iPhone → Logic Pro → WAV) → BLOCKED until adapter
+- Climax sound recording → BLOCKED until adapter
 - WBP_SimorghDialogue — dialogue UI content
-- Save level to Git after each major milestone
+- GitHub push after Feature #3
 
-## Climax Line (LOCKED)
-"Ahura Mazda did not choose you because you are ready. He chose you because it is time."
+## Key Paths
+- T7B scripts: /Volumes/T7B/
+- Handoff: /Volumes/T7B/SHAHZAD/SHAHZAD_GAME_HANDOFF.md
+- GitHub backup: Downloads/eee-journal/SHAHZAD_GAME_HANDOFF.md
 
-## Key Scripts on T7B
-| Script | Purpose |
-|--------|---------|
-| `replace_decals3.py` | Bounding-box decal placement — USE THIS ONE |
-| `place_rain2.py` | Place Niagara rain actor |
-| `london_rain.py` | Import rain WAV + AmbientSound |
-| `cuneiform_glow.py` | Proximity glow lights for cuneiform — Feature #8 ✅ |
-
-## UE5 Python
-- Output Log Cmd field: `py /Volumes/T7B/scriptname.py`
-- UE5 caches scripts — use new filename if changes don't apply
-- `py` does NOT work in Mac Terminal — UE5 only
-- device_bash CAN write directly to T7B: `$HOME/mnt/T7B/`
-
-## Asset Paths
-- Rain audio: `/Game/LvL_London/Audio/Rain_London`
-- Cuneiform texture: `/Game/LvL_London/Materials/T_Cuneiform`
-- Cuneiform material: `/Game/LvL_London/Materials/M_Cuneiform`
-- Niagara rain: `/Game/LvL_London/NS_Rain_London`
-
-## Building Positions (confirmed)
-- L side (X≈+655): Building_L1(Y=700,Z=780), L2(Y=200,Z=650), L3(Y=-300,Z=910), L4(Y=-800,Z=715)
-- R side (X≈-655): Building_R1(Y=700,Z=845), R2(Y=200,Z=585), R3(Y=-300,Z=975), R4(Y=-800,Z=650)
+## UE5 Notes
+- `py` only works in UE5 Output Log Cmd — NOT Terminal
+- Script caching: use new filename if changes don't apply
+- NEVER press Escape in UE5 — use ■ Stop button or Fn+Shift+F1
+- Mac keys: Cmd (not Ctrl), Option (not Alt)
+- Villain mesh: /Game/Characters/Mannequins/Meshes/SKM_Manny_Simple
+- Rain sound: /Game/LvL_London/Audio/Rain_London
+- SA_London_Spatial: /Game/LvL_London/Audio/SA_London_Spatial
