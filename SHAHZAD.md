@@ -136,3 +136,81 @@ If yes, proceed. If not, go again.
 ---
 
 *Document is alive. Update it as the world grows.*
+
+---
+
+## The Three Living Systems
+*Added September 2026 — canonical, baked in*
+
+---
+
+### System 1 — Combat Mastery: The Bloodline Remembers
+
+SHAHZAD does not *learn* to fight. He *remembers*.
+
+Each enemy defeated unlocks an ancient Persian fighting discipline — muscle memory from a warrior ancestor of his bloodline surfacing through him. The player feels it as a skill unlocking, the story frames it as awakening. They are the same thing.
+
+**Disciplines unlock in order:**
+- First blood → *Takht-e Jamshid* stance (blade + shield, Achaemenid royal guard form)
+- Five kills → *Simorgh Strike* (aerial slam, feathers burst from impact — ties to Feature #7 slow-mo kill)
+- Ten kills → *Faravahar Guard* (deflect + counter, gold energy flash on the emblem)
+- Boss kill → *Ahura's Wrath* (full divine surge — screen desaturates, gold only, one devastating blow)
+
+**Rules:**
+- Combat must teach skill — no button mashing. Timing, pattern recognition, spatial awareness.
+- Every discipline has a name in Old Persian cuneiform displayed on unlock — the player reads the script before they understand it. When they do understand it, it means everything.
+- The tabla heartbeat (BP_TablaHeartthreat) accelerates through every discipline unlock sequence.
+
+---
+
+### System 2 — Bloodline Memory Rides: The Past Rises
+
+When SHAHZAD crosses the portal or touches a Faravahar-marked surface, a bloodline memory erupts. He is pulled into a fully simulated ride — a sensory experience from an ancestor's life. Physics-real. First-person. Breathtaking.
+
+**Rides (canonical):**
+- *The Persepolis Chariot* — dawn, Persepolis at its height, racing between the great columns. Wind, dust, the sound of hooves and ancient crowds. The city is alive.
+- *The Zagros Mountain Descent* — horseback, full gallop, ancient Persian highlands. The Simorgh visible above, keeping pace.
+- *The Tigris River Barge* — slower, deliberate. SHAHZAD's ancestor crossing the Tigris at night. Stars, fire torches, distant war drums. A moment of stillness before battle.
+
+**Rules:**
+- These are simulations — real physics, real velocity, real spatial disorientation.
+- The player has limited control. The ride carries them. The story is told through sensation, not dialogue.
+- Duration: 60–90 seconds. Long enough to feel transported, short enough to leave the player wanting more.
+- Each ride ends with a flash of the Faravahar and the world snapping back to modern London. The contrast is the point.
+
+---
+
+### System 3 — Vision Sequences: Angra Mainyu Breaks Through
+
+When the villain draws close, or the portal surges, or Angra Mainyu exerts pressure on the seal — reality fractures. SHAHZAD experiences a vision sequence.
+
+These are arcade in feel: fast, disorienting, different visual language. Dark. Fragmented. The colour palette inverts — amber gold becomes cold void blue, crimson becomes black.
+
+**Mechanics:**
+- Player must navigate or survive a collapsing environment — fragments of ancient Persia decaying in real time
+- Reflex-based. Short. Brutal if you're unprepared, exhilarating if you're sharp
+- Failure does not kill — it costs. The seal weakens slightly. Angra Mainyu gets fractionally closer to breaking through permanently
+- Success rewards: a piece of Avestan script decodes, revealing lore about the villain or Ahura Mazda's plan
+
+**Visual language (vision sequences only):**
+- Geometry fractures and reassembles
+- Cuneiform script bleeds and runs
+- The Simorgh screams — heard, not seen
+- Time stutters: the same half-second plays three times at different speeds
+
+**Rules:**
+- Vision sequences are never random — always narratively triggered
+- Maximum one per level section — they must remain shocking
+- Always ends with SHAHZAD gasping back to reality. The world is always more beautiful after a vision sequence. That contrast is intentional.
+
+---
+
+## The North Star — Updated
+
+Every time a decision is made — about a character, a location, a weapon, a system, a line of dialogue — ask two questions:
+
+*Does this feel like SHAHZAD?*
+*Does this serve the awakening?*
+
+If yes to both, proceed. If not, go again.
+
