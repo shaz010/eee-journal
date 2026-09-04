@@ -1,5 +1,5 @@
 # SHAHZAD GAME HANDOFF
-Last updated: 2026-08-31
+Last updated: 2026-09-03
 
 ## Project: LvL_London — UE5.8
 
@@ -18,57 +18,62 @@ Last updated: 2026-08-31
 - GitHub: Terminal commands only — Shaz runs them
 
 ## Features Status
-- ✅ #8 Cuneiform proximity glow — 16 CuneiformLight PointLights (gold, 4000 intensity, r=250)
+- ✅ #8 Cuneiform proximity glow — 16 CuneiformLight PointLights
 - ✅ #7 Slow-mo kill + feather — NS_FeatherDrop + BP_SlowMoKill
 - ✅ #6 Weather reacts to danger — DangerZone_Trigger + BP_WeatherDanger
-- ✅ #5 Heartbeat tabla pulse — BP_TablaHeartthreat (distance-driven loop)
-- ✅ #4 Spatial/quadraphonic audio — SA_London_Spatial + Rain_NE/NW/SE/SW actors
-- 🔄 #3 Villain appears in LvL_London — IN PROGRESS (see below)
-- ⏳ #2 Ahura Mazda's voice
-- ⏳ #1 Portal opening sequence (hardest)
+- ✅ #5 Heartbeat tabla pulse — BP_TablaHeartthreat
+- ✅ #4 Spatial/quadraphonic audio — SA_London_Spatial + Rain actors
+- ✅ #3 Villain appears — BeginPlay → Delay(10s) → Villain_Ghost unhidden. Green compile.
+- 🔄 #2 Ahura Mazda's voice — WIRED (Play Sound 2D at 2s). WAV pending adapter.
+- ✅ #1 Portal opening sequence — COMPLETE (see below)
 
-## Feature #3 — Current State (INTERRUPTED)
-- BP_VillainGhost created at /Game/LvL_London/Characters/BP_VillainGhost
-- M_Villain_Shadow created at /Game/LvL_London/Characters/M_Villain_Shadow
-- 3x Villain_Ghost actors in LvL_London (NEED TO DELETE 2 DUPLICATES — keep only 1)
-  - 1x BP_VillainGhost type (from villain_setup.py)
-  - 2x SkeletalMeshActor type (from villain_place.py + villain_place2.py)
-  - KEEP: the SkeletalMeshActor at Location (3000, 0, 0) with SKM_Manny_Simple mesh
-  - DELETE: the other 2
-- Actor Hidden In Game = TRUE on villain ✅ (correct — hidden at game start)
-- Level Blueprint: BeginPlay → Delay(10s) → Set Actor Hidden In Game (Hidden=FALSE) wired ✅
-- MISSING: Target connection on Set Actor Hidden In Game — needs direct reference to Villain_Ghost
-- TO DO NEXT SESSION:
-  1. Run villain_cleanup.py to delete duplicate Villain_Ghost actors
-  2. In viewport, click Villain_Ghost in Outliner (keep selected)
-  3. Toolbar → Blueprints → Open Level Blueprint
-  4. Right-click in graph → "Create a Reference to Villain_Ghost" 
-  5. Connect blue dot from reference → Target on Set Actor Hidden In Game
-  6. Compile → Done for "appear" logic
+## Feature #1 — Portal Opening Sequence ✅
+- 3 actors placed in LvL_London at X=5000, Y=0:
+  - Portal_Persia — plane mesh (portal surface), scale 4×6
+  - Portal_GoldLight — amber PointLight (255,180,60), intensity 50000, radius 2000
+  - Portal_VioletRim — violet PointLight (130,60,255), intensity 20000, radius 3000, at X=4800
+- All tagged `PortalActors`
+- All hidden at game start
+- Level Blueprint: BeginPlay → Delay(2s) → Play Sound 2D (Ahura voice) → Delay(8s) → Get All Actors with Tag (PortalActors) → For Each Loop → Set Actor Hidden In Game (Hidden=false)
+- Compiled green ✅
+- Visual reference: PERSEPOLIS_APOCALYPSE_LOCKED.jpg + SHAHZAD_FARAVAHAR_POWER_LOCKED.jpg
+- Portal aesthetic: gold Faravahar wings of fire between Persepolis columns tearing through London brick
 
 ## Scripts on T7B
-- `/Volumes/T7B/villain_setup.py` — created BP_VillainGhost + M_Villain_Shadow
-- `/Volumes/T7B/villain_place.py` — first attempt (failed: wrong property name)
-- `/Volumes/T7B/villain_place2.py` — placed SkeletalMeshActor with SKM_Manny_Simple ✅
-- `/Volumes/T7B/villain_cleanup.py` — NEEDS TO BE WRITTEN (delete duplicate Villain_Ghost actors)
+- `/Volumes/T7B/villain_delete.py` — deleted 2 duplicate Villain_Ghost actors ✅
+- `/Volumes/T7B/ahura_voice_setup.py` — created SA_AhuraMazda_Voice + AhuraMazda_Voice actor ✅
+- `/Volumes/T7B/ahura_voice_bp.py` — confirmed actor, auto_activate=False ✅
+- `/Volumes/T7B/portal_open.py` — spawned 3 portal actors ✅
+- `/Volumes/T7B/portal_tag.py` — tagged all 3 with PortalActors tag ✅
 
 ## Pending / Blocked
-- Add real tabla WAV to BP_TablaHeartthreat → BLOCKED until 12V/2A adapter arrives
-- Voice line recording (iPhone → Logic Pro → WAV) → BLOCKED until adapter
-- Climax sound recording → BLOCKED until adapter
+- Feature #2 WAV: import Ahura Mazda voice → assign to Play Sound 2D node. BLOCKED until Apogee adapter arrives (5V 3A, 4mm×1.7mm EIAJ-2 + USB Mini-B to USB-C on order)
+- Portal material: Portal_Persia plane needs glowing emissive Faravahar material (next session)
+- Tabla WAV: add real tabla WAV to BP_TablaHeartthreat — BLOCKED until adapter
 - WBP_SimorghDialogue — dialogue UI content
-- GitHub push after Feature #3
+- Logic sounds: cinematic/legacy packs downloading to T7B via symlink — curation pass needed
+- GitHub push: run commands below after any session
+
+## GitHub Push Commands (Terminal)
+```
+cd ~/Downloads/eee-journal
+cp /Volumes/T7B/SHAHZAD/SHAHZAD_GAME_HANDOFF.md .
+git add SHAHZAD_GAME_HANDOFF.md
+git commit -m "Session 2026-09-03: Feature #1 portal complete"
+git push
+```
 
 ## Key Paths
 - T7B scripts: /Volumes/T7B/
-- Handoff: /Volumes/T7B/SHAHZAD/SHAHZAD_GAME_HANDOFF.md
-- GitHub backup: Downloads/eee-journal/SHAHZAD_GAME_HANDOFF.md
+- Handoff on T7B: /Volumes/T7B/SHAHZAD/SHAHZAD_GAME_HANDOFF.md
+- GitHub handoff: https://raw.githubusercontent.com/Shaz010/eee-journal/main/SHAHZAD_GAME_HANDOFF.md
+- FAL assets: /Volumes/T7B/SHAHZAD/06_APPROVED/
+- Logic Library: symlink ~/Music/Logic Pro Library.bundle → /Volumes/T7B/Logic_Pro_Library.bundle/
 
 ## UE5 Notes
 - `py` only works in UE5 Output Log Cmd — NOT Terminal
-- Script caching: use new filename if changes don't apply
-- NEVER press Escape in UE5 — use ■ Stop button or Fn+Shift+F1
-- Mac keys: Cmd (not Ctrl), Option (not Alt)
+- NEVER press Escape in UE5 — use ■ Stop or Fn+Shift+F1
+- Portal actors at X=5000 face player (player starts near X=0)
 - Villain mesh: /Game/Characters/Mannequins/Meshes/SKM_Manny_Simple
-- Rain sound: /Game/LvL_London/Audio/Rain_London
-- SA_London_Spatial: /Game/LvL_London/Audio/SA_London_Spatial
+- AhuraMazda_Voice actor at X=0,Y=0,Z=0 — auto_activate=False
+- Apogee Duet ORIGINAL: 5V 3A, 4mm×1.7mm centre-positive (EIAJ-2), USB Mini-B to Mac
