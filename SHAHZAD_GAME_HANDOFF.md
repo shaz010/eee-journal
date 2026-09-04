@@ -50,7 +50,7 @@ Last updated: 2026-09-03
 - Feature #2 WAV: import Ahura Mazda voice → assign to Play Sound 2D node. BLOCKED until Apogee adapter arrives (5V 3A, 4mm×1.7mm EIAJ-2 + USB Mini-B to USB-C on order)
 - Portal material: Portal_Persia plane needs glowing emissive Faravahar material (next session)
 - Tabla WAV: add real tabla WAV to BP_TablaHeartthreat — BLOCKED until adapter
-- WBP_SimorghDialogue — dialogue UI content
+- ✅ WBP_SimorghDialogue — COMPLETE: dark bar, gold سیمرغ header, white Persian dialogue text
 - Logic sounds: cinematic/legacy packs downloading to T7B via symlink — curation pass needed
 - GitHub push: run commands below after any session
 
