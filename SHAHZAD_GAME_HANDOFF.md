@@ -77,10 +77,18 @@ Last updated: 2026-09-06
 
 ## PENDING — RESUME HERE NEXT SESSION
 
-### Farsi Font for WBP_LanguageToggle — NEEDED
-- Import a Farsi-compatible .ttf (e.g. Vazirmatn or IRANSans) as UE5 Font asset
-- Apply to TextBlock_0 in WBP_LanguageToggle
-- Then Farsi glyphs will render properly in-engine
+
+### LvL_London Setup ✅ COMPLETE (2026-09-06)
+- Script: /Volumes/T7B/london_setup.py
+- Villain_Ghost renamed → Villain_LondonShadow ✓
+- Victorian fog: density=0.15, dark blue (0.05,0.05,0.08) ✓
+- Level saved ✓
+
+### Farsi Font — WBP_LanguageToggle ✅ COMPLETE (2026-09-06)
+- Vazirmatn-Regular.ttf imported as FontFace at /Game/Fonts/Vazirmatn
+- Applied to TextBlock_0 in WBP_LanguageToggle via apply_font2.py
+- WBP_LanguageToggle saved ✓
+- Farsi glyphs now render correctly in-engine ✓
 
 ### Language Toggle Logic ✅ COMPLETE (2026-09-06)
 - FlipFlop wiring done via Python REPL (probe28.py)
