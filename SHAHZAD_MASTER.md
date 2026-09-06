@@ -1,5 +1,5 @@
 # SHAHZAD MASTER RULES — READ THIS FIRST, EVERY SESSION
-## Last Updated: 2026-08-29
+## Last Updated: 2026-09-06
 
 ---
 
@@ -197,6 +197,45 @@
 - fal-ai voices: placeholder quality only
 - ElevenLabs Harry, Daniel, Brian, Liam: all rejected ("heard all over YouTube")
 - PLAN: iPhone recording → AirDrop → Logic Pro (reverb, delay, pitch drop) → unique cinematic Simorgh voice
+
+
+### Session: Sep 4 2026
+
+**✅ LvL_Persia — Ahriman Confrontation COMPLETE**
+- PersiaArrival trigger → Delay(5s) → Ahriman billboard + red AhrimanLight + CameraShake
+- Level Blueprint wired and compiled clean
+
+**✅ Battle Scene Animation — 8-phase sequence (~12s)**
+- Phase 0–7: Shahzad reveal → Ahriman emerges → light ignites → weapons billboard → charge → CLASH → recoil → victory
+- Script: /Volumes/T7B/battle_scene.py
+
+**✅ Actor Tags applied to all LvL_Persia actors**
+- Shahzad, Ahriman, AhrimanLight, AhrimanAttack, ShahzadWeapon, Enemy, PersiaColumn, PersiaTablet, PersiaArrival
+
+**✅ Shahzad Weapon Billboards placed**
+- Pistol (200, -600, 250), Swords (200, 600, 250), SwordsCrossed (300, 0, 500)
+
+**✅ Ahriman Attack Sequence wired**
+- Reveal Ahriman+light → 3s → attack flare → 1.5s → Ahriman lunges
+
+**✅ LvL_London Feature A: Portal Shockwave COMPLETE**
+**✅ LvL_London Feature C: Fright/Fascination/Exhilaration COMPLETE**
+
+**✅ WBP_LanguageToggle Widget created**
+- Gold button (amber R=1.0 G=0.72 B=0.0), text "EN | فا"
+- ⚠️ Farsi glyphs render as fallback boxes — needs Farsi .ttf font import
+
+### Session: Sep 6 2026
+
+**✅ Language Toggle Logic COMPLETE — wired via Python REPL**
+- FlipFlop: A → SetText25 "EN | فا" | B → SetText26 "فا | EN"
+- TextBlock_0 connected to both branches
+- Orphan nodes removed, compiled clean, saved
+- Script: /Volumes/T7B/probe28.py
+
+**✅ RULE CONFIRMED: Claude does all UE5 work via Python REPL**
+- probe scripts written to /Volumes/T7B/ and run via UE5 Output Log Cmd
+- Claude never asks Shaz to wire nodes manually
 
 ---
 
