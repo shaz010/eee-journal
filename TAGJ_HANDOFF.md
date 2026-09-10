@@ -1,65 +1,82 @@
-# SHAHZAD UE5 — Session Handoff Update
-Last updated: 2026-09-10
+# TAGJ Book Handoff Summary
 
-## IMMEDIATE NEXT STEP
-WBP_LanguageToggle is OPEN in UE5 Widget Editor (Designer view).
+**Last updated: 2026-09-10 (session 3)**
 
-### To wire Language Toggle OnClicked:
-1. Click **Graph** tab (top-right of widget editor)
-2. In the Graph, right-click empty space → search **"OnClicked"** → pick **Event OnClicked (Button_2)**
-3. From that node's white exec pin, drag → search **FlipFlop** → add it
-4. From FlipFlop **A** pin → drag → search **SetText** → pick **Set Text (TextBlock_0)**
-   - In the text pin, type: `EN | فا`
-5. From FlipFlop **B** pin → drag → search **SetText** → pick **Set Text (TextBlock_0)**
-   - In the text pin, type: `فا | EN`
-6. Click **Compile** (top toolbar) → **Save**
+## Core Mission
+Maintain **Think and Grow Joy** (فکر کن و شادی بیافرین) as a bilingual EPUB project with strict non-negotiable rules: never improvise, never push to GitHub directly, never alter existing content without explicit instruction, and always warn before irreversible changes.
 
-### Alternative (if Button_2 OnClicked isn't in right-click):
-- In **Designer** tab → click **Button_2** in Hierarchy
-- In Details panel right side → scroll to **Events** → click **+** next to **OnClicked**
-- This auto-creates the event node in Graph
+## Key Operational Rules
+- **English is master; Farsi is translation.** All corrections must verify the English original first.
+- **Address reader as شما (formal) throughout Farsi.** Never use تو (colloquial).
+- **One clean pass only.** Batch all changes, deliver the file, done.
+- **New content tagged `new-v4` with amber styling** for version tracking.
 
----
+## Current File Status
+- **Farsi EPUB:** `TAGJ_v4_FA_corrected.epub` (9 chapters + prologue + closing, all شما-converted)
+- **English EPUB:** `TAGJ_v4_EN_corrected.epub` (parallel updates complete)
+- **Master .docx:** `TAGJ_v4_Jul2026.docx` (editable in session workspace)
+- **GitHub:** Shaz uploads manually via website only
 
-## Your Salon Pro — iOS App Store (updated 2026-09-10)
+## Critical Farsi Terminology
+| Term | Translation |
+|------|-------------|
+| Momentum | تکانه (never شتاب) |
+| God/Divine Source | پروردگار (when spiritual) |
+| Law of Attraction | قانون جذب |
+| Consciousness | آگاهی |
 
-### Current Status
-- ✅ **Waiting for Review — Build 7, Version 1.0** (confirmed in App Store Connect)
-- ✅ salon.html v0.48 + app.html v2.57 live on getcommissionpro.com
-- ✅ viewController.swift updated on MacBook Pro with WKScriptMessageHandler for openURL
-  - File at: `/Users/shahbazmirshahi/Desktop/Your Salon/Your Salon Pro/viewController.swift`
-  - Adds `config.userContentController.add(self, name: "openURL")` so Privacy/EULA links open in Safari
-- ✅ Build 7 confirmed attached to active review submission (not Build 5)
-- ✅ App Review notes submitted explaining sign-in bypass + paywall compliance
+## Audiobook Status
+- **English (pre_WR_EN):** 14 MP3s complete, voice "Gem" at 0.78 speed
+- **Farsi (pre_WR_FA):** 11 MP3s complete, FaridNeural Tehran accent
+- Both are AI placeholders until Shaz records in Logic Pro
 
-### Pending (Your Salon Pro)
-- Wait for Apple review response (1–3 days)
-- If rejected again: submission has Build 7 + server-side HTML fixes — should pass
-- Xcode on MacBook Pro: "Unable to log in with account shahbazmirshahi@mac.com" warning in Signing & Capabilities — low priority, doesn't block current review
-
-### Key Files
-| File | Version | Status |
-|------|---------|--------|
-| salon.html | v0.48 | Live on GitHub Pages |
-| app.html | v2.57 | Live on GitHub Pages |
-| viewController.swift | openURL handler | Written to MacBook Pro |
-| Build | 7 (1.0) | In App Store Review queue |
+## Next Actions (TAGJ)
+1. Record own voice in Logic Pro (EN + FA)
+2. Upload latest EPUBs to GitHub
+3. Begin promotion (WhatsApp/Telegram first)
+4. Optional: ElevenLabs voice cloning for scale regeneration
 
 ---
 
-## Session Progress Today (2026-09-10)
-- ✅ viewController.swift written to MacBook Pro with WKScriptMessageHandler for openURL
-- ✅ Confirmed Build 7 is attached to "Waiting for Review" submission in App Store Connect
-- ✅ Attempted to switch from Build 5 → Build 7 — already on Build 7 (no switch needed)
-- ✅ Logged into App Store Connect via Chrome to verify build
+## 🎮 UE5 — LvL_Persia Feature #8 (Active)
 
-## Pending (UE5)
-- Language Toggle wiring (above)
-- Portal_Persia Faravahar texture (blocked — need image from Shaz)
-- WAV Import (blocked — Apogee adapter)
+**Project:** Your Salon Pro / MGM Studio (Unreal Engine 5)
+**Task:** Add OnActorBeginOverlap + OnActorEndOverlap event nodes for CuneiformTrigger_1–7 in LvL_Persia Level Blueprint, wire to GlowOn (Begin) / GlowOff (End) macros, compile, Cmd+S save.
 
-## Key Rules Reminder
-- NEVER Arabic script, NEVER Islamic calligraphy — pre-Islamic Persia only
-- NEVER AssetEditorSubsystem / open_editor_for_assets (crashes UE5)
-- Files to T7B: device_bash via $HOME/mnt/T7B/
-- Farsi address: شما (NEVER تو)
+### Progress as of 2026-09-10
+
+| Trigger | BeginOverlap | EndOverlap |
+|---------|-------------|------------|
+| CT_1 | ✅ Done (prev session) | ✅ Done (prev session) |
+| CT_2 | ✅ Done (this session) | ✅ Done (this session) |
+| CT_3 | ✅ Done (this session) | ✅ Done (this session) |
+| CT_4 | ✅ Done (this session) | ✅ Done (this session) |
+| CT_5 | ✅ Done (this session) | ✅ Done (this session) |
+| CT_6 | ✅ Done (session 2) | ✅ Done (session 3) |
+| CT_7 | ✅ Done (session 2) | ✅ Done (session 2) |
+
+**✅ Feature #8 COMPLETE** — All 14 event nodes placed AND wired (7 BeginOverlap → GlowOn, 7 EndOverlap → GlowOff). Compiled ("Good to go"). Saved ("All Saved"). 2026-09-10 session 3.
+
+### Critical UE5 Rules (NEVER ask Shaz to repeat)
+
+- **ALWAYS minimize Window 335** (main UE5 3D viewport "SHAHZAD - Unreal Editor") BEFORE Blueprint wiring work — reduces Mac heat
+- **Window 999** (LvL_Persia Level Blueprint) = IS_MAIN, keep open
+- **Python REPL tab:** x≈530, y≈825 on screen. DO NOT click x≈120 (Content Drawer — breaks UE5 focus)
+- **Output Log:** x≈162; Python REPL tab: x≈250; REPL input: x≈530
+- **0.5-scale screenshot coords:** ALL visual positions must be ×2 to get real screen coords. Zoom region coords ARE already full screen.
+- **Right-click on empty canvas:** canvas is at Zoom -12 (very zoomed out). Nodes are scattered. If right-click gives "Delete/Cut/Copy/Duplicate" menu = hit a node → Escape and try different position.
+- **Search bar position pattern:** appears ~34px below and ~140px right of right-click position
+- **Enter key** works to confirm highlighted menu item (preferred over clicking when item is blue-highlighted)
+- **Actor selection:** `get_actor_label()` NOT `get_name()` to match "CuneiformTrigger_N" labels
+- **CT actors:** TriggerSphere class — no Events tab in Details panel — must use canvas right-click method
+
+### Other Pending Features
+- Feature #9: niagara_torches.py → flames on BP_TorchFlicker
+- LvL_Persepolis: Fix 7 BP_ApadanaColumns Scale Z: 1 → 20
+- Farsi Font: Import Vazirmatn/IRANSans .ttf for WBP_LanguageToggle
+- Portal_Faravahar Texture — need image from Shaz
+- WAV Import — blocked (Apogee adapter)
+
+---
+
+*GitHub: github.com/Shaz010/eee-journal | Repo: eee-journal | Branch: main*
