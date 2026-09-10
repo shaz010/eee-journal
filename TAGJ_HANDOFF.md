@@ -1,5 +1,5 @@
 # SHAHZAD UE5 — Session Handoff Update
-Last updated: 2026-09-04 ~16:56
+Last updated: 2026-09-10
 
 ## IMMEDIATE NEXT STEP
 WBP_LanguageToggle is OPEN in UE5 Widget Editor (Designer view).
@@ -21,18 +21,42 @@ WBP_LanguageToggle is OPEN in UE5 Widget Editor (Designer view).
 
 ---
 
-## Session Progress Today
-- ✅ F_Vazirmatn composite Font asset created
-- ✅ Vazirmatn_Regular FontFace linked via import_text
-- ✅ WBP_LanguageToggle TextBlock_0 font set to F_Vazirmatn (compiled, saved)
-- ✅ WBP_LanguageToggle is open and ready for graph wiring
-- 🔄 Language Toggle OnClicked wiring — NEXT
+## Your Salon Pro — iOS App Store (updated 2026-09-10)
 
-## Pending
+### Current Status
+- ✅ **Waiting for Review — Build 7, Version 1.0** (confirmed in App Store Connect)
+- ✅ salon.html v0.48 + app.html v2.57 live on getcommissionpro.com
+- ✅ viewController.swift updated on MacBook Pro with WKScriptMessageHandler for openURL
+  - File at: `/Users/shahbazmirshahi/Desktop/Your Salon/Your Salon Pro/viewController.swift`
+  - Adds `config.userContentController.add(self, name: "openURL")` so Privacy/EULA links open in Safari
+- ✅ Build 7 confirmed attached to active review submission (not Build 5)
+- ✅ App Review notes submitted explaining sign-in bypass + paywall compliance
+
+### Pending (Your Salon Pro)
+- Wait for Apple review response (1–3 days)
+- If rejected again: submission has Build 7 + server-side HTML fixes — should pass
+- Xcode on MacBook Pro: "Unable to log in with account shahbazmirshahi@mac.com" warning in Signing & Capabilities — low priority, doesn't block current review
+
+### Key Files
+| File | Version | Status |
+|------|---------|--------|
+| salon.html | v0.48 | Live on GitHub Pages |
+| app.html | v2.57 | Live on GitHub Pages |
+| viewController.swift | openURL handler | Written to MacBook Pro |
+| Build | 7 (1.0) | In App Store Review queue |
+
+---
+
+## Session Progress Today (2026-09-10)
+- ✅ viewController.swift written to MacBook Pro with WKScriptMessageHandler for openURL
+- ✅ Confirmed Build 7 is attached to "Waiting for Review" submission in App Store Connect
+- ✅ Attempted to switch from Build 5 → Build 7 — already on Build 7 (no switch needed)
+- ✅ Logged into App Store Connect via Chrome to verify build
+
+## Pending (UE5)
 - Language Toggle wiring (above)
 - Portal_Persia Faravahar texture (blocked — need image from Shaz)
 - WAV Import (blocked — Apogee adapter)
-- Update TAGJ_HANDOFF.md
 
 ## Key Rules Reminder
 - NEVER Arabic script, NEVER Islamic calligraphy — pre-Islamic Persia only
