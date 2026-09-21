@@ -1,65 +1,74 @@
-# SHAHZAD UE5 — Session Handoff Update
-Last updated: 2026-09-10
-
-## IMMEDIATE NEXT STEP
-WBP_LanguageToggle is OPEN in UE5 Widget Editor (Designer view).
-
-### To wire Language Toggle OnClicked:
-1. Click **Graph** tab (top-right of widget editor)
-2. In the Graph, right-click empty space → search **"OnClicked"** → pick **Event OnClicked (Button_2)**
-3. From that node's white exec pin, drag → search **FlipFlop** → add it
-4. From FlipFlop **A** pin → drag → search **SetText** → pick **Set Text (TextBlock_0)**
-   - In the text pin, type: `EN | فا`
-5. From FlipFlop **B** pin → drag → search **SetText** → pick **Set Text (TextBlock_0)**
-   - In the text pin, type: `فا | EN`
-6. Click **Compile** (top toolbar) → **Save**
-
-### Alternative (if Button_2 OnClicked isn't in right-click):
-- In **Designer** tab → click **Button_2** in Hierarchy
-- In Details panel right side → scroll to **Events** → click **+** next to **OnClicked**
-- This auto-creates the event node in Graph
+# TAGJ — Session Handoff
+Last updated: 2026-09-21
 
 ---
 
-## Your Salon Pro — iOS App Store (updated 2026-09-10)
+## TAGJ FA Audiobook — Logic Pro Status
 
-### Current Status
-- ✅ **Waiting for Review — Build 7, Version 1.0** (confirmed in App Store Connect)
-- ✅ salon.html v0.48 + app.html v2.57 live on getcommissionpro.com
-- ✅ viewController.swift updated on MacBook Pro with WKScriptMessageHandler for openURL
-  - File at: `/Users/shahbazmirshahi/Desktop/Your Salon/Your Salon Pro/viewController.swift`
-  - Adds `config.userContentController.add(self, name: "openURL")` so Privacy/EULA links open in Safari
-- ✅ Build 7 confirmed attached to active review submission (not Build 5)
-- ✅ App Review notes submitted explaining sign-in bypass + paywall compliance
+### Current State
+- TAGJ_FA_MERGED_01-13.wav imported onto Track 4 in Logic Pro Library.logicx
+  - File: ~/Downloads/TAGJ_FA_MERGED_01-13.wav (1h18m33s, 44.1kHz, 24-bit, Mono, 623.5MB)
+  - Flex Mode: Off | Smart Tempo: Keep Project Tempo
+  - Track 1 deleted (Don't Erase) — Track 4 now independent
+- FA editing complete (Shaz confirmed 2026-09-21)
+- EN editing complete (Shaz confirmed 2026-09-21)
 
-### Pending (Your Salon Pro)
-- Wait for Apple review response (1–3 days)
-- If rejected again: submission has Build 7 + server-side HTML fixes — should pass
-- Xcode on MacBook Pro: "Unable to log in with account shahbazmirshahi@mac.com" warning in Signing & Capabilities — low priority, doesn't block current review
-
-### Key Files
-| File | Version | Status |
-|------|---------|--------|
-| salon.html | v0.48 | Live on GitHub Pages |
-| app.html | v2.57 | Live on GitHub Pages |
-| viewController.swift | openURL handler | Written to MacBook Pro |
-| Build | 7 (1.0) | In App Store Review queue |
+### Track Layout (Logic Pro Library.logicx)
+| Track | Name | Content | Status |
+|-------|------|---------|--------|
+| 1 | TAGJ_FA_01_0 | DELETED (Don't Erase) | — |
+| 2 | TAGJ_FA_01-1 | Empty | Muted |
+| 3 | TAGJ_FA_01-1 | Empty | Muted |
+| 4 | TAGJ_FA_01_1 | TAGJ_FA_MERGED_01-13_1 | Unmuted |
+| 5 | TAGJ_FA_01-1 | Original messy audio | Muted |
 
 ---
 
-## Session Progress Today (2026-09-10)
-- ✅ viewController.swift written to MacBook Pro with WKScriptMessageHandler for openURL
-- ✅ Confirmed Build 7 is attached to "Waiting for Review" submission in App Store Connect
-- ✅ Attempted to switch from Build 5 → Build 7 — already on Build 7 (no switch needed)
-- ✅ Logged into App Store Connect via Chrome to verify build
+## Audio Analysis Results (2026-09-21)
 
-## Pending (UE5)
-- Language Toggle wiring (above)
-- Portal_Persia Faravahar texture (blocked — need image from Shaz)
-- WAV Import (blocked — Apogee adapter)
+| Metric | EN | FA | ACX Target |
+|--------|----|----|------------|
+| Integrated | -26.4 LUFS | -26.2 LUFS | -18 to -23 dBFS |
+| True Peak | +0.13 dBTP CLIPS | +0.22 dBTP CLIPS | -3 dBFS max |
+| Noise floor | ~-49 dBFS | ~-49 dBFS | -60 dBFS or lower |
 
-## Key Rules Reminder
-- NEVER Arabic script, NEVER Islamic calligraphy — pre-Islamic Persia only
-- NEVER AssetEditorSubsystem / open_editor_for_assets (crashes UE5)
-- Files to T7B: device_bash via $HOME/mnt/T7B/
-- Farsi address: شما (NEVER تو)
+### Logic Pro fixes (both tracks)
+1. Gain plugin at TOP of chain: EN +4.5 dB / FA +4.0 dB
+2. Noise Gate: Threshold -40 dBFS | Attack 5ms | Release 300ms | Hold 50ms
+3. Channel EQ (HP): 120Hz to 160Hz | Slope 24 dB/oct
+4. Limiter (end): Output -3.5 dBFS | True Peak ON | Lookahead 1.0ms
+
+### Next Steps
+- Apply above settings in both Logic projects
+- Export FA chapters (ACX WAV 44.1kHz 16-bit mono -3dBFS peak)
+- Export EN chapters (same spec)
+
+---
+
+## TAGJ File Locations
+| File | Location |
+|------|----------|
+| FA EPUB | https://github.com/Shaz010/eee-journal/raw/main/TAGJ_v4_FA_corrected.epub |
+| EN EPUB | https://github.com/Shaz010/eee-journal/raw/main/TAGJ_v4_EN_corrected.epub |
+| Logic FA | ~/Music/Logic/Logic Pro Library.logicx |
+| Logic EN | ~/Music/Logic/TAGJ_EN_BABY_0917_MASTER_BACKUP.logicx |
+| FA WAV | ~/Downloads/TAGJ_FA_MERGED_01-13.wav |
+| EN WAV | ~/Downloads/TAGJ_EN_MERGED_01-09.wav |
+| Handoff | https://raw.githubusercontent.com/Shaz010/eee-journal/main/TAGJ_HANDOFF.md |
+
+---
+
+## Session Log
+- 2026-09-21: Audio analysis done. Both tracks too quiet (-26 LUFS), peaks clip, noise floor -49 dBFS. Logic Pro fix settings delivered.
+- 2026-09-19: FA merged WAV imported Track 4. Track 1 deleted (Don't Erase). FA and EN editing confirmed done.
+- Earlier: TAGJ_FA_MERGED_01-13.wav created (chapters 1-13 merged, 1h18m33s)
+
+---
+
+## Key Rules
+- Farsi address: شما throughout (NEVER تو) — classical literary Persian
+- English is master/source — Farsi is the translation
+- New content in .epub = amber gold class `new-v4`
+- No ElevenLabs — ACX rejects ElevenLabs audio
+- GitHub = Terminal commands only (never ask Shaz to use the GitHub website)
+- Never delete files without explicit calm confirmation
