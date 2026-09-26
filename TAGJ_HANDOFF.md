@@ -1,5 +1,5 @@
 # TAGJ — Session Handoff
-Last updated: 2026-09-24 (session 3)
+Last updated: 2026-09-25 (session 4)
 
 ---
 
@@ -7,7 +7,8 @@ Last updated: 2026-09-24 (session 3)
 - **Full title:** Think and Grow Joy
 - **Short form:** TAGJ
 - **Author:** Shahbaz Mirshahi
-- **ACX Title ID:** A1SW7CVVUNKD2Y
+- **ACX Title ID (EN):** A1SW7CVVUNKD2Y
+- **ACX Title ID (FA):** A22TG4OD9H9MVJ
 - **Languages:** English (EN) + Farsi (FA)
 
 ---
@@ -101,7 +102,11 @@ ffmpeg -i ~/Music/Logic/TAGJ_ACX_Ch_X.wav -af silencedetect=noise=-22dB:duration
 ---
 
 ## FA ACX Upload Status
-- ⏳ Not started — chapters split and ready, need Logic Pro editing then ffmpeg processing
+- 🟡 IN PROGRESS — Title created on ACX (A22TG4OD9H9MVJ), cover uploaded, audio upload next
+- FA title: فکر کن و شادی بیافرین (Persian Edition) — Language: English (Persian N/A on ACX)
+- Category: Nonfiction | Genre: Personal Development
+- Cover: TAGJ_cover_FA_v3.jpg ✅ uploaded to ACX
+- 12 MP3s ready in ~/Music/Logic/FA_ACX_Ready/ — upload in progress
 
 ### FA Chapter Split ✅ COMPLETE (2026-09-24)
 Source WAV backed up as: ~/Downloads/TAGJ_FA_MERGED_01-13_BACKUP.wav
@@ -124,9 +129,10 @@ All 13 chapters split (lossless copy) to: ~/Desktop/TAGJ_FA_Chapters/
 | FA_Ch13_ClosingCredits.wav | 4565s | end | ~2:28 |
 
 ### Next Steps
-1. Import each chapter into Logic Pro → edit (trim noise/silence) → export WAV to ~/Desktop/TAGJ_FA_Chapters/Edited/
-2. Run ffmpeg ACX pipeline (same spec as EN) on each edited WAV
-3. Upload all 13 to ACX
+1. ⚠️ Chapter split boundaries were approximate — Shaz manually cleaning each in Logic Pro (finding true chapter starts/ends)
+2. Export each cleaned chapter as WAV to ~/Desktop/TAGJ_FA_Chapters/Edited/
+3. Run ffmpeg ACX pipeline (same spec as EN) on each edited WAV
+4. Upload all 13 to ACX
 
 ---
 
@@ -141,7 +147,7 @@ All 13 chapters split (lossless copy) to: ~/Desktop/TAGJ_FA_Chapters/
 | EN WAV | ~/Downloads/TAGJ_EN_MERGED_01-09.wav |
 | Closing Credits WAV | ~/Music/Logic/TAGJ_ACX_3Laws_A_NoteBeforeWePart.wav |
 | EN Book Cover | TAGJ_cover_v4.jpg — 2400×2400 JPG, on Desktop, needs ACX upload |
-| FA Book Cover | TAGJ_cover_FA.jpg — 2400×2400 JPG, on Desktop (dark/gold/prism), needs ACX upload |
+| FA Book Cover | TAGJ_cover_FA_v3.jpg — 2400×2400 JPG, in Downloads/Claude outputs/ ✅ uploaded to ACX |
 | Handoff | https://raw.githubusercontent.com/Shaz010/eee-journal/main/TAGJ_HANDOFF.md |
 
 ---
@@ -167,6 +173,7 @@ All 13 chapters split (lossless copy) to: ~/Desktop/TAGJ_FA_Chapters/
 ---
 
 ## Session Log
+- 2026-09-25 (session 4): EN audiobook confirmed LIVE on Audible ✅. FA ACX title created (A22TG4OD9H9MVJ) — details filled (Nonfiction/Personal Development, copyright 2026, narrator/publisher Shahbaz Mirshahi). FA cover TAGJ_cover_FA_v3.jpg uploaded to ACX ✅. 12 FA MP3s processed and ready in ~/Music/Logic/FA_ACX_Ready/ — audio upload in progress. Next: upload all 12 MP3s then Publish.
 - 2026-09-24 (session 3): Missing prologue passage added to BOTH EPUBs (EN + FA). Passage goes after pullquote "This book is for you. All of it." / "این کتاب سراسر برای شماست" — two new `new-v4` paragraphs (Divine design + Law of attraction). FA translation created and approved by Shaz. EPUBs pushed to GitHub via ssh localhost workaround (cross-user: shahbazmirshahi ↔ shahbazmirshahimac.com). Commit: 4ec2fc1.
 - 2026-09-24 (session 2): FA merged WAV split into 13 individual chapter WAVs (lossless) → ~/Desktop/TAGJ_FA_Chapters/. Backup saved as TAGJ_FA_MERGED_01-13_BACKUP.wav. FA book cover created (TAGJ_cover_FA.jpg, 2400×2400, dark/gold/prism design) → saved to Desktop, ready for ACX upload. TAGJ_HANDOFF.md GitHub push fixed (was stuck on 2026-09-21 date).
 - 2026-09-24: All 12 EN chapters uploaded to ACX ✅. EN audiobook submitted for sale (Shaz hit Publish). Book cover TAGJ_cover.jpg created (text-only dark design, 2400×2400) — on Mac Desktop. Retail sample prepared (3:56 from Prologue, skip 6.62s) — on Mac Desktop. Full book title confirmed: Think and Grow Joy by Shahbaz Mirshahi — added to handoff permanently. FA dashboard published as Artifact. Pending: cover upload to ACX (manual), retail sample upload to ACX (manual), Ch7/8/9 warnings review, FA ACX upload (all chapters).
