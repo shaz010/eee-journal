@@ -1,5 +1,5 @@
 # TAGJ — Session Handoff
-Last updated: 2026-09-25 (session 4)
+Last updated: 2026-10-05 (session 5)
 
 ---
 
@@ -157,7 +157,7 @@ All 13 chapters split (lossless copy) to: ~/Desktop/TAGJ_FA_Chapters/
 - English is master/source — Farsi is the translation
 - New content in .epub = amber gold class `new-v4`
 - No ElevenLabs — ACX rejects ElevenLabs audio
-- GitHub = Terminal commands only (never ask Shaz to use the GitHub website)
+- GitHub = Terminal commands only for code pushes. For handoff/vault files: Claude delivers a file card → Shaz copies content → pastes into GitHub editor. No dragging.
 - Never delete files without explicit calm confirmation
 - ALL instructions to Shaz = Terminal commands only, ready to copy-paste. NEVER ask him to navigate Finder or click through folders.
 - Handoff update every 30 minutes minimum during sessions
@@ -173,6 +173,7 @@ All 13 chapters split (lossless copy) to: ~/Desktop/TAGJ_FA_Chapters/
 ---
 
 ## Session Log
+- 2026-10-05 (session 5): No TAGJ work this session. GitHub file delivery workflow updated: Claude delivers card → Shaz copies content → pastes into GitHub editor (no more dragging files).
 - 2026-09-25 (session 4): EN audiobook confirmed LIVE on Audible ✅. FA ACX title created (A22TG4OD9H9MVJ) — details filled (Nonfiction/Personal Development, copyright 2026, narrator/publisher Shahbaz Mirshahi). FA cover TAGJ_cover_FA_v3.jpg uploaded to ACX ✅. 12 FA MP3s processed and ready in ~/Music/Logic/FA_ACX_Ready/ — audio upload in progress. Next: upload all 12 MP3s then Publish.
 - 2026-09-24 (session 3): Missing prologue passage added to BOTH EPUBs (EN + FA). Passage goes after pullquote "This book is for you. All of it." / "این کتاب سراسر برای شماست" — two new `new-v4` paragraphs (Divine design + Law of attraction). FA translation created and approved by Shaz. EPUBs pushed to GitHub via ssh localhost workaround (cross-user: shahbazmirshahi ↔ shahbazmirshahimac.com). Commit: 4ec2fc1.
 - 2026-09-24 (session 2): FA merged WAV split into 13 individual chapter WAVs (lossless) → ~/Desktop/TAGJ_FA_Chapters/. Backup saved as TAGJ_FA_MERGED_01-13_BACKUP.wav. FA book cover created (TAGJ_cover_FA.jpg, 2400×2400, dark/gold/prism design) → saved to Desktop, ready for ACX upload. TAGJ_HANDOFF.md GitHub push fixed (was stuck on 2026-09-21 date).
